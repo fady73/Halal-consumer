@@ -1,0 +1,113 @@
+
+<div class="wrapper wrapper-content ">
+        <div class="row">
+              
+            <div class="col-lg-12">
+                <div class="row">
+    
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            
+                            <div class="ibox-content">
+                 
+                                <div class="tab-content" id="pills-tabContent">
+                               
+                                    
+                                    <div class="tab-pane  show active" id="pills-sec4" role="tabpanel"
+                                        aria-labelledby="pills-sec4-tab">
+                                        <div class="tab-pane " id="step-4">
+                                                <h1 *ngIf="!isPageLoaded" align="center"><i class="blue fa fa-refresh fa-spin"></i>
+                                                </h1>
+                                                <form role="form" *ngIf="isPageLoaded" [formGroup]="form" (ngSubmit)="save()">
+                                                  
+                                                <div class="forms-wrap col-xs-12">
+                                                    
+                                                    <h4 class="wrap-head"> {{'shared.Appeal'|translate}} 
+                                                        </h4>
+                                                </div>
+                                                    <div class="form-group col-md-12 col-xs-12">
+                                                        
+                                                      
+                                                        
+                                                                <div class=" col-sm-12">
+                                                                        <textarea type="text" rows="3"
+                                                                        class="form-control" formControlName="Message"  ></textarea>
+                                                             
+                                                     
+                                                                        <div class="text-danger offset-sm-2 col-sm-10"
+                                                                        *ngIf="!form.controls['Message'].valid && form.controls['Message'].touched">
+                                                                        <div class="valid-label text-danger"
+                                                                            *ngIf="form.controls['Message'].hasError('required')">
+                                                                            {{'shared.validation.required'|translate}}</div>
+                                                                        
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                              
+                                                            </div>
+                                                        <div class="up-files ">
+                                                                    <!-- <label class="text-navy">or</label> -->
+                                                                    <label class="uploadBtn btn" style="   color: white !important; background-color: #0087ff !important;">
+                                                                        <i class="fa fa-plus"></i>
+                                                                        {{'shared.upload-files'|translate}}
+                                                                        <input  type="file" multiple
+                                                                            class="bg-primary" #myInput
+                                                                            accept=".doc, .docx,.pdf , .png , .jpg , .jpeg"
+                                                                            (change)="onFileChanged($event)" />
+                                                                    </label>
+                                                                </div>
+                                                  
+                                                 
+                                              
+                                        
+                                     
+    
+                                         
+                                            <!-- {{form.value |json}} -->
+                                            <div class="row" *ngIf="model.AppealAttachments.length > 0">
+                                                <div class="col-sm-12">
+                                                    <br /><b class="text-navy">{{'shared.uploaded-files'|translate}}</b>
+                                                    <br />
+                                                    <div class="col-sm-12"
+                                                        *ngFor="let item of model.AppealAttachments;let i=index;">
+                                                        <span class="col-sm-1">
+                                                            <i class="fa fa-file"></i>
+                                                        </span>
+                                                        <span class="col-sm-4">
+                                                            <a href="{{item.FilePath}}" target="_blank"><a
+                                                                    href="{{item.FilePath}}"
+                                                                    target="_blank">{{item.FileName}}</a></a>
+                                                        </span>
+                                                        <span class="col-sm-2">
+                                                            <i  (click)="removeAttachment(i)"
+                                                                class="fa fa-trash"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="row margin-top-15 forms-wrap">
+                                                <div class="col-sm-12 form-group">
+                                                    <button 
+                                                        type="submit"
+                                                        class="btn btn-primary1  next-step" [disabled]="!
+                                                        form.valid">{{'complaint.send'|translate}}
+                                                    </button>
+                                                     </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            
+                                    </div>
+                                
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

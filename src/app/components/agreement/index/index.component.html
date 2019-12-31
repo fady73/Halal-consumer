@@ -1,0 +1,70 @@
+<div class="wrapper single-wrap wrapper-content profile-wrap  " id="appendix-content">
+    <div class="row prof-content">
+    <div class="orders-wrap my_payments col-xs-push-2 col-sm-push-0 col-xs-10  col-sm-12">
+        <div class="order-table  table-responsive">
+                <div class="table-item-inner ">
+              
+                            <table class="table table-stripped responsive nowrap">
+                                <thead>
+                                <tr>
+                                        
+                                    <th> {{ 'shared.request-num'|translate }}</th>
+                                    <th>{{ 'shared.request-date'|translate }}</th>
+                                    <th>{{ 'shared.agree'|translate }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <tr *ngIf="items.length==0">
+                                                <td colspan="10">
+                                                    <h2>{{'shared.sorry-no-agreement-found'|translate}}</h2>
+                                                </td>
+                                            </tr>
+                                <tr *ngFor="let item of items">
+                                        <td>#{{item.ID}}</td>
+                                        <td>{{item.SubmissionDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>
+                                        <span  *ngIf="item.ConsumerSignedAggrementFilePath!=null">
+                                        <a  class="upload-f" [href]="item.ConsumerSignedAggrementFilePath"  data-fancybox >
+                                            <i class="fa fa-eye"></i>
+                                           
+                                            {{ 'shared.show-agree'|translate }}
+
+                                        </a>
+
+                                        
+                                        
+                                        </span>
+                                        <!-- <span [(ngModel)]="filePath" *ngIf="item.ConsumerRequiredAction==17&&filePath!=null">
+                                                <a  class="upload-f" (click)="showFile(filePath)">
+                                                    <i class="fa fa-eye"></i>
+                                                    الإطلاع على الاتفاقية
+                                                </a>
+                                                
+                                                
+                                                </span> -->
+
+
+                                        <span *ngIf="item.ConsumerRequiredAction==17">
+                                                <a  class="upload-f" [href]="item.StaffSignedAggrementFilePath"  data-fancybox >
+                                                    <i class="fa fa-eye"></i>
+                                                    {{ 'shared.download-agree'|translate }}
+                                                </a>
+                                                
+                                                
+                                                </span>
+                                                <label *ngIf="item.ConsumerRequiredAction==17">
+                                                        <input type="file" [accept]="'application/pdf'" [multiple]="false" (change)="onFileChanged($event,item.ID)">
+                                                        <i class="fa fa-cloud-upload"></i>
+                                                        {{ 'shared.upload-agree'|translate }}
+                                                    </label>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+    

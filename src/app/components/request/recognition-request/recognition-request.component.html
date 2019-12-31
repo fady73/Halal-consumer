@@ -1,0 +1,359 @@
+<div class="wrapper wrapper-content">
+    <div class="row">     
+   <div class="col-sm-12">                         
+            <sections-steps [requestID]="model.RequestID" [step]="3" ></sections-steps>
+     </div>
+        <div class="col-lg-12">
+            
+            <div class="row">
+
+                <div class="col-lg-12 forms-wrap">
+                    <div class="ibox ">
+                        
+                        <div class="ibox-content">
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade" id="pills-sec1" role="tabpanel" aria-labelledby="pills-sec1-tab">
+                                    sect1
+                                </div>
+                                <div class="tab-pane fade" id="pills-sec2" role="tabpanel" aria-labelledby="pills-sec2-tab">.2.</div>
+                                <div class="tab-pane  show active" id="pills-sec3" role="tabpanel" aria-labelledby="pills-sec3-tab">
+                                    <h3 class="wrap-head">
+                                        {{'request.scope-processes.title'|translate}}
+                                    </h3>
+                                    <form role="form" *ngIf="isPageLoaded" [formGroup]="form" (ngSubmit)="save()">
+                                        
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group row"
+                                            [class.has-error]="(!form.controls['RegistrationScope'].valid && form.controls['RegistrationScope'].touched ) && this.model.ScopeAttachments.length==0">
+                                            <h5
+                                                class="col-sm-12 col-form-label">
+                                                {{'request.scope-processes.scope-of-registration'|translate}}
+                                                <i>*</i></h5>
+                                                <div class="col-sm-12" *ngIf="!marked">
+                                                        <textarea type="text" *ngIf="isEditable" rows="3" class="form-control"
+                                                            formControlName="RegistrationScope"></textarea>
+        
+                                                            <textarea readonly="true"  *ngIf="!isEditable" type="text" rows="3" class="form-control"
+                                                            formControlName="RegistrationScope"></textarea>
+                                                     
+                                                    </div>
+                                                    <div class="col-sm-12 padding-top-10" >
+                                                            <div class="certs-radios">
+                                                                    <div class="r-item">
+                                                        <label >
+                                                            <input *ngIf="isEditable" type="checkbox" id="have-local-activities-no" [value]="true"
+                                                                (click)="fileOr()"  [checked]="marked"/>
+        
+                                                                <input *ngIf="!isEditable" type="checkbox" id="have-local-activities-no" [value]="true"
+                                                                [checked]="model.ScopeAttachments"
+                                                                disabled="true"
+                                                                />
+                                                                <span class="label-text"> {{'request.scope-processes.attach-file'|translate}}</span>
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                            <div class="col-sm-2 file-upload up-files  padding-top-15 form-group"  *ngIf="marked">
+                                                <!-- <label class="text-navy">or</label> -->
+                                                <label class="uploadBtn btn">
+                                                    <i class="fa fa-plus"></i>
+                                                    {{'shared.upload-files'|translate}}
+                                                    <input [disabled]="!isEditable" type="file" #myInput multiple
+                                                        class="bg-primary" accept=".doc, .docx,.pdf"
+                                                        (change)="onFileChanged($event)" />
+                                                </label>
+                                            </div>
+
+                                            <div class="col-sm-12 text-danger padding-h-15"
+                                                *ngIf="(!form.controls['RegistrationScope'].valid && form.controls['RegistrationScope'].touched) ||error">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['RegistrationScope'].hasError('required')||error">
+                                                    {{'shared.validation.required'|translate}}
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        
+
+                                        <div class="row mtop-60 bottom-t5 m-b-20"
+                                        *ngIf="model.ScopeAttachments
+                                        && model.ScopeAttachments.length>0">
+                                        <div class="col-sm-12" >
+                                            <br /><b class="text-navy">{{'shared.uploaded-files'|translate}}</b>
+                                            <br />
+                                            <div class="col-sm-12"
+                                                *ngFor="let item of model.ScopeAttachments;let i=index">
+                                                <span class="col-sm-1">
+                                                    <i class="fa fa-file"></i>
+                                                </span>
+                                                <span class="col-sm-6">
+                                                    <a href="{{item.FilePath}}"
+                                                        target="_blank">{{item.FileName}}</a>
+                                                </span>
+                                                <span class="col-sm-2">
+                                                    <i *ngIf="isEditable" (click)="removeAttachment(i)"
+                                                        class="fa fa-trash"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="form-group row">
+                                        <h5
+                                            class="col-sm-12  ">{{'request.scope-processes.exclusions'|translate}}<i>*</i>
+                                    </h5>
+                                        <div class="col-sm-12 padding-top-10">
+                                                <div class="certs-radios">
+                                                        <div class="r-item">
+                                            <label class="radio-s">
+                                                <input *ngIf="isEditable" type="radio" id="have-local-activities-no" [value]="true"
+                                                    [checked]="!model.HaveLocalActivities"
+                                                    formControlName="HaveLocalActivities"
+                                                    (change)="onHaveLocalActivitiesChanged(false)" />
+
+                                                    <input *ngIf="!isEditable" type="radio" id="have-local-activities-no" [value]="true"
+                                                    [checked]="!model.HaveLocalActivities"
+                                                    formControlName="HaveLocalActivities"
+                                                    disabled="true"
+                                                    />
+                                                    <span class="label-text">{{'shared.no'|translate}}</span>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            </div>
+                                            <div class="r-item">
+                                            <label class="radio-s">
+                                                <input *ngIf="isEditable" type="radio" id="have-local-activities-yes" [value]="false"
+                                                    [checked]="model.HaveLocalActivities"
+                                                    formControlName="HaveLocalActivities"
+                                                    (change)="onHaveLocalActivitiesChanged(true)" />
+                                            <input *ngIf="!isEditable" type="radio" id="have-local-activities-yes" [value]="false"
+                                                    [checked]="model.HaveLocalActivities"
+                                                    formControlName="HaveLocalActivities"
+                                                    disabled="true"
+                                                     />
+                                                     <span class="label-text">{{'shared.yes'|translate}}</span>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group row" *ngIf="model.HaveLocalActivities">
+
+                                        <!-- {{controls["Exclusions"].valid}} -->
+                                        <h5 class=" col-sm-12  ">
+                                            {{'request.scope-processes.describe-exclusion'|translate}}
+                                            <i>*</i></h5>
+                                        <div class=" col-sm-12 ">
+                                            <textarea *ngIf="isEditable" type="text" rows="3"
+                                                class="form-control" formControlName="Exclusions"></textarea>
+                                            <textarea  *ngIf="!isEditable" readonly="true" type="text" rows="3"
+                                                class="form-control" formControlName="Exclusions"></textarea>
+                                        </div>
+                                    </div>
+
+                                        <div class="hr-line-dashed"></div>
+                                          <div  class="row">
+                                        <div class="form-group col-sm-12 "
+                                            [class.has-error]="!form.controls['OutsourcedSpecialistOperations'].valid && form.controls['OutsourcedSpecialistOperations'].touched">
+                                            <h5
+                                                class="col-sm-12 ">{{'request.scope-processes.outsourced'|translate}}
+                                                <i>*</i></h5>
+                                            <div class="col-sm-12">
+                                                    <textarea *ngIf="isEditable" type="text" rows="3" class="form-control"
+                                                    formControlName="OutsourcedSpecialistOperations"></textarea>
+                                                <textarea *ngIf="!isEditable" readonly="true" type="text" rows="3" class="form-control"
+                                                    formControlName="OutsourcedSpecialistOperations"></textarea>
+                                            </div>
+
+                                            <div class="offset-sm-3 text-danger padding-h-15"
+                                                *ngIf="!form.controls['OutsourcedSpecialistOperations'].valid && form.controls['OutsourcedSpecialistOperations'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['OutsourcedSpecialistOperations'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  col-sm-12"
+                                            [class.has-error]="!form.controls['ConsultancyRelatingDetails'].valid && form.controls['ConsultancyRelatingDetails'].touched">
+                                            <h5
+                                                class="col-sm-12 ">{{'request.scope-processes.consultancy'|translate}}
+                                                <i>*</i></h5>
+                                            <div class="col-sm-12">
+                                                    <textarea *ngIf="isEditable" type="text" rows="3" class="form-control"
+                                                    formControlName="ConsultancyRelatingDetails"></textarea> 
+                                                <textarea *ngIf="!isEditable" readonly="true" type="text" rows="3" class="form-control"
+                                                    formControlName="ConsultancyRelatingDetails"></textarea>
+                                            </div>
+                                            <div class=" text-danger padding-h-15"
+                                                *ngIf="!form.controls['ConsultancyRelatingDetails'].valid && form.controls['ConsultancyRelatingDetails'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['ConsultancyRelatingDetails'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="hr-line-dashed"></div>
+                                       
+                                  
+                                            <div class="form-group row "
+                                            [class.has-error]="!form.controls['CertificationsCount'].valid && form.controls['CertificationsCount'].touched">
+                                            <h5
+                                                class="col-sm-12">                                                   
+                                                 {{'shared.certifications'|translate}}
+
+                                                <i>*</i></h5>
+                                            <div class="col-sm-12"><input type="number"  (keypress)="checkIfNumber($event)"  class="form-control"
+                                                    formControlName="CertificationsCount" *ngIf="isEditable">
+
+                                                    <input type="number"  (keypress)="checkIfNumber($event)"  class="form-control"
+                                                    formControlName="CertificationsCount" *ngIf="!isEditable" readonly="true">
+                                            </div>
+                                            <div class="col-sm-12 text-danger padding-h-15"
+                                                *ngIf="!form.controls['CertificationsCount'].valid && form.controls['CertificationsCount'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['CertificationsCount'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}
+                                                </div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['CertificationsCount'].hasError('min')">
+                                                    {{'shared.validation.minus'|translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                           
+                                        <div class="form-group row "
+                                        [class.has-error]="!form.controls['TotalEmployeesNumber'].valid && form.controls['TotalEmployeesNumber'].touched">
+                                        <h5
+                                            class="col-sm-12">
+                                            {{'shared.employee'|translate}}
+
+                                            <i>*</i></h5>
+                                        <div class="col-sm-12"><input type="number"  (keypress)="checkIfNumber($event)"  class="form-control"
+                                                formControlName="TotalEmployeesNumber" *ngIf="isEditable">
+
+                                                <input type="number"  (keypress)="checkIfNumber($event)"  class="form-control"
+                                                formControlName="TotalEmployeesNumber" *ngIf="!isEditable" readonly="true">
+                                        </div>
+                                        <div class="col-sm-12 text-danger padding-h-15"
+                                            *ngIf="!form.controls['TotalEmployeesNumber'].valid && form.controls['TotalEmployeesNumber'].touched">
+                                            <div class="valid-label text-danger"
+                                                *ngIf="form.controls['TotalEmployeesNumber'].hasError('required')">
+                                                {{'shared.validation.required'|translate}}
+                                            </div>
+                                            <div class="valid-label text-danger"
+                                                *ngIf="form.controls['TotalEmployeesNumber'].hasError('min')">
+                                                {{'shared.validation.minus'|translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group row "
+                                    [class.has-error]="!form.controls['TotalContractualEmployeesNumber'].valid && form.controls['TotalContractualEmployeesNumber'].touched">
+                                    <h5
+                                        class="col-sm-12">
+                                        {{'shared.contractual'|translate}}
+                                        <i>*</i></h5>
+                                    <div class="col-sm-12"><input type="number"  (keypress)="checkIfNumber($event)"  class="form-control"
+                                            formControlName="TotalContractualEmployeesNumber" *ngIf="isEditable">
+
+                                            <input type="number"  (keypress)="checkIfNumber($event)"  class="form-control"
+                                            formControlName="TotalContractualEmployeesNumber" *ngIf="!isEditable" readonly="true">
+                                    </div>
+                                    <div class="col-sm-12 text-danger padding-h-15"
+                                        *ngIf="!form.controls['TotalContractualEmployeesNumber'].valid && form.controls['TotalContractualEmployeesNumber'].touched">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TotalContractualEmployeesNumber'].hasError('required')">
+                                            {{'shared.validation.required'|translate}}
+                                        </div>
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TotalContractualEmployeesNumber'].hasError('min')">
+                                            {{'shared.validation.minus'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                                            
+                                           
+
+
+                                                
+                                        <div class="form-group row"
+                                        [class.has-error]="!form.controls['TotalAnnualRevenue'].valid && form.controls['TotalAnnualRevenue'].touched">
+                                        <h5 class="p-t-10">                                        {{'shared.revenue'|translate}}
+                                                <i>*</i></h5>
+                                        <div class="col-sm-12 padding-top-10">
+                                                <input type="number"  (keypress)="checkIfNumber($event)" 
+                                                class="form-control" formControlName="TotalAnnualRevenue" *ngIf="isEditable" >
+                                            <input type="number"  (keypress)="checkIfNumber($event)" 
+                                                class="form-control" formControlName="TotalAnnualRevenue" *ngIf="!isEditable" readonly="true">
+                                        </div>
+
+                                        <div class="col-sm-12 text-danger padding-h-15"
+                                            *ngIf="!form.controls['TotalAnnualRevenue'].valid && form.controls['TotalAnnualRevenue'].touched">
+                                            <div class="valid-label text-danger"
+                                                *ngIf="form.controls['TotalAnnualRevenue'].hasError('required')">
+                                                {{'shared.validation.required'|translate}}
+                                            </div>
+                                            <div class="valid-label text-danger"
+                                                *ngIf="form.controls['TotalAnnualRevenue'].hasError('min')">
+                                                {{'shared.validation.minus'|translate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                                <div class="form-group row col-sm-12">
+                                                        <label
+                                                            class="col-sm-12 col-form-label">{{'request.sales.indicate'|translate}}</label>
+                                                        <div class="col-sm-12">
+                                                            <!-- CertificateCountriesIDs : {{CertificateCountriesIDs | json}} -->
+                                                            <ng-select [items]="cities" bindLabel="Name" bindValue="ID"
+                                                                [multiple]="true" placeholder="Select countries"
+                                                                formControlName="CertificateCountriesIDs">
+                                                            </ng-select>
+                                            <div class="col-sm-12 text-danger padding-h-15"
+                                                *ngIf="!form.controls['CertificateCountriesIDs'].valid && form.controls['CertificateCountriesIDs'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['CertificateCountriesIDs'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}
+                                                </div>
+                                               
+                                            </div>
+                                                        </div>
+                                                    </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class=" form-group row margin-top-15 col-sm-12">
+                                                <div class="col-sm-12">
+                                                    <!-- [disabled]="!isEditable || form.invalid || !isValidTypes()" -->
+                                                    <button [disabled]="!isEditable "
+                                                        type="submit" class="btn next-step">
+                                                        {{'request.save'|translate}}
+                                                    </button>
+                                                    <button type="button" (click)="resetForm()"
+                                                        class="btn prev-step">
+                                                        {{'request.prev'|translate}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                      
+
+
+                                       
+                                       
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="pills-sec4" role="tabpanel" aria-labelledby="pills-sec4-tab">.4.</div>
+                                <div class="tab-pane fade" id="pills-sec5" role="tabpanel" aria-labelledby="pills-sec5-tab">.5.</div>
+                                <div class="tab-pane fade" id="pills-sec6" role="tabpanel" aria-labelledby="pills-sec6-tab">.6.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

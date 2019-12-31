@@ -1,0 +1,145 @@
+ .ibox .label {
+    font-size: 13px;
+    margin-left: 9px;
+    position: relative;
+    top: 10px;
+}
+.view{
+
+    color: #1bb394;
+}
+table tbody tr td a i{
+color: #1bb394;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 1px solid #e7eaec;
+    line-height: 1.5;
+    padding: 8px;
+    vertical-align: top;
+}
+.table > thead:first-child > tr:first-child > th {
+    border-top: 0;
+    background-color: #1bb394;
+    color: white;
+    
+}
+.table{
+    border: none  !important;
+}
+.table > tbody > tr > td{
+   border-top: 0px solid white ;
+    line-height: 1.5;
+    padding: 8px;
+    vertical-align: top;
+    
+}
+table {border: none;}
+
+.table-bordered td, .table-bordered th {
+    border: 0px  !important;
+    text-align: center;
+    
+    
+}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 0px !important;
+    text-align: center;
+}
+
+
+.table >tr :nth-of-type(odd){
+background-color: #f3f3f4;
+}
+.table >tr:nth-of-type(even){
+    background-color: white;
+    }
+
+
+    ::placeholder {
+  
+        opacity: 0.5;
+      }
+
+      #formFileUpload{
+        border: 1px dashed #06ad8c;
+        margin-top: 5%;
+        margin-bottom: 5%;  
+      }
+      #myBar {
+        width: 4%;
+        height: 20px;
+        background-color: #06ad8c;
+        border-radius: 116pc;
+      
+      }
+    
+      input[type="file"] {
+        display : none;
+        }
+        
+        #file-drag {
+            width: 100%;
+            border: 1px dashed #06ad8c;
+            border-radius: 7px;
+            color: #555;
+            cursor: pointer;
+            display: block;
+            font-weight: bold;
+            margin: 1em 5px;
+            padding: 4em;
+        text-align    : center;
+        transition    : background 0.3s, color 0.3s;
+        }
+        
+        #file-drag:hover {
+        background : #ddd;
+        }
+        
+        #file-drag:hover,
+        #file-drag.hover {
+        border-color : #06ad8c;
+        border-style : dashed;
+        box-shadow   : inset 0 3px 4px #888;
+        color        : #06ad8c;
+        }
+        
+        #file-progress {
+        display : none;
+        margin  : 1em auto;
+        width   : 100%;
+        }
+        
+        #file-upload-btn {
+        margin : auto;
+        }
+        
+        #file-upload-btn:hover {
+        color : #06ad8c;
+        }
+        
+        #file-upload-form {
+        margin : auto;	
+        width  : 90%;
+        }
+      
+
+/* ///////////////////////////////////////////////// */
+.imgLogo{
+    width: 25%;
+    padding-top: 5%;
+    margin-left: 15%;
+    margin-bottom: 3%;
+}
+
+.ibox-content > .row > .agreementText{
+    margin-left: 15%;
+}
+
+.viewAgreement > button{
+    margin-left: 25%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+        font-size: 13px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+}

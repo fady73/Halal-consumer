@@ -1,0 +1,260 @@
+<div class="wrapper wrapper-content  single-wrap ncr-form " id="appendix-content">
+
+        <div class="row reg-form " *ngIf="isPageLoaded">
+                <div class=" widget col-lg-12">
+                    <div class=" inner ibox ">
+                        <!-- <div class="  ibox-title">
+                        <h5>Here you can accept the non-conformity findings reported by the audit team</h5>
+    
+                    </div> -->
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12" id="audit-content">
+    
+    
+    
+    
+    
+                                    <div class=" form-group row">
+
+    
+                                    <div class="form-group  col-sm-12 col-md-6 ">
+                                            <h5 class="control-label col-sm-12 ">  {{ 'shared.main-title'|translate }} <i>*</i>
+                                                </h5>
+                                            <div class="col-sm-12">
+                                                    <input class="form-control" value="On-site Assement informations" type="text"
+                                            readOnly="true">
+                                    </div>
+                                </div>
+    
+                                <div class="   col-sm-12 col-md-6 ">
+                                        <h5 class="control-label col-sm-12"> {{ 'shared.another-title'|translate }} <i>*</i>
+                                            </h5>
+                                        <div class="col-sm-12">
+                                        <input class="form-control " value="Initial assement GSO.2055.1" type="text"
+                                            readOnly="true">
+                                    </div>
+                                </div>
+                                    </div>
+                                <div class=" form-group row">
+
+                                <div class="form-group  col-sm-12 col-md-6 ">
+                                        <h5 class="control-label col-sm-12"> {{ 'shared.file-number'|translate }} <i>*</i>
+                                            </h5>
+                                        <div class="col-sm-12">
+                                        <input class="form-control" [value]="model.Number" type="text" readOnly="true">
+                                    </div>
+                                </div>
+                                <div class="  col-sm-12 col-md-6   ">
+                                        <h5 class="control-label col-sm-12"> {{ 'shared.company-name'|translate }} <i>*</i>
+                                            </h5>
+                                        <div class="col-sm-12">
+                                        <input class="form-control" [value]="model.CompanyName" type="text" readOnly="true">
+                                    </div>
+                                </div>
+                                </div>
+    
+                                <div class="form-group row col-sm-12 col-md-12  m-b-3">
+                                        <h5 class="control-label col-sm-12"> {{ 'shared.address-company'|translate }} <i>*</i>
+                                            </h5>
+                                        <div class="col-sm-12">
+                                        <input class="form-control" [value]="model.CompanyAddress" type="text"
+                                            readOnly="true">
+                                    </div>
+                                </div>
+    
+                                <div class="form-group row ">
+                                        <h5 class="control-label col-sm-12"> {{ 'shared.dates'|translate }} <i>*</i>
+                                            </h5>
+                                        
+                                        <div class="col-sm-12">
+                                        <span class="label-b" *ngFor="let item of model.AssessmentDates; let i=index"> &nbsp;&nbsp; {{item | date:'dd/MM/yyyy'}} &nbsp;&nbsp;</span> 
+                                        
+                                        
+                                    
+                                    </div>
+                                    </div>
+                             
+ 
+ 
+                             <div class="form-group row  ">
+                                 <h5 class="control-label col-sm-12">  {{ 'shared.refrence'|translate }}  <i>*</i>
+                                    </h5>
+                                 
+                            <div class="col-sm-12">
+                                 <div class="btn-group" *ngFor="let item of model.LeadAuditors; let i=index">
+                                        <span class="label-b"> &nbsp; {{item.EmployeeName}} &nbsp;</span>
+                                 </div>
+
+                                 
+                                </div>
+ 
+                             </div>
+                             
+                             <div class="form-group row   ">
+                                 <h5 class="control-label col-sm-12">  {{ 'shared.audits'|translate }} <i>*</i>
+                                    </h5>
+                             
+                                 <div class="col-sm-12">
+                                 <div class="btn-group" *ngFor="let item of model.TechnicalAuditors; let i=index">
+                                        <span class="label-b"> &nbsp;{{item.EmployeeName}} &nbsp;</span>
+                                 </div>
+
+                                 
+
+                                 </div>
+ 
+                             </div>
+     
+                             
+                             <div class="form-group row   ">
+                                 <h5 class="control-label col-sm-12"> {{ 'shared.islamic'|translate }}   </h5>
+                                 <div class="col-sm-12">
+                                 <div class="btn-group" *ngFor="let item of model.AffairsExperts; let i=index">
+                                        <span class="label-b"> &nbsp; {{item.EmployeeName}} &nbsp;</span>
+                                 </div>
+
+                                 
+                        </div>
+                             </div>
+ 
+                             <!-- <div class="form-group row   ">
+                                 <h5 class="control-label col-sm-12"> {{ 'shared.technical'|translate }}  </h5>
+                             
+                                 <div class="col-sm-12">
+                                 <div class="btn-group" *ngFor="let item of model.TechnicalExperts; let i=index">
+                                        <span class="label-b"> &nbsp; {{item.EmployeeName}} &nbsp;</span>
+                                 </div>
+
+                                 
+                                </div>
+ 
+                             </div>
+     -->
+                           
+    
+                             <div class="profile-wrap audit-layout">
+                                    <div class="prof-content">
+                                        <div class="orders-wrap my_payments">
+                                                    <div class="order-table">
+                                                        <div class="table-item-inner col-12 col-sm-12 col-lg-12">
+                                <div class=" row">
+                                    <div class="table-responsive " id="corectiveTable">
+                                        <table class="table table-stripped responsive nowrap dataTable no-footer dtr-inline">
+                                            <thead>
+                                                <tr class="">
+    
+                                                  
+  <!-- <th>standard Clause(s)</th>
+  <th>Description </th>
+  <th>Analysis </th>
+  <th>Corrective action</th>
+  <th>Proposed Implementation period</th>
+  <th>Documents</th>
+  <th>Supplied documents</th>
+496/5000 -->
+<th>{{ 'shared.point'|translate }}  </th>
+   <th>{{ 'shared.descripe'|translate }}   </th>
+   <th> {{ 'shared.analyis'|translate }} </th>
+   <th>   {{ 'shared.corrective-action'|translate }}  </th>
+   <th> {{ 'shared.period'|translate }} </th>
+   <th> {{ 'shared.doc'|translate }} </th>
+   <th>   {{ 'shared.doc-import'|translate }} </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of model.NCSs; let i=index">
+    
+                                                    <td>
+                                                                    <span *ngIf="notes.length!=0&&!notes[i].seen" [tooltip]="notes[(notes.length-1)-i].Description"
+                                                                        class="badge badge-danger" placement="bottom"
+                                                                        containerClass="customToolTipClass" container="body">!</span>
+                                                        {{item.StandardClause}}
+                                                    </td>
+    
+                                                    <td>
+                                                        {{item.Description}}
+                                                    </td>
+    
+                                                    <td>
+                                                        {{item.Analysis}}
+                                                    </td>
+    
+                                                    <td>
+                                                        <input type="text" class="col-sm-12 form-control " [(ngModel)]="item.CorrectiveAction"
+                                                            placeholder="Write your action...">
+                                                    </td>
+    
+                                                    <td>
+                                                        <form [formGroup]="page.form" >
+                                                            
+                                                            <input bsDatepicker   type="text" formControlName="ImplementationPeriod"
+                                                            class="form-control col-sm-12" placeholder="7/4/2020" (click)="today()">
+                                                            <div class="text text-danger offset-sm-3 col-sm-9 padding-none"
+                                                            *ngIf="!page.form.controls['ImplementationPeriod'].valid && page.form.controls['ImplementationPeriod'].touched||timeError">
+                                                            <p class=" text-danger pl-3" *ngIf="(page.form.controls['ImplementationPeriod'].errors.TodayValidator)||timeError">
+                                                                    {{'shared.validation.daterequired'|translate}}</p>
+                                                             </div>
+                                                        </form>
+                                                        
+<!--
+                                                        <input type="text" class="col-sm-12 form-control" bsDatepicker
+                                                            [(ngModel)]="item.ImplementationPeriod" placeholder="1/9/2019" > -->
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <div *ngFor="let file of item.SuppliedDocuments;let i=index;">
+                                                                <!-- <a target="_blank"
+                                                                    [href]="file.FilePath">{{file.FileName}}</a> -->
+
+                                                                    <a class="upload-f nowrap "     [href]="file.FilePath"  data-fancybox >
+                                                                            <i class="fa fa-eye"></i>
+                                                                            {{'shared.view'|translate}}</a>
+                                                                &nbsp;&nbsp;
+                                                                <span (click)="removeAttachment(item,i)"><i
+                                                                        class="fa fa-times">
+                                                                    </i></span>
+                                                            </div>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="file-upload" *ngIf="item.SuppliedDocuments.length == 0">
+                                                            <label class="fileContainer uplaod">
+                                                                {{'shared.upload-files'|translate}}
+                                                                <input type="file" class="bg-primary" multiple #myInput
+                                                                    accept=".doc, .docx,.pdf"
+                                                                    (change)="onFileChanged($event,item)" />
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                   
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+                            <div class="col-sm-12 form-group">
+                                <button type="submit" (click)="save()" [disabled]="page.form.invalid" class="btn btn-prime">
+                                        {{'shared.submit'|translate}} 
+                                     
+                                </button>
+                        </div>
+                    </div>
+    
+    
+    
+    
+    
+    
+    
+                </div>
+            </div>
+        </div>
+    </div>

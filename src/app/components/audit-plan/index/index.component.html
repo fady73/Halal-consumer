@@ -1,0 +1,530 @@
+
+
+<div class="wrapper wrapper-content   single-wrap " id="appendix-content">
+
+    <div class="row">
+        <div class="col-xs-push-2 col-sm-push-0 col-xs-10  col-sm-12">
+            <div class="ibox ">
+                
+                <div class="profile-wrap audit-layout ">
+                    <div class=" prof-content row">
+                        <div class="orders-wrap my_payments col-xs-push-2 col-sm-push-0 col-xs-10  col-sm-12 table-responsive">
+                                <div class="table-item-inner ">
+
+                        <div class=" order-table">
+                            <table class="table table-stripped responsive nowrap  dataTable no-footer dtr-inline" id="custom-table">
+                                <thead>
+                                    <tr class='clickable-row' data-href=''>
+                                       
+                                    <th> {{ 'shared.request-num'|translate }}</th>
+                                    <th>{{ 'shared.request-date'|translate }}</th>
+                                        <!--<th>حاله الطلب</th > *ngIf="haveCorrectivePalnFile" -->
+                                        <!-- <th>Audit plan files</th> *ngIf="haveNCRFile" c -->
+                                        <th >NC report</th>
+                                        <th >{{ 'shared.corrective'|translate }} </th>
+                                        <th COLSPAN=3>  {{ 'action'|translate }}	</th>
+                                        
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr *ngIf="items.length==0">
+                                                <td colspan="10">
+                                                    <h2>{{'shared.sorry-no-autid-found'|translate}}</h2>
+                                                </td>
+                                            </tr>
+                                    <tr *ngFor="let item of items; let i=index">
+                                        <td class="padding-top-15 nowrap">#{{item.RequestID}}
+                                        </td>
+                                        <td class="padding-top-15 nowrap">{{item.SubmissionDate | date:'dd-MM-yyyy'}}</td>
+                                       <!-- <td class="padding-top-15">{{item.RequestStatus}}</td>-->
+                                        <!-- <td>--{{item.ID}}--{{item.Status}}
+                                            <a class="btn btn-transparent" [href]="item.AuditPlanPDFFilePath"
+                                                target="_blank">
+                                                <i class="fa fa-download text-muted"></i>
+                                                <span class="text-muted"> Download file</span>
+                                            </a>
+                                        </td>  *ngIf="haveNCRFile"-->
+                                        <td  class="padding-top-15 nowrap">
+                                                <div *ngIf="item.NCRFilePath">
+                                                        <a  class="upload-f"    [href]="item.NCRFilePath"  data-fancybox>
+                                                                <i class="fa fa-eye"></i>
+                                                                 {{ 'shared.view'|translate }} </a>
+                                                                </div>
+                                         
+                                        </td>
+
+                                        <!-- <td class="padding-top-15">NCR.pdf</td>  *ngIf="haveCorrectivePalnFile"-->
+                                        <td class="padding-top-15 " >
+                                                <div *ngIf="item.CorrectivePlanFilePath">
+                                                        <a  class="upload-f"      [href]="item.CorrectivePlanFilePath"  data-fancybox  >
+                                                                <i class="fa fa-eye"></i>
+                                                                {{ 'shared.view'|translate }}</a>
+                                                                </div>
+                                                        
+                                            <!-- <a class="text-muted"
+                                                [href]="item.CorrectivePlanFilePath"
+                                                target="_blank">{{item.CorrectivePlanFileName}}</a>lastResquest -->
+                                            </td> 
+
+                                            <td>
+                                                    <!-- <a  class="upload-f nowrap "    [href]="item.AuditPlanPDFFilePath"  data-fancybox>
+                                                            <i class="fa fa-eye"></i>
+                                                            {{ 'shared.view'|translate }} </a> -->
+                                                            <a  class="upload-f nowrap "    (click)="showIndex(item)" >
+                                                                    <i class="fa fa-eye"></i>
+                                                                    {{ 'shared.view'|translate }} </a> 
+                                                            
+                                            </td>
+                                        <td *ngIf="item.Status!=2">
+                                                <a href="#" *ngIf="item.Status!=2" [class.disabled-request]='item.Status!=0' 
+                                                (click)="showRequestModification(item)" class="order nowrap " data-toggle="modal" 
+                                                data-target="#order-modif" [class.btn-warning]="item.Status==0">
+                                                        {{ 'shared.edit'|translate }}
+                                                </a>
+                                            </td>
+                                           
+                                            <td class=" nowrap col-sm-12" style="padding: 0px !important">
+                                                    <a  *ngIf="item.Status!=2"
+                                                    (click)="showApproveConfirmation(item)" class="upload-f ">
+                                                        <i class="fa fa-check"></i>
+                                                        <!-- Confirm  -->
+                                                        {{ 'shared.confirm'|translate }}
+
+                                                    </a>
+                                                    <a  *ngIf="item.Status==2" class="upload-f nowrap">
+                                                        <i class="fa fa-check"></i>
+                                                        <!-- Confirmed  -->
+                                                        {{ 'shared.done-confirm'|translate }}
+
+                                                       
+                                                    </a>
+                                                   
+                                            
+                                                   
+                                      
+                                    </td>
+                                            <td *ngIf="item.Status==2">
+                                                </td>
+
+                                    </tr>
+
+
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<ng-template #approveTemplate>
+    <div class="approveTemplate">
+                    <div class="modal-content">
+                        <div class="modal-header our-model-header " >
+                            <h4 class="modal-title pull-left" style="color:white !important;">{{ 'shared.confirm-aduit'|translate }} </h4>
+                            <button type="button" class="close pull-right textwhite" aria-label="Close" (click)="modalRef.hide()">
+                                <span  aria-hidden="true" class="textwhite">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body our-text">
+                            <p>{{ 'shared.sure'|translate }} </p>
+
+                        </div>
+                        <div class="modal-footer ">
+                                <button type="button" class="btn modalbtn1 first-btn btn-primary-modal bt-auit col-xs-5 col-sm-3 col-md-2" (click)="approve();modalRef.hide();">
+                                    {{ 'shared.cancel-yes'|translate }} </button>
+                            <button type="button" class="btn modalbtn btn-danger second-btn bt-auit col-xs-5  col-sm-3 col-md-2" (click)="modalRef.hide()">{{ 'shared.cancel-no'|translate }} 
+                                </button>
+                          
+
+                        </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #requestTemplate>
+    <div class="requestTemplate" [formGroup]="modificationFrom">
+        <div class="modal-header " style="background-color: #1375ae !important;">
+            <h4 class="modal-title pull-left" style="color: white">{{ 'shared.edit'|translate }} </h4>
+            <button type="button" class="close pull-right textwhite" aria-label="Close" (click)="modalRef.hide()">
+                <span class="textwhite" aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body ">
+            <p class="our-text">{{ 'shared.write-reason'|translate }} </p>
+            <textarea class="col-sm-12" rows="5" formControlName="ModificationReason" cols="50"
+                placeholder="{{ 'shared.write-reason'|translate }} "></textarea>
+
+        </div>
+        <div class="modal-footer text-center">
+            <button type="button" [disabled]="modificationFrom.invalid" class="btn bt-our btn-primary col-xs-4"
+                (click)="saveModification();modalRef.hide();" style=" margin-top:5px;color: white"> {{ 'shared.submit'|translate }} 
+                </button>
+
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+
+<ng-template #file>
+        <div class="requestTemplate" >
+            <div class="modal-header " style="background-color: #1375ae !important;">
+                <h4 class="modal-title pull-left" style="color: white">{{'shared.view'|translate}}</h4>
+                <button type="button" class="close pull-right textwhite" aria-label="Close" (click)="modalRef.hide()">
+                    <span class="textwhite" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body  ncr-form">
+    <div id="wrapper ">
+            <!-- .reg-form .widget .inner .form-group .form-control -->
+            <div id="page-wrapper" class="gray-bg reg-form">    
+                <div class="wrapper wrapper-content widget" >
+    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h5 style="padding-top: 5px;">Hala Aduit plan</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ibox-content inner">
+                                   
+                                                <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'audit-app'|translate }}* </label>
+                                            <input class="form-control col-sm-8" value="Hala Aduit Plan" 
+                                                type="text" readOnly="true">
+                                        </div>
+                
+                                        <div class="form-group row ">
+                                            <label class="control-label col-sm-3">{{ 'audit-name'|translate }} * </label>
+                                            <input class="form-control col-sm-8" [value]="model.ConsumerName"
+                                                type="text" readOnly="true">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'audit-address'|translate }}*  </label>
+                                            <input class="form-control col-sm-8" [value]="model.Address" 
+                                                type="text" readOnly="true">
+                                        </div>
+                                        
+                                        <div class="hr-line-dashed-space"></div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'audit-visit'|translate }} * </label>
+                                            <input class="form-control col-sm-8" [value]="this.model.VisitNumber"
+                                                 type="number" disabled="true" >
+                                        </div>
+                
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3" for="date_modified"> {{ 'audit-date'|translate }} *</label>
+                
+                
+                                                <input bsDatepicker type="text"
+                                                    [value]="this.model.AuditDate |date:'dd-MM-yyyy'" [disabled]="true" class="form-control col-sm-8" placeholder="7/4/2020">
+                                            <!-- <span class="col-sm-2 m-t-5"><i class="fa fa-calendar  fa-2x text-navy"></i></span> -->
+                                        </div>
+                
+                                                                    
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'Lead'|translate }} * </label>
+                
+                                            <div class="col-sm-8">
+                                                    
+                                                    <div >
+                                                        <span class="label-b" *ngFor="let item of this.model.LeadAuditors"> {{ item.EmployeeName }} </span>
+                                                        </div>
+                                                        <!-- .ncr-form .reg-form .widget .inner .form-group .label-b -->
+                                                </div>
+                
+                                        </div>
+                
+                                        <div class="form-group row">
+                
+                                            <label class="control-label col-sm-3">{{ 'team'|translate }}  * </label>
+                
+                                            <div class="col-sm-8">
+                                                    <div>
+                                                            <span class="label-b"  *ngFor="let item of this.model.TeamMembers"> {{ item.EmployeeName }} </span>
+                                                            </div>
+                    
+                    
+                                                </div>
+                
+                                        </div>
+                
+                
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'shared.islamic'|translate }} * </label>
+                
+                                            <div class="col-sm-8">
+
+                                                    <div >
+                                                            <span class="label-b" *ngFor="let item of this.model.AffairsExperts"> {{ item.EmployeeName }} </span>
+                                                            </div>
+                    
+                    
+                                                </div>
+                
+                                               
+                                             
+                                                                         </div>
+                                       
+                                 <div class=" profile-wrap">
+                                        <div class="row audit-layout prof-content" >
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-9  prof-content">
+                                                <div class="table-responsive order-table">
+                                                 
+                                                    <table class="table   ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ 'Member'|translate }} 
+                                                                </th>
+                                                                <th>{{ 'Role'|translate }} 
+                                                                </th>
+                
+                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                
+                                                                <tr class="new-style" *ngFor="let item of model.AdditionalAttendees;let i=index;">
+
+                                                                        <td >
+                                                                            <input type="text" readonly [value]="item.EmployeeName"
+                                                                                class="form-control">
+                                                                        </td>
+                                                                        <td >
+                                                                            <input type="text"
+                                                                                [(ngModel)]="item.Role" readOnly="true" class="form-control">
+                                                                        </td>
+                        
+                        
+                                                                    </tr>
+                
+                                                        </tbody>
+                                                    </table>
+                
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                                 </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'au-Language'|translate }}  * </label>
+                
+                                            <div class="col-sm-3">
+                                            
+                                           
+                
+                                                    <label class="custom-radio-btn col-12"> &nbsp; &nbsp;  &nbsp;  Arabic
+                                                        <input  [value]="0" type="radio" disabled="true" [checked]="this.model.AuditLanguage==0" />
+                                                        <span class="label-text"></span>
+                                                    </label>
+                                              
+                                            </div>
+                                            <div class="col-sm-3">
+                                               
+                                                    <label class="custom-radio-btn col-12">&nbsp; &nbsp;  &nbsp; English
+                                                        <input  [value]="1" type="radio" disabled="true"  [checked]="this.model.AuditLanguage==1" />
+                                                        <span class="label-text"></span>
+                                                    </label>
+                                                
+                                            </div>
+                
+                                        </div>
+                
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3"> {{ 'Standards'|translate }} </label>
+                
+                                                <textarea class="form-control col-sm-8 rounded-0"
+                                                    placeholder="Write here ...." rows="2" [readOnly]="true">{{ model.Standards }}</textarea>
+                                        </div>
+                
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3">{{ 'scope'|translate }}  </label>
+                
+                                            <textarea  class="form-control col-sm-8 rounded-0"
+                                                placeholder="Write here ...." rows="2" [readOnly]="true"> {{ model.Scope }}</textarea>
+                                            
+                                            
+                                            </div>
+                
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-3"> {{ 'objective'|translate }} </label>
+                
+                                            <textarea  class="form-control col-sm-8 rounded-0"
+                                                placeholder="Write here ...." rows="2" [readOnly]="true"
+                                             > {{ model.Objectives }}</textarea>
+                                          
+                                        </div>
+                
+                                        <div class="row profile-wrap">
+                                            <div class="col-sm-12 prof-content">
+                                                <div class="table-responsive order-table">
+                                                    <table class="table nowrap ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ 'shared.dates'|translate }} 
+                                                                </th>
+                                                                <th>{{ 'time'|translate }} 
+                                                                </th>
+                                                                <th>{{ 'auditors'|translate }} 
+                                                                </th>
+                                                                <th>{{ 'Organizational'|translate }} 
+                                                                </th>
+                                                                <th>{{ 'contacts'|translate }} 
+                                                                </th>
+                
+                
+                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr class="new-style" *ngFor="let visit of model.Visits; let i=index">
+                                                                        <td>
+                        
+                                                                            <input type="date" [ngModel]="visit.Date | date:'yyyy-MM-dd'"
+                                                                                required [disabled]="true"
+                                                                                (ngModelChange)="visit.Date = $event" readOnly="true"
+                                                                                class="form-control">
+                        
+                                                                        </td>
+                                                                        <td>
+                                                                            <input readOnly="true" type="time"
+                                                                                [ngModel]="visit.Date | date:'HH:mm'" required
+                                                                                [disabled]="true"
+                                                                                (ngModelChange)="visit.Time = $event" class="form-control">
+                                                                        </td>
+                        
+                                                                        <td>
+                                                                                <input readOnly="true" type="text" [(ngModel)]="visit.AuditorName"
+                                                                                [disabled]="true"
+                                                                                class="form-control">
+                                                                            
+                                                                        </td>
+                        
+                                                                        <td>
+                                                                            <input readOnly="true" type="text" [(ngModel)]="visit.Activities"
+                                                                                [disabled]="true"
+                                                                                class="form-control">
+                                                                        </td>
+                        
+                                                                        <td>
+                                                                            <input readOnly="true" type="text" [(ngModel)]="visit.KeyContacts"
+                                                                                [disabled]="true"
+                                                                                class="form-control">
+                                                                        </td>
+                        
+                                                                    </tr>
+                        
+                        
+                
+                                                        </tbody>
+                                                    </table>
+                
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="m-xl-5">
+                                            <h3> {{ 'audit-note'|translate }}</h3>
+                
+                                            <h3> <small> <i class="fa fa-circle fa-xs"></i></small> &nbsp; <small> 
+                                                    {{ 'audit-web-view5'|translate }}
+                                                </small></h3>
+                
+                                            <h3> <small> <i class="fa fa-circle fa-xs"></i></small> &nbsp; <small> 
+                                                    {{ 'audit-web-view0'|translate }}
+                                                </small></h3>
+                                            <h3> <small> <i class="fa fa-circle fa-xs"></i></small> &nbsp; <small>
+                                                    {{ 'audit-web-view1'|translate }}
+                                                </small></h3>
+                
+                                            <h3> <small> <i class="fa fa-circle fa-xs"></i></small> &nbsp; <small>
+                                                    {{ 'audit-web-view2'|translate }}
+
+                                                </small></h3>
+                
+                                            <h3> <small> <i class="fa fa-circle fa-xs"></i></small> &nbsp; <small> 
+                                                {{ 'audit-web-view3'|translate }}
+                                                </small></h3>
+                
+                
+                
+                                        </div>
+                
+                                        <br>
+                                        <br>
+                                        <br>
+                                        
+                                       
+                                       
+                
+                
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+            
+    
+            </div>
+            </div>
+               
+    
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button"  class="btn bt-our btn-primary col-xs-4"
+                    (click)="modalRef.hide();" style=" margin-top:5px;color: white"> {{ 'audit-close'|translate }}
+                    </button>
+    
+            </div>
+        </div>
+    </div>
+    </ng-template>

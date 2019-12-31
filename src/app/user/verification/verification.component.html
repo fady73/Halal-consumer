@@ -1,0 +1,65 @@
+<!-- <div class="animated fadeInDown row justify-content-center">
+  <div class="col-xs-12">
+    <div class="form-wrapper" *ngIf="isPageLoaded">
+      <div class="form-group" [formGroup]="form" *ngIf="isPageLoaded">
+        <div class="verify-wrapper">
+          <h3 class="text-center">{{'verification.msg'|translate}} </h3>
+          <h1 class="signup-title">{{'verification.title'|translate}}</h1>
+          <input class="text-center" formControlName="Digit1" type="text" maxlength="1" minlength="1"
+            class="form-control"> <span> -
+          </span>
+          <input class="text-center" formControlName="Digit2" type="text" maxlength="1" minlength="1"
+            class="form-control"> <span> -
+          </span>
+          <input class="text-center" formControlName="Digit3" type="text" maxlength="1" minlength="1"
+            class="form-control"> <span> -
+          </span>
+          <input class="text-center" formControlName="Digit4" type="text" maxlength="1" minlength="1"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="margin-left-30 col-xs-6">
+        <button (click)="save()" [disabled]="form.invalid"
+          class="btn btn-primary margin-h-10">{{'verification.verify'|translate}}</button>
+        <button (click)="resend()" class="btn btn-default float-right">
+          <i class="fa fa-repeat" aria-hidden="true"></i>
+          {{'verification.resend'|translate}}</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="white-bg middle-box signupscreen animated fadeInDown">
+  <h3 class="text-center">{{'verification.msg'|translate}} </h3>
+  <h2 class="text-center">{{'verification.title'|translate}}</h2>
+  <form *ngIf="isPageLoaded" class="m-t" role="form" [formGroup]="form">
+    <div class="form-wrapper">
+      <div class="verify-wrapper">
+        <input class="text-center" moveNextByMaxLength  formControlName="Digit1" type="text" maxlength="1" minlength="1"
+          class="form-control">
+        <span> -
+        </span>
+        <input class="text-center"  moveNextByMaxLength formControlName="Digit2" type="text" maxlength="1" minlength="1"
+          class="form-control">
+        <span> -
+        </span>
+        <input class="text-center"  moveNextByMaxLength formControlName="Digit3" type="text" maxlength="1" minlength="1"
+          class="form-control">
+        <span> -
+        </span>
+        <input class="text-center" formControlName="Digit4" type="text" maxlength="1" minlength="1"
+          class="form-control" (keyup.enter)="save()">
+      </div>
+    </div>
+
+
+    <button (click)="resend()" class="btn btn-default margin-top-15 float-right">
+      <i class="fa fa-repeat" aria-hidden="true"></i>
+      {{'verification.resend'|translate}}</button>
+    <button (click)="save()" [disabled]="form.invalid"
+      class="btn btn-primary margin-h-10 margin-top-15 float-right">{{'verification.verify'|translate}}</button>
+  </form>
+</div>

@@ -1,0 +1,904 @@
+<!-- <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-3">
+        <h3>{{'layout.all-request'|translate}}</h3>
+        <small>{{'request.all'|translate}} / {{'shared.all'|translate}}</small>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" id="appendix-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="padding-top-5">{{'request.all'|translate}}</h5>
+                            <a class="btn btn-primary float-right" [routerLink]="['/request/create']">
+                                <i class="fa fa-plus"></i>
+                                {{'shared.create-new'|translate}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15"
+                                id="custom-table">
+                                <thead>
+                                    <tr class='clickable-row' data-href=''>
+                                        <th *ngFor="let column of page.columns">
+                                            {{column.Title |translate}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngIf="!page.isLoading && items.length==0">
+                                        <td colspan="10">
+                                            <h2>{{'shared.sorry-no-requests-found'|translate}}</h2>
+                                        </td>
+                                    </tr>
+                                    <tr [hidden]="!page.isLoading">
+                                        <td colspan="10">
+                                            <h1><i class="blue fa fa-refresh fa-spin"></i></h1>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let item of items | paginate : page.options;let i=index;">
+                                    
+                                        <td class="padding-top-15"><span>#{{item.ID}}</span></td>
+
+                                        <td class="padding-top-15">{{item.ApplicationDate |date:'dd-MM-yyyy'}} </td>
+                                      
+                                        <td class="padding-top-15">{{item.CompanyTypeName}}</td>
+                                        <td class="padding-top-15">{{item.StatusName}}</td>
+
+                                        <td class="view"><span><a [routerLink]="['/request/edit/',item.ID]"><i
+                                                        class="fa fa-eye"></i>
+                                                    <div>{{'shared.view'|translate}}</div>
+                                                </a></span></td>
+                                        <td>
+                                       
+                                            <button *ngIf="item.ConsumerRequiredAction == 6" disabled
+                                                class="btn btn-xs margin-top-5">
+                                                Upload payment #1
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 2"
+                                                [routerLink]="['/payment/payment-1/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                {{item.ConsumerRequiredActionName}}
+                                               
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 3"
+                                                [routerLink]="['/request/request-documents/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                {{item.ConsumerRequiredActionName}}
+                                               
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 4"
+                                                [routerLink]="['/request/request-documents/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5 upload-notification">
+                                                Upload documents
+                                                <span class="badge badge-action badge-danger ">!</span>
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 5"
+                                                [routerLink]="['/agreement/upload/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                {{item.ConsumerRequiredActionName}}
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 7" disabled
+                                                class="btn btn-xs margin-top-5 ">
+                                                {{item.ConsumerRequiredActionName}}
+                                            </button>
+
+                                            <button *ngIf="item.ConsumerRequiredAction == 17"
+                                                [routerLink]="['/agreement/view',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5 ">
+                                                {{item.ConsumerRequiredActionName}}
+                                            </button>
+
+                                            <button *ngIf="item.ConsumerRequiredAction == 8"
+                                                [routerLink]="['/payment/payment-2/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                {{item.ConsumerRequiredActionName}}
+                                              
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 9" disabled
+                                                class="btn btn-xs margin-top-5 ">
+                                                Upload payment #2
+                                            </button>
+                                            <button [routerLink]="['/audit-plan/index']"
+                                                class="btn btn-xs btn-primary margin-top-5"
+                                                *ngIf="item.ConsumerRequiredAction == 11">
+                                                Review audit plan
+
+                                            </button>
+                                            <button [routerLink]="['/audit-plan/accepting-index/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5"
+                                                *ngIf="item.ConsumerRequiredAction == 18">
+                                                {{item.ConsumerRequiredActionName}}
+
+                                            </button>
+                                            &nbsp;
+                                            <a *ngIf="item.ConsumerRequiredAction == 16" target="_blank"
+                                                [href]="item.CertificateFilePath"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                Download certificate
+                                            </a>
+
+                                         
+
+                                            <button *ngIf="item.ConsumerRequiredAction == 15"
+                                                [routerLink]="['/payment/payment-3/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                Upload payment #3
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction==19"
+                                                [routerLink]="['/request/edit/',item.ID]"
+                                                class="btn btn-xs btn-primary margin-top-5" data-toggle="modal">
+                                                {{item.ConsumerRequiredActionName}}
+                                            </button>
+                                        </td>
+                                     
+
+                                        <td>
+                                            <button *ngIf="item.ConsumerRequiredAction != 16"
+                                                (click)="showCancelConfirmation(item)"
+                                                class="btn btn-xs btn-danger margin-top-5"
+                                                [disabled]="item.Status == 4">
+                                                {{'request.all-requests.cancel'|translate}}
+                                            </button>
+                                            <button *ngIf="item.ConsumerRequiredAction == 16"
+                                                (click)="renewRequest(item.ID)"
+                                                class="btn btn-xs btn-primary margin-top-5">
+                                                Renew request
+                                            </button>
+
+                                         
+                                        </td>
+                                    </tr>
+                                  
+
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" *ngIf="page.options.totalItems>0">
+                                            {{'shared.page'|translate}} {{page.options.currentPage}}
+                                            {{'shared.of'|translate}}
+                                            {{page.options.totalPages}}
+                                            - {{'shared.total-items'|translate}} : {{page.options.totalItems}}
+                                        </td>
+                                        <td colspan="8" class="right-pagination" *ngIf="page.options.totalItems>0">
+                                            <pagination-controls (pageChange)="getNextPrevData($event)" id='Pagination'
+                                                maxSize="10" directionLinks="true" autohide="true" previousLabel=""
+                                                nextLabel="">
+                                            </pagination-controls>
+
+                                        </td>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="wrapper col-xs-12" id="home">
+
+  <div class="single-wrap col-xs-12">
+    <div class="container">
+      <div class="profile-wrap col-xs-12">
+
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="t1">
+            <div class="orders-wrap">
+              <div class="order-table  table-responsive  col-xs-12">
+                <table class="table table-stripped  nowrap" id="data-table-basic">
+                  <thead>
+                    <tr>
+                      <th class="nowrap" *ngFor="let column of page.columns">
+                        {{column.Title |translate}}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngIf="!page.isLoading && items.length==0">
+                      <td colspan="10">
+                        <h2>{{'shared.sorry-no-requests-found'|translate}}</h2>
+                      </td>
+                    </tr>
+                    <tr [hidden]="!page.isLoading">
+                      <td colspan="10">
+                        <h1><i class="blue fa fa-refresh fa-spin"></i></h1>
+                      </td>
+                    </tr>
+                    <tr [hidden]="page.isLoading" *ngFor="let item of items | paginate : page.options;let i=index;">
+
+                      <td><span>#{{item.ID}}</span></td>
+
+                      <td>{{item.ApplicationDate |date:'dd-MM-yyyy'}} </td>
+
+                      <td>{{item.CompanyTypeName}}</td>
+                      <td>
+                        <span class="status drift" *ngIf="item.Status == 0">{{item.StatusName}}</span>
+                        <span class="status approved" *ngIf="item.Status == 1">{{item.StatusName}}</span>
+                        <span class="status closed" *ngIf="item.Status == 2">{{item.StatusName}}</span>
+                        <span class="status info" *ngIf="item.Status == 3">{{item.StatusName}}</span>
+                        <span class="status canceled" *ngIf="item.Status == 4">{{item.StatusName}}</span>
+                        <span class="status info" *ngIf="item.Status == 5">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 6">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 7">{{item.StatusName}}</span>
+                        <span class="status info" *ngIf="item.Status == 8">{{item.StatusName}}</span>
+                        <span class="status approved" *ngIf="item.Status == 9">{{item.StatusName}}</span>
+                        <span class="status info" *ngIf="item.Status == 10">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 11">{{item.StatusName}}</span>
+                        <span class="status info" *ngIf="item.Status == 12">{{item.StatusName}}</span>
+                        <span class="status canceled" *ngIf="item.Status == 13">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 14">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 15">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 15">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 20">{{item.StatusName}}</span>
+                        <span class="status cancel" *ngIf="item.Status == 21">{{item.StatusName}}</span>
+                        <span class="status approved" *ngIf="item.Status == 22">{{item.StatusName}}</span>
+
+                        <span class="status hold" *ngIf="item.Status == 32">{{item.StatusName}}</span>
+                        <span class="status hold" *ngIf="item.Status == 32">{{item.StatusName}}</span>
+
+                      </td>
+
+                      <!-- <td>
+                                <a [routerLink]="['/request/edit/',item.ID]" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td> -->
+                      <td>
+                        <!-- <a class="next-action" *ngIf="item.ConsumerRequiredAction == 6" disabled
+                                    data-tool="tooltip">
+                                    Upload payment #1
+                                </a> -->
+                        <!-- <button *ngIf="item.ConsumerRequiredAction == 6" disabled
+                                    class="btn btn-xs margin-top-5">
+                                    Upload payment #1
+                                </button> -->
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a class="next-action" *ngIf="item.ConsumerRequiredAction == 2"
+                            [routerLink]="['/payment/payment-1/',item.ID]" data-tool="tooltip">
+                            {{item.ConsumerRequiredActionName}}
+                            <span *ngFor="let itemN of Notes">
+                              <span *ngIf="itemN.RequestID ==item.ID&&!itemN.seen" [tooltip]="itemN.Description"
+                                class="badge badge-danger" placement="top" containerClass="customToolTipClass"
+                                container="body">!</span>
+                            </span>
+                          </a>
+                        </span>
+                        <!-- <button *ngIf="item.ConsumerRequiredAction == 2"
+                                    [routerLink]="['/payment/payment-1/',item.ID]"
+                                    class="btn btn-xs btn-primary margin-top-5">
+                                    {{item.ConsumerRequiredActionName}}
+
+                                </button> -->
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 3"
+                            [routerLink]="['/request/request-documents/',item.ID]" class="next-action">
+                            {{item.ConsumerRequiredActionName}}
+
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 4"
+                            [routerLink]="['/request/request-documents/',item.ID]" class="next-action">
+
+                            {{'shared.upload-documents'|translate}}
+                            <span class="badge badge-action badge-danger ">!</span>
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 5" [routerLink]="['/agreement/index']"
+                            class="next-action">
+                            {{item.ConsumerRequiredActionName}}
+
+                          </a>
+                        </span>
+                        <!-- <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3"> -->
+
+                        <!-- <a *ngIf="item.ConsumerRequiredAction == 7" disabled class="next-action">
+                                    {{item.ConsumerRequiredActionName}} 
+                                </a> -->
+                        <!-- </span> -->
+                        <!-- /agreement/view -->
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 17" [routerLink]="['/agreement/index']"
+                            class="next-action">
+                            {{item.ConsumerRequiredActionName}}
+                            <span *ngFor="let itemN of AgreementNotes">
+                              <span *ngIf="itemN.RequestID ==item.ID&&!itemN.seen" [tooltip]="itemN.Description"
+                                class="badge badge-danger" placement="top" containerClass="customToolTipClass"
+                                container="body">!</span>
+                            </span>
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 8" [routerLink]="['/payment/payment-2/',item.ID]"
+                            class="next-action">
+                            {{item.ConsumerRequiredActionName}}
+                            <span *ngFor="let itemN of Notes">
+                              <span *ngIf="itemN.RequestID ==item.ID&&!itemN.seen" [tooltip]="itemN.Description"
+                                class="badge badge-danger" placement="top" containerClass="customToolTipClass"
+                                container="body">!</span>
+                            </span>
+
+                          </a>
+                        </span>
+                        <!-- <a *ngIf="item.ConsumerRequiredAction == 9" disabled class="next-action ">
+                                    Upload payment #2
+                                </a> -->
+                        <!-- [routerLink]="['/audit-plan/index']" -->
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+                          <a class="next-action" [routerLink]="['/audit-plan/index']"
+                            *ngIf="item.ConsumerRequiredAction == 11">
+                            {{'shared.audit-plan'|translate}}
+
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <!-- [routerLink]="['/audit-plan/accepting-index/',item.ID]" -->
+                          <a class="next-action" [routerLink]="['/audit-plan/accepting-index/',item.ID]"
+                            *ngIf="item.ConsumerRequiredAction == 18">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a class="next-action" *ngIf="item.ConsumerRequiredAction==20"
+                            [routerLink]="['/audit-plan/accepting-corrective',item.ID]">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                          &nbsp;
+                        </span>
+
+                        <a *ngIf="item.ConsumerRequiredAction == 16" target="_blank" [href]="item.CertificateFilePath"
+                          class="next-action">
+
+                          {{'shared.download'|translate}}
+
+                        </a>
+
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+
+                          <a *ngIf="item.ConsumerRequiredAction == 15" [routerLink]="['/payment/payment-3/',item.ID]"
+                            class="next-action">
+                            {{'shared.fees'|translate}}
+                            <span *ngFor="let itemN of Notes">
+                              <span *ngIf="itemN.RequestID ==item.ID&&!itemN.seen" [tooltip]="itemN.Description"
+                                class="badge badge-danger" placement="top" containerClass="customToolTipClass"
+                                container="body">!</span>
+                            </span>
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction==19" [routerLink]="['/request/edit/',item.ID]"
+                            class="next-action" data-toggle="modal">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                        </span>
+
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 21" [routerLink]="['appeal/',item.ID]"
+                            class="next-action">
+
+                            {{item.ConsumerRequiredActionName}}
+                            <!-- <span class="badge badge-action badge-danger ">!</span> -->
+                          </a>
+                        </span>
+
+
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction == 22" [routerLink]="['/payment/payment-4/',item.ID]"
+                            class="next-action">
+
+                            {{item.ConsumerRequiredActionName}}
+                            <!-- <span class="badge badge-action badge-danger ">!</span> -->
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction==24" [routerLink]="['/payment/payment-5/',item.ID]"
+                            class="next-action" data-toggle="modal">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                        </span>
+
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction==27" [routerLink]="['/payment/payment-6/',item.ID]"
+                            class="next-action" data-toggle="modal">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                        </span>
+
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+                          <!--  -->
+                          <a (click)="showCommissionTemplate(item)"
+                            *ngIf="item.ConsumerRequiredAction.UploadCenterCommission==27" class="next-action"
+                            data-toggle="modal">
+                            {{item.ConsumerRequiredActionName}}
+                            <!-- test -->
+                          </a>
+                        </span>
+                     
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction==32" [routerLink]="['/payment/payment-7/',item.ID]"
+                            class="next-action" data-toggle="modal">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                        </span>
+                        <span *ngIf="item.RequestCancellationStatus==0||item.RequestCancellationStatus==3">
+
+                          <a *ngIf="item.ConsumerRequiredAction==34" [routerLink]="['/payment/payment-8/',item.ID]"
+                            class="next-action" data-toggle="modal">
+                            {{item.ConsumerRequiredActionName}}
+                          </a>
+                        </span>
+                        <span *ngIf="item.Status ==20||item.Status == 21||item.Status == 4">
+                          <a class="next-action">
+                            <i (click)="showFinalActionReason(item)" class="fa fa-eye">
+                              {{ "shared.review-reason"|translate }} </i>
+                          </a>
+                        </span>
+                      </td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="dropbtn">
+                            {{'shared.available'|translate}}
+
+                          </button>
+                          <div class="dropdown-content">
+                            <a *ngIf="type=='0'&&((item.ConsumerRequiredAction>=16 && item.ConsumerRequiredAction!=17)||item.ConsumerRequiredAction==0)"
+                              [routerLink]="['/request/logorequest',item.ID]"> {{'shared.LogoRequest'|translate}}</a>
+                            <a *ngIf="type=='1'&&item.ConsumerRequiredAction==16&&item.StaffRequiredAction!=31"
+                              [routerLink]="['/request/recognition-request-modification',item.ID]">
+                              {{'modification-request'|translate}}</a>
+                            <a class="upload-f mb-2 mr-2"
+                              *ngIf="type=='0'&&(item.ConsumerRequiredAction>=33||item.ConsumerRequiredAction==0)"
+                              href="http://34.227.26.178:93/Content/pdf/HalalLogo.pdf" data-fancybox>
+                              {{'shared.LogoDown'|translate}}</a>
+                              <a *ngIf="type=='0'&&item.ConsumerRequiredAction==16&&item.StaffRequiredAction!=31" [routerLink]="['/request/modification-certification',item.ID]" >Modification</a>
+                              <a *ngIf="type=='0'&&item.ConsumerRequiredAction==30&&item.StaffRequiredAction!=31"  [routerLink]="['/payment/paymentproduct7/',item.ID]" >payment</a>
+                              <a *ngIf="type=='0'" [routerLink]="['/request/product-certificate',item.ID]"  >   certificate for a specific product </a>
+         
+
+                          </div>
+
+                        </div>
+
+
+
+                      </td>
+
+                      <td>
+                        <a [routerLink]="['/request/edit/',item.ID]" data-tool="tooltip" title="عرض الطلب">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                        <!-- [disabled]="item.Status == 4" -->
+                        <a *ngIf="item.ConsumerRequiredAction != 16">
+                          <i (click)="showCancelConfirmation(item)" class="fa fa-close"></i>
+                        </a>
+                        <a *ngIf="item.IsRenewable">
+                          <i class="fa fa-refresh" (click)="renewRequest(item.ID)"> </i>
+                          <!-- Renew request -->
+                        </a>
+
+
+                      </td>
+
+                    </tr>
+                    <!-- <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status approved">مقبول</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    رفع رسوم التدقيق
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status drift">مسودة</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status canceled">ملغي</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status hold">معاد للتصحيح</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status approved">مقبول</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status drift">مسودة</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status canceled">ملغي</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1515</td>
+                            <td>12-8-2019</td>
+                            <td>عادي</td>
+                            <td>
+                                <span class="status hold">معاد للتصحيح</span>
+                            </td>
+                            <td>
+                                <a class="next-action" href="order-view.html" data-tool="tooltip">
+                                    الإجراء
+                                </a>
+                            </td>
+                            <td>
+                                <a href="order-view.html" data-tool="tooltip" title="عرض الطلب">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="#" data-tool="tooltip" title="إلغاء الطلب">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </td>
+                        </tr> -->
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <!-- <td colspan="2" *ngIf="page.options.totalItems>0">
+                                {{'shared.page'|translate}} {{page.options.currentPage}}
+                                {{'shared.of'|translate}}
+                                {{page.options.totalPages}}
+                                - {{'shared.total-items'|translate}} : {{page.options.totalItems}}
+                            </td> -->
+                      <td colspan="6" class="right-pagination" *ngIf="page.options.totalItems>0">
+                        <pagination-controls (pageChange)="getNextPrevData($event)" id='Pagination' maxSize="10"
+                          directionLinks="true" autohide="true" previousLabel="" nextLabel="">
+                        </pagination-controls>
+
+                      </td>
+
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<ng-template #cancelTemplate>
+  <div class="cancelTemplate">
+    <div class="modal-content">
+      <div class="modal-header our-model-header">
+        <!-- <h4 class="modal-title pull-left">{{'shared.cancel-confirmation.title'|translate}}</h4> -->
+        <h4 class="modal-title pull-left" style="color:white !important;">Cancel Halal request</h4>
+        <button type="button" class="close pull-right textwhite" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true" class="textwhite">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p class="col-xs-push-2 col-xs-9 our-text"> {{'shared.request-Message'|translate}}
+          </p>
+
+          <textarea cols="50" rows="5" class="col-xs-push-2 col-xs-9 " placeholder="Write your reasons here........"
+            [(ngModel)]="requestCancelViewModel.CancellationReasons"></textarea>
+          <p class="col-xs-push-2 col-xs-9 text-danger " *ngIf="!requestCancelViewModel.CancellationReasons">
+            {{'shared.validation.required'|translate}} </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" *ngIf="selectedItem" [disabled]="!requestCancelViewModel.CancellationReasons"
+          class="btn modalbtn first-btn col-xs-5 btn-danger col-sm-3 col-md-2"
+          (click)="cancel(selectedItem);modalRef.hide();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{'shared.yes'|translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        <button type="button" class="btn second-btn modalbtn btn-danger col-xs-5 col-sm-3 col-md-2"
+          (click)="modalRef.hide()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{'shared.cancel'|translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #commissionTemplate>
+  <div class="cancelTemplate">
+    <div class="modal-content">
+      <div class="modal-header our-model-header">
+        <h4 class="modal-title pull-left" style="color:white !important;">Request the center's commission</h4>
+        <button type="button" class="close pull-right textwhite" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true" class="textwhite">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <p class="col-xs-push-1 col-xs-11 our-text"> {{'shared.num-of-certificate'|translate}} <i>*</i>
+          </p>
+
+          <input class="col-xs-push-1 col-xs-6 form-control" style="width: 70% !important;margin: 0 15px;" type="number"
+            min="0" [(ngModel)]="CommissionModel.NumberOfCertificates" />
+        </div>
+        <br />
+        <div class="row padding-top-15">
+          <p class="col-xs-push-1 col-xs-11 our-text"> {{'shared.attachments'|translate}} <i>*</i>
+          </p>
+          <div class="col-xs-push-1 col-xs-4 file-upload up-files">
+            <label class=" uploadBtn btn" style="margin-top:0px !important">
+              <i class="fa fa-plus"></i>
+              {{'shared.upload-files'|translate}}
+              <input type="file" multiple class="bg-primary" accept=".doc, .docx,.pdf" #myInput
+                (change)="uploadCommissionFiles($event)" />
+            </label>
+          </div>
+        </div>
+        <br />
+        <div class="row padding-top-15" *ngIf="CommissionModel.Attachments.length>0">
+          <div class="col-xs-push-1 file-uploaded col-xs-11">
+            <b class="text-navy">{{'shared.uploaded-files'|translate}}</b>
+            <br />
+          </div>
+
+          <div class="col-xs-push-1 col-xs-11" *ngFor="let item of CommissionModel.Attachments;let i=index">
+            <span class="col-sm-1">
+              <i class="fa fa-file"></i>
+            </span>
+            <span class="col-sm-8">
+              <a href="{{item.FilePath}}" target="_blank">{{item.FileName}}</a>
+            </span>
+            <span class="col-sm-1">
+              <i (click)="removeCommissionAttachment(i)" class="fa fa-trash"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" *ngIf="selectedItem" [disabled]="!requestCancelViewModel.CancellationReasons"
+                    class="btn modalbtn first-btn col-xs-5 btn-danger col-sm-3 col-md-2"
+                    (click)="cancel(selectedItem);modalRef.hide();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{'shared.yes'|translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> -->
+        <button type="button"
+          [disabled]="CommissionModel.Attachments.length==0 || CommissionModel.NumberOfCertificates == 0 "
+          class="btn modalbtn first-btn col-xs-5 btn-danger col-sm-3 col-md-2"
+          (click)="saveCommisions();modalRef.hide();">&nbsp;&nbsp;&nbsp;{{'shared.save'|translate}}&nbsp;&nbsp;</button>
+      </div>
+    </div>
+    <!-- <div class="modal-content">
+          
+            <div class="modal-body">
+                <form role="form" class="col-xs-12">
+                    <div class="form-group row">
+                        <h5> {{'shared.num-of-certificate'|translate}} <i>*</i></h5>
+                        <input class="form-control col-sm-12" type="number"
+                            [(ngModel)]="CommissionModel.NumberOfCertificates">
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group row padding-top-15">
+                        <h5> {{'shared.attachments'|translate}} <i>*</i></h5>
+                        <div class="col-xs-4 file-upload up-files">
+                            <label class=" uploadBtn btn">
+                                <i class="fa fa-plus"></i>
+                                {{'shared.upload-files'|translate}}
+                                <input type="file" multiple class="bg-primary" accept=".doc, .docx,.pdf" #myInput
+                                    (change)="uploadCommissionFiles($event)" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="CommissionModel.Attachments.length>0">
+                        <div class="file-uploaded col-sm-12">
+                            <b class="text-navy">{{'shared.uploaded-files'|translate}}</b>
+                            <br />
+                        </div>
+
+                        <div class="col-sm-12" *ngFor="let item of CommissionModel.Attachments;let i=index">
+                            <span class="col-sm-1">
+                                <i class="fa fa-file"></i>
+                            </span>
+                            <span class="col-sm-8">
+                                <a href="{{item.FilePath}}" target="_blank">{{item.FileName}}</a>
+                            </span>
+                            <span class="col-sm-1">
+                                <i (click)="removeCommissionAttachment(i)" class="fa fa-trash"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+            </div>
+
+            <br>
+            <div class="modal-footer">
+                <button type="button"
+                    [disabled]="CommissionModel.Attachments.length==0 || CommissionModel.NumberOfCertificates == 0 "
+                    class="btn modalbtn first-btn col-xs-5 btn-danger col-sm-3 col-md-2"
+                    (click)="saveCommisions();modalRef.hide();">&nbsp;&nbsp;&nbsp;{{'shared.save'|translate}}&nbsp;&nbsp;</button>
+            </div>
+        </div> -->
+
+  </div>
+</ng-template>
+
+
+
+<ng-template #finalActionReasonReasonTemplate>
+  <div class="confirmativeTemplate">
+    <div class="modal-header ">
+      <h4 class="modal-title pull-left">{{ finalActionReasonModel.ActionName }}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-align-left">
+      <div class="row" *ngIf="isReasonLoaded">
+        <div class="col-sm-12">
+          <span><strong>{{ 'final-action-reason.reason'|translate }}: </strong>
+          </span><span>{{ finalActionReasonModel.ActionReasonName }} </span>
+          <hr>
+        </div>
+        <div class="col-sm-12">
+          <span><strong>{{ 'final-action-reason.reason-details'|translate }}: </strong>
+          </span><span>{{ finalActionReasonModel.Reason }}</span>
+          <hr>
+        </div>
+        <div *ngIf="finalActionReasonModel.Action!=2" class="col-sm-12">
+          <span><strong>{{ 'final-action-reason.date'|translate }}: </strong>:
+          </span><span>{{ finalActionReasonModel.Date |date:'dd-MM-yyyy'}}</span>
+          <hr>
+        </div>
+        <div *ngIf="finalActionReasonModel.SuspensionStartDate" class="col-sm-12">
+          <span><strong>{{ 'final-action-reason.suspension-start-date'|translate }}: </strong>:
+          </span><span>{{ finalActionReasonModel.SuspensionStartDate|date:'dd-MM-yyyy' }}</span>
+          <hr>
+        </div>
+        <div *ngIf="finalActionReasonModel.SuspensionEndDate" class="col-sm-12">
+          <span><strong>{{ 'final-action-reason.suspension-end-date'|translate }}: </strong>
+          </span><span>{{ finalActionReasonModel.SuspensionEndDate|date:'dd-MM-yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

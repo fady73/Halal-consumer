@@ -1,0 +1,109 @@
+
+<div class="wrapper wrapper-content ">
+    <div class="row">
+            <div class="col-sm-12">
+                    <sections-steps [requestID]="model.RequestID" [step]="6" ></sections-steps></div>
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        
+                        <div class="ibox-content">
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade" id="pills-sec1" role="tabpanel"
+                                    aria-labelledby="pills-sec1-tab">
+                                    sect1
+                                </div>
+                                <div class="tab-pane fade" id="pills-sec2" role="tabpanel"
+                                    aria-labelledby="pills-sec2-tab">.2.</div>
+                                <div class="tab-pane fade" id="pills-sec3" role="tabpanel"
+                                    aria-labelledby="pills-sec3-tab">
+                                    sect3
+                                </div>
+                                <div class="tab-pane fade" id="pills-sec4" role="tabpanel"
+                                    aria-labelledby="pills-sec4-tab">.4.</div>
+                                <div class="tab-pane fade disabled" id="pills-sec5" role="tabpanel"
+                                    aria-labelledby="pills-sec5-tab">
+                                    sec5 </div>
+                                <div class="tab-pane forms-wrap show active" id="pills-sec6" role="tabpanel"
+                                    aria-labelledby="pills-sec6-tab  show active">
+                                    <div class="tab-pane " id="step-5"> 
+                                    <h1 *ngIf="!isPageLoaded" align="center"><i class="blue fa fa-refresh fa-spin"></i>
+                                    </h1>
+                                    <!-- <form role="form" *ngIf="isPageLoaded" [formGroup]="form" (ngSubmit)="save()"> -->
+                                    <div class="forms-wrap col-xs-12">
+                                            <h4 class="wrap-head">{{'request.visit-cost.title'|translate}}</h4>
+
+                                            <div class="form-group row col-md-12 col-xs-12">
+                                                <h5>{{'request.visit-cost.team-visit-cost'|translate}}</h5>
+                                                <div class="col-sm-12 padding-top-10">
+                                                        <div class="row" *ngIf="canEdit">
+                                                                <label class="radio-s col-sm-12">
+
+                                                            <label  style="font-size:18px" class="custom-radio-btn col-sm-12"
+                                                                (change)="toggleVisitCost('true')">
+                                                                <input [checked]="model.VisitCost" type="radio" name="yes-no" />
+                                                                <span class="label-text">
+                                                                        {{'shared.yes'|translate}}
+                                                                </span>
+                                                            </label>
+                                                                </label>
+                                                                <label class="radio-s col-sm-12">
+
+                                                            <label  style="font-size:18px" class="custom-radio-btn col-sm-12"
+                                                                (change)="toggleVisitCost('false')">
+                                                                <input [checked]="!model.VisitCost" type="radio" name="yes-no" />
+                                                                <span class="label-text">
+                                                                        {{'shared.no'|translate}}
+                                                                </span> 
+                                                            </label>
+                                                        </label>
+                                                        </div>
+                                                        <div class="row" *ngIf="!canEdit">
+                                                                <label style="font-size:18px"  class="custom-radio-btn col-sm-12"
+                                                                  >{{'shared.yes'|translate}}
+                                                                    <input [checked]="model.VisitCost" type="radio" name="yes-no" disabled="true"/>
+                                                                    <span class="checkmark" ></span>
+                                                                </label>
+                                                                <label style="font-size:18px" class="custom-radio-btn col-sm-12"
+                                                                    >{{'shared.no'|translate}}
+                                                                    <input [checked]="!model.VisitCost" type="radio" name="yes-no" disabled="true" />
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        
+                                                    </div>
+                                                <p class="ex-hint"> {{'request.visit-cost.apologize'|translate}}</p>
+                                            </div>
+                                           
+                                        </div>
+
+                               
+                                    <div class="row margin-top-15 forms-wrap">
+                                        <div class=" form-group  col-sm-12">
+                                            <!-- <img  class="pull-right" src="/assets/images/ajax-loader.gif"> -->
+                                            <button [disabled]="!canEdit" (click)="save()" type="submit"
+                                                class="btn next-step">{{'request.save'|translate}}
+                                            </button>
+                                            <button type="button" (click)="resetForm()"
+                                                class="btn prev-step margin-h-10 ">{{'request.prev'|translate}}</button>
+                                        </div>
+                                    </div>
+                                    <!-- </form> -->
+                                </div>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane fade" id="pills-sec6" role="tabpanel"
+                            aria-labelledby="pills-sec6-tab  show active">
+                            sec6
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,174 @@
+
+<div class="wrapper wrapper-content ">
+        <div class="row">
+              
+            <div class="col-lg-12">
+                <div class="row">
+    
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            
+                            <div class="ibox-content">
+
+                 
+                                <div class="tab-content" id="pills-tabContent">
+                                        <div class="table-item-inner" style="display: block;">
+                                                <button type="button" id="addRowsappendix2tb1" class="btn btnAdd"  (click)="addCattleBreeding()" >
+                                                    <i class="fa fa-plus"></i>
+                                                    {{'request.addProduct'|translate}}
+                                                </button>
+                                                <table class="table table-stripped responsive nowrap" id="appendix2tb1">
+                                                    <thead>
+                                                    <tr>
+                                                        <th> {{'request.nameproduct'|translate}}	</th>
+                                                        <th> {{'request.discription'|translate}}	</th>
+
+                                                        <th> {{'request.image'|translate}}	</th>
+                                                        <th> {{'request.note'|translate}}	</th>
+                                                        <th> {{'request.file'|translate}}	</th>
+                                                        <th>
+                                                            <i class="fa fa-gears"></i>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr class="blank_row" *ngFor="let item of Model.Details; let i=index" >
+                                                                <td>
+                                                                    <select class="form-control" disabled="true" >
+                                                                        <option *ngFor="let items of types;let i=index;" [value]="items.ID" [selected]="items.ID==item.ProductHalalLogoID">
+                                                                          {{items.Name}}</option>
+                                                                      </select>
+                                                                      
+                                                                    </td>
+                                                                      
+                                            
+                                            
+                                                                                <td>
+                                                                                     
+                                                                                 
+                                                                                            <div *ngIf="item.ImageURL">
+                                                                                                    <!-- <a target="_blank"
+                                                                                                        [href]="file.FilePath">{{file.FileName}}</a> -->
+                                    
+                                                                                                        <a class="upload-f nowrap "     [href]="item.ImageURL"  data-fancybox >
+                                                                                                                <i class="fa fa-eye"></i>
+                                                                                                                {{'shared.view'|translate}}</a>
+                                                                                                    &nbsp;&nbsp;
+                                                                                                  
+                                                                                                </div>
+                                                                                            
+                                                                                        </td>
+                                                                    <td>
+                                                                     <input  class="form-control" type="text" [(ngModel)]="item.Notes" readonly="true" placeholder="Enter Product  Name" >
+
+                                                                            
+                                                                        </td>
+                                                                        <td>
+                                                                                    <div *ngIf="item.Attachments.FilePath">
+                                                                                            <!-- <a target="_blank"
+                                                                                                [href]="file.FilePath">{{file.FileName}}</a> -->
+                            
+                                                                                                <a class="upload-f nowrap "     [href]="item.Attachments.FilePath"  data-fancybox >
+                                                                                                        <i class="fa fa-eye"></i>
+                                                                                                        {{'shared.view'|translate}}</a>
+                                                                                           
+                                                                                        </div>
+                                                                                    
+                                                                                </td>
+                                                                    <td class="plusClass" >
+                                                                            <button type="button" class="btn removeRowsappendix2tb1 removeButton" (click)="removeCattleBreedings(i)">
+                                                                                    <i class="fa fa-remove"></i>
+                                                                                </button>
+                                                                    </td>
+                                    
+                                                                </tr>
+                                                        
+                                                        <tr class="blank_row"  [formGroup]="formLogo">
+                                                                <td>
+                                                                    <select formControlName="Type" class="form-control" >
+                                                                        <option *ngFor="let item of types;let i=index;" [value]="item.ID">
+                                                                          {{item.Name}}</option>
+                                                                      </select>
+                                                                      
+                                                                    </td>
+                                                           
+                                        
+                                        
+                                                                            <td>
+                                                                                    <div class="file-upload" *ngIf="!item.ImageURL" >
+                                                                                            <label class="fileContainer uplaod">
+                                                                                                {{'shared.uploadImage'|translate}}
+                                                                                                <input type="file" class="bg-primary" multiple #myInput
+                                                                                                    (change)="onFileChangedForImage($event,item)" />
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        
+                                                                             
+                                                                                        <div *ngIf="item.ImageURL">
+                                                                                                <!-- <a target="_blank"
+                                                                                                    [href]="file.FilePath">{{file.FileName}}</a> -->
+                                
+                                                                                                    <a class="upload-f nowrap "     [href]="item.ImageURL"  data-fancybox >
+                                                                                                            <i class="fa fa-eye"></i>
+                                                                                                            {{'shared.view'|translate}}</a>
+                                                                                                &nbsp;&nbsp;
+                                                                                                <span (click)="removeAttachmentImage()"><i
+                                                                                                        class="fa fa-times">
+                                                                                                    </i></span>
+                                                                                            </div>
+                                                                                        
+                                                                                    </td>
+                                                                <td>
+                                                                    <input class="form-control" type="text"  placeholder=" Notes"
+                                                                        formControlName="Notes" >
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                            <div class="file-upload" *ngIf="!item.Attachments.FilePath" >
+                                                                                    <label class="fileContainer uplaod">
+                                                                                        {{'shared.upload-files'|translate}}
+                                                                                        <input type="file" class="bg-primary" multiple #myInput
+                                                                                            accept=".doc, .docx,.pdf"
+                                                                                            (change)="onFileChanged($event,item)" />
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div *ngIf="item.Attachments.FilePath">
+                                                                                        <!-- <a target="_blank"
+                                                                                            [href]="file.FilePath">{{file.FileName}}</a> -->
+                        
+                                                                                            <a class="upload-f nowrap "     [href]="item.Attachments.FilePath"  data-fancybox >
+                                                                                                    <i class="fa fa-eye"></i>
+                                                                                                    {{'shared.view'|translate}}</a>
+                                                                                        &nbsp;&nbsp;
+                                                                                        <span (click)="removeAttachment()"><i
+                                                                                                class="fa fa-times">
+                                                                                            </i></span>
+                                                                                    </div>
+                                                                                
+                                                                            </td>
+                                                                <td class="plusClass" >
+                                                                        <button type="button" class="btn removeRowsappendix2tb1 removeButton" (click)="removeLastCattleBreedings()">
+                                                                                <i class="fa fa-remove"></i>
+                                                                            </button>
+                                                                </td>
+                                
+                                                            </tr>
+                                                </tbody>
+                                                <div class="form-group f-btns col-md-12 col-xs-12">
+                                                        <button    (click)="post()" type="submit" class="btn btn-primary">                
+                                                            {{'shared.save'|translate}}
+                                                        </button>
+                                                       
+                                                    </div>
+                                                </table>
+                                                  
+                                            </div>  
+                                                               
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

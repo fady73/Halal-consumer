@@ -1,0 +1,84 @@
+<div class="wrapper single-wrap wrapper-content profile-wrap " id="appendix-content">
+
+    <div class="row">
+      <button class="btn btn-primary-modal m-r-10 m-l-8"  [routerLink]="['/complaint/create']">
+            
+
+          {{'shared.addcomplaint'|translate}}
+    
+   
+      </button>
+    </div>
+    <br>
+    <div class="row prof-content">
+        <div  class="col-xs-push-2 col-sm-push-0 col-xs-10  col-sm-12 my_payments ">
+                    <div class="table-responsive">
+                        <div class="tab-pane " id="t3">
+                            <div class="orders-wrap my_payments">
+                                <div class="order-table col-xs-12">
+                                    <div class="table-item-inner">
+                                        <table class="table table-stripped responsive nowrap" id="data-table-basic2">
+                                        <thead>
+                                            <tr>
+                                                <th> {{'complaint.complaint-id'|translate}}</th>
+                                                <th>{{'complaint.complaint-content'|translate}}</th>
+                                                <th>{{'complaint.status'|translate}}</th>
+                                                <!-- <th>Message</th> -->
+                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr *ngIf="items.length==0">
+                                                        <td colspan="10">
+                                                            <h2>{{'shared.sorry-no-complaint-found'|translate}}</h2>
+                                                        </td>
+                                                    </tr>
+                                            <tr *ngFor="let item of items;">
+                                                <td >
+                                                    <a >{{item.ID}}</a>
+                                                </td>
+                                                <td>{{item.Content}}</td>
+                                                <td>
+                                                        <span class="status drift" *ngIf="item.ComplaintStatus == 0">{{'complaint.hold'|translate}}</span>
+                                                        <span class="status approved" *ngIf="item.ComplaintStatus == 1"> 
+                                                               
+                                                                   
+                                                               {{'complaint.approve'|translate}}</span>
+                                                        <span class="status closed" *ngIf="item.ComplaintStatus == 2"> 
+                                                           
+                                                               {{'complaint.decline'|translate}}</span>
+                                                 
+                                                    </td>
+                                                    <!-- <td >
+                                                      <h4 class="col-2" *ngIf=" item.ComplaintStatus != 0 &&item.ComplaintComment.Comment !=null"> {{item.ComplaintComment.Comment}}</h4>
+                                                    </td> -->
+                        
+                                            </tr> 
+                                           
+                                        </tbody>
+                                        <tfoot>
+                                                <tr>
+                                                    <!-- <td colspan="2" *ngIf="page.options.totalItems>0">
+                                                        {{'shared.page'|translate}} {{page.options.currentPage}}
+                                                        {{'shared.of'|translate}}
+                                                        {{page.options.totalPages}}
+                                                        - {{'shared.total-items'|translate}} : {{page.options.totalItems}}
+                                                    </td> -->
+                                                    <td colspan="6" class="right-pagination" *ngIf="page.options.totalItems>0">
+                                                        <pagination-controls (pageChange)="getNextPrevData($event)" id='Pagination' maxSize="10"
+                                                            directionLinks="true" autohide="true" previousLabel="" nextLabel="">
+                                                        </pagination-controls>
+                        
+                                                    </td>
+                        
+                                            </tfoot>
+                                    </table>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

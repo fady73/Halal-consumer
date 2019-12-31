@@ -1,0 +1,26 @@
+.table td label {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #1274ae;
+    color: #fff;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: normal;
+    font-size: 13px;
+    margin-left: 5px;
+}
+.table td .upload-f {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #32cbce;
+    color: #fff;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: normal;
+    font-size: 13px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: top;
+}

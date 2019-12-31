@@ -1,0 +1,23 @@
+.disable-link{
+    border-radius:0%;
+    pointer-events: none;
+     cursor: default;
+}
+.icon{
+    margin-right: -1px !important;
+}
+.hide{
+    visibility: hidden;
+}
+.show{
+    visibility:visible;
+}
+
+.stepwizard ul li {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+    float: none !important;
+    /* width: 1%; */
+    margin: 0 !important;
+}

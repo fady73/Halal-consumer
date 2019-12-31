@@ -1,0 +1,61 @@
+<div class="jumbo col-xs-12" style="background-image: url(assets/images/hero.png)">
+  <div class="container">
+      <h3>تسجيل الدخول</h3>
+      <ul>
+          <li>
+              <a href="#">الرئيسية</a>
+          </li>
+          <li>
+              <a href="#">تسجيل الدخول</a>
+          </li>
+      </ul>
+  </div>
+</div>
+<main class="main-content col-xs-12">
+  <div class="single-wrap col-xs-12">
+      <div class="container">
+          <div class="reg-form col-xs-12">
+              <h3 class="reg-head">تسجيل دخول</h3>
+              <div class="widget col-md-6 col-xs-12">
+                 
+                  <div class="inner">
+                      <h4>الرجاء إدخال بريدك الإلكتروني وكلمة المرور</h4>
+                      <form class="m-t" role="form" role="form" [formGroup]="form" (ngSubmit)="login()">
+                        <div class="form-group" [class.has-error]="!form.controls['Email'].valid && form.controls['Email'].touched">
+                          <h5>{{'shared.email'|translate}}<i>*</i></h5>
+                          <input formControlName="Email" class="form-control" placeholder="{{'shared.email-placeholder'|translate}}" name="email"
+                            type="text">
+                          <div class="text-danger" *ngIf="!form.controls['Email'].valid && form.controls['Email'].touched">
+                            <div class="valid-label text-danger"  *ngIf="form.controls['Email'].hasError('required')">{{'shared.validation.email-required'|translate}}</div>
+                            <!-- <div class="valid-label" class="valid-label" *ngIf="form.controls['Email'].hasError('maxLength')">{{'shared.validation.max-50-char'|translate}}</div> -->
+                            <div class="valid-label text-danger" *ngIf="form.controls['Email'].hasError('pattern')">{{'shared.validation.valid-email'|translate}}</div>
+                          </div>
+                        </div>
+                        <div class="form-group" [class.has-error]="!form.controls['Password'].valid && form.controls['Password'].touched">
+                          <h5>{{'shared.password'|translate}}<i>*</i></h5>
+                          <input formControlName="Password" class="form-control" placeholder="{{'shared.password-placeholder'|translate}}"
+                            name="password" type="password" value="">
+                          <div class="text-danger" *ngIf="!form.controls['Password'].valid && form.controls['Password'].touched">
+                            <!-- <div class="valid-label" *ngIf="form.controls['Password'].hasError('required')">{{'shared.validation.password-required'|translate}}</div> -->
+                            <!-- <div class="valid-label" *ngIf="form.controls['Password'].hasError('minlength')">{{'shared.validation.min-8-char' |translate}}</div> -->
+                            <!-- <div class="valid-label" *ngIf="form.controls['Password'].hasError('maxLength')">Maximum length is 50 characters.</div> -->
+                          </div>
+                        </div>
+                        <div class="form-group">
+
+                        <button [disabled]="!form.valid" class="btn btn-prime">{{'shared.login'|translate}}</button>
+                      </div>
+
+                      <br>
+                        <p class="text-center margin-t-5 "><a routerLink="/user/forgot-password">{{'sign-in.forgot-password'|translate}}</a></p>
+                       <p class="text-muted text-center"><a routerLink="/user/sign-up" class="text-center">{{'sign-in.have-account'|translate}}</a></p> 
+                        <!-- <a class="btn btn-sm btn-white btn-block" routerLink="/user/sign-up">{{'shared.sign-up'|translate}}</a> -->
+                      </form>
+       
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

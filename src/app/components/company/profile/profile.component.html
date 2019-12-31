@@ -1,0 +1,197 @@
+
+<div class="tab-content">
+   
+  <div class="tab-pane fade active in" id="t7">
+    <form *ngIf="isPageLoaded" role="form" [formGroup]="form" (ngSubmit)="save()">
+      <div class="account-form col-xs-12">
+        <div class="inner">
+            <h4>                 {{'shared.account'|translate}}
+              </h4>
+          <div class="form-group has-uploader col-md-12 col-xs-12">
+            <label>
+              <i class="fa fa-camera"></i>
+              <input #myInput type="file" (change)="onFileChanged($event)">
+              <img [src]="model.ImagePath" id="blah" alt="your image">
+            </label>
+          </div>
+          <div class="form-group col-md-6 col-xs-12"
+            [ngClass]="{'has-error':(!form.controls['FirstName'].valid && form.controls['FirstName'].touched)}">
+            <h5> {{'sign-up.first-name'|translate}} <i>*</i></h5>
+            <input type="text" class="form-control" placeholder="مثال. أحمد" formControlName="FirstName">
+            <div class="text-danger" *ngIf="!form.controls['FirstName'].valid && form.controls['FirstName'].touched">
+              <div class="valid-label" *ngIf="form.controls['FirstName'].hasError('required')">
+                {{'shared.validation.first-name-required'|translate}}
+              </div>
+              <div class="valid-label" *ngIf="form.controls['FirstName'].hasError('maxLength')">
+                {{'shared.validation.max-50-char'|translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6 col-xs-12"
+            [class.has-error]="!form.controls['LastName'].valid && form.controls['LastName'].touched">
+            <h5>{{'sign-up.last-name'|translate}}<i>*</i></h5>
+            <input type="text" class="form-control" placeholder="مثال. عبدالله" formControlName="LastName">
+            <div class="text-danger" *ngIf="!form.controls['LastName'].valid && form.controls['LastName'].touched">
+              <div class="valid-label" *ngIf="form.controls['LastName'].hasError('required')">
+                {{'shared.validation.last-name-required'|translate}}
+              </div>
+              <div class="valid-label" *ngIf="form.controls['LastName'].hasError('maxLength')">
+                {{'shared.validation.max-50-char'|translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group ph-number col-md-12 col-xs-12">
+            <h5> {{'sign-up.phone-number'|translate}} <i>*</i></h5>
+            <ngx-intl-tel-input 
+            [cssClass]="'custom'" 
+            [enableAutoCountrySelect]="false" 
+            [enablePlaceholder]="true" 
+            [searchCountryFlag]="true"
+            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+            [selectFirstCountry]="false" 
+            [selectedCountryISO]="CountryISO.SaudiArabia"
+            [maxLength]="15" 
+            [tooltipField]="TooltipLabel.Name" 
+            [phoneValidation]="true" 
+            [separateDialCode]="separateDialCode"
+            name="phone" >
+          </ngx-intl-tel-input>
+            <input type="text" class="form-control col-xs-pull-2 col-xs-6" placeholder="123456789" formControlName="Phone">
+            <!-- <intl-input-phone [ConfigurationOption]="configOption1" (OnIsRequiredChange)="requiredFlagChange($event)" (OnNumberChange)="onNumberChage($event)"></intl-input-phone> -->
+
+          </div>
+
+          <div class="form-group col-md-6 col-xs-12"
+            [class.has-error]="!form.controls['Email'].valid && form.controls['Email'].touched">
+            <h5>{{'shared.email'|translate}} <i>*</i></h5>
+            <input type="email" class="form-control" placeholder="name@email.com" formControlName="Email">
+            <!-- <div class="text-danger" *ngIf="!form.controls['Email'].valid && form.controls['Email'].touched">
+              <div class="valid-label" *ngIf="form.controls['Email'].hasError('required')">
+                {{'shared.validation.email-required'|translate}}</div>
+              <div class="valid-label" *ngIf="form.controls['Email'].hasError('maxLength')">
+                {{'shared.validation.max-50-char'|translate}}</div>
+              <div class="valid-label" *ngIf="form.controls['Email'].hasError('pattern')">
+                {{'shared.validation.valid-email'|translate}}</div>
+            </div> -->
+          </div>
+
+
+
+          <div class="form-group col-md-6 col-xs-12" [class.has-error]="(!form.controls['Type'].valid)"
+            [class.has-success]="form.controls['Type'].valid && (form.controls['Type'].dirty||form.controls['Type'].touched)">
+            <h5> {{'sign-up.account-type'|translate}} <i>*</i></h5>
+            <select formControlName="Type" class="form-control">
+              <option *ngFor="let item of types;let i=index;" [value]="item.ID" [selected]="item.ID==model.Type">
+                {{item.Name}}</option>
+            </select>
+            <div *ngIf="!form.controls['Type'].valid && form.controls['Type'].dirty" class="text text-danger">
+              <p class="valid-label" *ngIf="form.controls['Type'].hasError('required')">
+                {{'shared.validation.account-type-required'|translate}}
+              </p>
+            </div>
+          </div>
+          <br>
+          <div>
+        
+            <h4>                 {{'shared.company'|translate}}
+              </h4>
+          </div>
+          <div class="form-group col-md-6 col-xs-12"
+            [class.has-error]="!form.controls['Name'].valid && form.controls['Name'].touched">
+            <h5>{{'sign-up.company-name'|translate}} <i>*</i></h5>
+            <input type="text" class="form-control" placeholder="Company Name اسم الشركة" formControlName="Name">
+            <div class="text-danger" *ngIf="!form.controls['Name'].valid && form.controls['Name'].touched">
+              <div class="valid-label" *ngIf="form.controls['Name'].hasError('required')">
+                {{'shared.validation.company-name-required'|translate}}</div>
+              <div class="valid-label" *ngIf="form.controls['Name'].hasError('maxLength')">
+                {{'shared.validation.max-50-char'|translate}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6 col-xs-12"
+            [class.has-error]="!form.controls['Address'].valid && form.controls['Address'].touched">
+            <h5> {{'sign-up.company-address'|translate}} <i>*</i></h5>
+            <input type="text" class="form-control" placeholder="Street Address" formControlName="Address">
+            <div class="text-danger" *ngIf="!form.controls['Address'].valid && form.controls['Address'].touched">
+              <div class="valid-label" *ngIf="form.controls['Address'].hasError('required')">
+                {{'shared.validation.company-name-required'|translate}}</div>
+              <div class="valid-label" *ngIf="form.controls['Address'].hasError('maxLength')">
+                {{'shared.validation.max-50-char'|translate}}</div>
+            </div>
+          </div>
+          <div class="form-group" [class.has-error]="(!form.controls['CountryID'].valid)"
+            [class.has-success]="form.controls['CountryID'].valid && (form.controls['CountryID'].dirty||form.controls['CountryID'].touched)">
+            <h5>  {{'shared.country'|translate}} <i>*</i></h5>
+            <select formControlName="CountryID" class="form-control">
+              <option *ngFor="let item of countries;let i=index;" [value]="item.ID" [selected]="item.ID==model.Type">
+                {{item.Name}}</option>
+            </select>
+            <div *ngIf="!form.controls['CountryID'].valid && form.controls['CountryID'].dirty" class="text text-danger">
+              <p class="valid-label" *ngIf="form.controls['CountryID'].hasError('required')">
+                {{'shared.validation.account-type-required'|translate}}
+              </p>
+            </div>
+          </div>
+
+       
+          <div class="form-group col-md-6 col-xs-12">
+            <button type="submit" class="btn btn-prime" (click)="save()" [disabled]="form.invalid || isSaving">  {{'shared.submit'|translate}}
+              </button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+    
+  <!-- <form #f="ngForm" [formGroup]="phoneForm">
+    <div class="mb-2">
+      <ngx-intl-tel-input 
+        [enablePlaceholder]="true" 
+        [searchCountryFlag]="true"
+        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+        [selectFirstCountry]="false" 
+        [selectedCountryISO]="CountryISO.India"
+        [maxLength]="15" 
+        [tooltipField]="TooltipLabel.Name" 
+        [phoneValidation]="true" 
+        [separateDialCode]="separateDialCode"
+        name="phone" formControlName="phone">
+      </ngx-intl-tel-input>
+    </div>
+    </form> -->
+
+  </div>
+</div>
+<style>
+  .input-select-div {
+    position: static !important;
+}
+
+  </style>
+<!--
+      <international-phone-number class="mystyle form-control form-control-sm"  placeholder="Enter phone number" [maxlength]="20" [defaultCountry]="'us'"  name="phone_number" [allowedCountries]="all"></international-phone-number>
+ <style>
+  :host ::ng-deep .mystyle .dropbtn {
+	 background: #2196f3;
+	 color: white;
+	 border: none;
+	 cursor: pointer;
+}
+ :host ::ng-deep .mystyle .form-control {
+	 display: block;
+	 width: 100%;
+	 padding: 0.4375rem 0;
+	 font-size: 1rem;
+	 line-height: 1.5;
+	 margin: 0px 5px;
+	 color: #495057;
+	 background-color: rgba(0, 0, 0, 0);
+	 background-clip: padding-box;
+	 border: none;
+	 border-radius: 0;
+	 box-shadow: none;
+	 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+ 
+  </style>
+ -->

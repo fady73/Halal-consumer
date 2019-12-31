@@ -1,0 +1,525 @@
+<div class="col-sm-12">
+        <sections-steps [requestID]="model.RequestID" [step]="8" ></sections-steps>
+
+</div>
+<div class="tab-pane  active in" id="step-8">
+        <div class="forms-wrap col-xs-12">
+            <h4 class="wrap-head"> {{'request.appendix-two.title'|translate}}</h4>
+           
+            <hr>
+
+            <h3>{{'request.appendix-two.cattle'|translate}}</h3>
+
+            <div class="table-item-inner" style="display: block;">
+                <button type="button" id="addRowsappendix2tb1" class="btn btnAdd" *ngIf="isEditable" (click)="addCattleBreeding()" >
+                    <i class="fa fa-plus"></i>
+                    {{'request.appendix-two.addCattle'|translate}}
+                </button>
+                <table class="table table-stripped responsive nowrap" id="appendix2tb1">
+                    <thead>
+                    <tr>
+                        <th> {{'request.appendix-two.TypeCattle'|translate}}	</th>
+                        <th> {{'request.appendix-two.ProducersCattle'|translate}}	</th>
+                        <th> {{'request.appendix-two.Animals'|translate}}	</th>
+                        <th> {{'request.appendix-two.Activity'|translate}}	</th>
+                        <th>
+                            <i class="fa fa-gears"></i>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                            <tr class="blank_row" *ngFor="let item of model.CattleBreedings; let i=index">
+                                    <td>
+                                        <input class="form-control" type="text" [(ngModel)]="item.CattleType" *ngIf="isEditable">
+                                        <input   class="form-control" type="text" [(ngModel)]="item.CattleType" readonly="true" *ngIf="!isEditable">
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0' *ngIf="isEditable">
+                                        <input  class="form-control"  type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0' readonly="true" *ngIf="!isEditable">
+
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfAnimals" min='0' *ngIf="isEditable">
+                                        <input  class="form-control" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfAnimals" min='0' readonly="true" *ngIf="!isEditable">
+
+                                    </td>
+                                    <td>
+                                        <input   class="form-control"  type="text" [(ngModel)]="item.Activity" *ngIf="isEditable">
+                                        <input  class="form-control" type="text" [(ngModel)]="item.Activity" readonly="true" *ngIf="!isEditable">
+
+                                    </td>
+                                    <td *ngIf="isEditable">
+                                        <button type="button" class="btn removeRowsappendix2tb1 removeButton"(click)="removeCattleBreedings(i)">
+                                                <i class="fa fa-remove"></i>
+                                                
+                                            </button>
+                                </td>
+                                
+                    </tr>
+                        <tr class="blank_row" *ngIf="isEditable" [formGroup]="formCattleBreeding">
+                                <td>
+                                    <input  class="form-control" type="text" placeholder="Enter type of cattle"
+                                        formControlName="CattleType" *ngIf="isEditable">
+                                        <input class="form-control" type="text" placeholder="Enter type of cattle"
+                                        formControlName="CattleType" readonly="true" *ngIf="!isEditable">
+                                    </td>
+                                <td><input class="form-control" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                        formControlName="NumberOfProcedures" min='0' *ngIf="isEditable">
+                                        <input class="form-control" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                        formControlName="NumberOfProcedures" min='0' readonly="true" *ngIf="!isEditable">
+                                    
+                                    </td>
+                                <td><input class="form-control" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of animals"
+                                        formControlName="NumberOfAnimals" min='0' *ngIf="isEditable">
+                                        <input class="form-control" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of animals"
+                                        formControlName="NumberOfAnimals" min='0'  readonly="true" *ngIf="!isEditable">
+                                    </td>
+
+
+                                <td>
+                                    <input class="form-control" type="text" placeholder="Enter activity" formControlName="Activity" *ngIf="isEditable">
+                                    <input class="form-control" type="text" placeholder="Enter activity" formControlName="Activity" readonly="true" *ngIf="!isEditable">
+
+                                </td>
+                                <td class="plusClass" >
+                                        <button type="button" class="btn removeRowsappendix2tb1 removeButton" (click)="removeLastCattleBreedings()">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                </td>
+
+                            </tr>
+                </tbody>
+                </table>
+            </div>
+
+            <hr>
+
+         
+            <h3>{{'request.appendix-two.Poultry'|translate}}</h3>
+
+            <div class="table-item-inner" style="display: block;">
+                <button type="button" id="addRowsappendix2tb2" class="btn btnAdd" *ngIf="isEditable" (click)="addPoultry()" >
+                    <i class="fa fa-plus"></i>
+                    {{'request.appendix-two.addPoultry'|translate}}
+                </button>
+                <table class="table table-stripped responsive nowrap" id="appendix2tb2">
+                    <thead>
+                    <tr>
+                        <th> {{'request.appendix-two.House'|translate}} </th>
+                        <th> {{'request.appendix-two.Activity'|translate}}	</th>
+                        <th>
+                            <i class="fa fa-gears"></i>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <tr class="blank_row" *ngFor="let item of model.Poultries; let i=index">
+                                    <td><input class="form-control" type="text" [(ngModel)]="item.NumberOfHouse" *ngIf="isEditable" >
+                                        <input class="form-control" type="text" [(ngModel)]="item.NumberOfHouse" *ngIf="!isEditable" readonly="true" >
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" [(ngModel)]="item.Activity" *ngIf="isEditable">
+                                        <input class="form-control" type="text" [(ngModel)]="item.Activity" *ngIf="!isEditable" readonly="true" >
+
+                                    </td>
+                                    <td *ngIf="isEditable">
+                                        <button type="button" class="btn removeRowsappendix2tb1 removeButton"(click)="removeformPoultry(i)">
+                                                <i class="fa fa-remove"></i>
+                                                
+                                            </button>
+                                </td>
+                                </tr>
+                                <tr class="blank_row" *ngIf="isEditable" [formGroup]="formPoultry">
+                                    <td><input class="form-control" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter No of house"
+                                            formControlName="NumberOfHouse" min='0' *ngIf="isEditable">
+                                            <input class="form-control" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter No of house"
+                                            formControlName="NumberOfHouse" min='0' *ngIf="!isEditable" readonly="true">
+                                        </td>
+                                    <td>
+                                        <input class="form-control" type="text" placeholder="Enter activity" formControlName="Activity" *ngIf="isEditable">
+                                        <input class="form-control" type="text" placeholder="Enter activity" formControlName="Activity" *ngIf="!isEditable" readonly="true">
+
+                                    </td>
+                                    <td class="plusClass">
+                                        <span> 
+                                                <button type="button" class="btn removeRowsappendix2tb1 removeButton"(click)="removeLastformPoultry()">
+                                                        <i class="fa fa-remove"></i>
+                                                        
+                                                    </button>
+                                            </span>
+                                    </td>
+
+                                </tr>
+                  
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+            
+          
+            <h3>{{'request.appendix-two.Vegetables'|translate}}</h3>
+
+            <div class="table-item-inner" style="display: block;">
+                <button type="button" id="addRowsappendix2tb3" *ngIf="isEditable" 
+                (click)="addVegetable()" class="btn btnAdd">
+                    <i class="fa fa-plus"></i>
+                    {{'request.appendix-two.AddVegetables'|translate}}
+                </button>
+                <table class="table table-stripped responsive nowrap" id="appendix2tb3">
+                    <thead>
+                    <tr>
+                        <th> {{'request.appendix-two.typeVegetables'|translate}}	 </th>
+                        <th> {{'request.appendix-two.ProducersVegetables'|translate}}	 </th>
+                        <th> {{'request.appendix-two.Surface'|translate}} </th>
+                        <th> {{'request.appendix-two.Activity'|translate}} </th>
+                        <th>
+                            <i class="fa fa-gears"></i>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <tr class="blank_row" *ngFor="let item of model.VegetablesProducers; let i=index">
+                                    <td><input class="form-control" *ngIf="isEditable" type="text" [(ngModel)]="item.VegetableType"  [ngModelOptions]="{standalone: true}"> 
+                                        <input class="form-control" *ngIf="!isEditable" readonly="true" type="text" [(ngModel)]="item.VegetableType"  [ngModelOptions]="{standalone: true}"></td>
+                                    <td>
+                                        <input class="form-control" *ngIf="isEditable" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0'  [ngModelOptions]="{standalone: true}">
+                                        <input class="form-control"  *ngIf="!isEditable" readonly="true" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0'  [ngModelOptions]="{standalone: true}">
+                                    </td>
+
+                                    <td>
+                                        <input class="form-control" *ngIf="isEditable" type="text" [(ngModel)]="item.Surface">
+                                        <input class="form-control"  *ngIf="!isEditable" readonly="true" type="text" [(ngModel)]="item.Surface">
+
+                                    </td>
+                                    <td>
+                                        <input class="form-control" *ngIf="isEditable" type="text" [(ngModel)]="item.Activity">
+                                        <input class="form-control"  *ngIf="!isEditable" readonly="true" type="text" [(ngModel)]="item.Activity">
+
+                                    </td>
+                                    <td *ngIf="isEditable">
+                                            <button type="button" class="btn removeRowsappendix2tb1 removeButton"(click)="removeVegetablesProducers(i)">
+                                                    <i class="fa fa-remove"></i>
+                                                    
+                                                </button>
+                                    </td>
+                                </tr>
+                                <tr [formGroup]="formVegetables" *ngIf="isEditable"  class="blank_row" >
+                                    <td><input class="form-control" *ngIf="isEditable" type="text" placeholder="Enter type of vegetable type "
+                                            formControlName="VegetableType">
+                                            <input class="form-control" readonly="true" *ngIf="!isEditable" type="text" placeholder="Enter type of vegetable type "
+                                            formControlName="VegetableType">
+                                        </td>
+                                    <td><input class="form-control" *ngIf="isEditable" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                            formControlName="NumberOfProcedures" min='0'>
+                                            <input class="form-control" *ngIf="!isEditable" readonly="true" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                            formControlName="NumberOfProcedures" min='0'>
+                                        </td>
+                                    <td><input class="form-control" *ngIf="isEditable" type="text" placeholder="Enter surface" formControlName="Surface">
+                                        <input class="form-control" *ngIf="!isEditable" readonly="true" type="text" placeholder="Enter surface" formControlName="Surface">
+                                    </td>
+                                    <td><input class="form-control" *ngIf="isEditable" type="text" placeholder="Enter activity"  formControlName="Activity">
+                                        <input class="form-control" *ngIf="!isEditable" readonly="true" type="text" placeholder="Enter activity" formControlName="Activity">
+                                    
+                                    </td>
+                                    <td class="plusClass" >
+                                        <span> 
+                                                <button type="button" class="btn removeRowsappendix2tb1 removeButton"(click)="removeLastVegetablesProducers()">
+                                                        <i class="fa fa-remove"></i>
+                                                        
+                                                    </button>
+                                        </span>
+                                            
+                                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="form-group f-btns col-md-12 col-xs-12">
+                <button   [disabled]="!isEditable" (click)="post()" type="submit"class="btn">                
+                    {{'request.save'|translate}}
+                </button>
+                <button type="button" (click)="resetForm()" class="btn prev-step">
+                        {{'request.prev'|translate}}
+
+                </button>
+            </div>
+        </div>
+    </div>
+
+<!-- 
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h3>{{'request.appendix2'|translate}}</h3>
+                </div>
+                <div *ngIf="isPageLoaded">
+
+                    <div class="ibox-content">
+
+                        <div class="row">
+                            <h3 id="tableTitle">Primary Sector</h3>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped " id="table1">
+                                <thead>
+                                    <tr class="header_row">
+                                        <th colspan="4" style="text-align:left;font-size:15px;">In case of primary
+                                            sector , please indicate the following information:</th>
+                                    </tr>
+                                    <tr class="header_row">
+                                        <th colspan="4">
+                                            <h2>Cattle Breeding</h2>
+                                        </th>
+                                    </tr>
+                                    <tr class="header_row">
+                                        <th>Type of cattle</th>
+                                        <th>N of producers</th>
+                                        <th>N of animals</th>
+                                        <th>Activity</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="blank_row" *ngFor="let item of model.CattleBreedings; let i=index">
+                                        <td>
+                                            <input type="text" [(ngModel)]="item.CattleType" *ngIf="isEditable">
+                                            <input type="text" [(ngModel)]="item.CattleType" readonly="true" *ngIf="!isEditable">
+                                        </td>
+                                        <td> -->
+                                            <!-- <input type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0' *ngIf="isEditable">
+                                            <input type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0' readonly="true" *ngIf="!isEditable">
+
+                                        </td>
+                                        <td>
+                                            <input type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfAnimals" min='0' *ngIf="isEditable">
+                                            <input type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfAnimals" min='0' readonly="true" *ngIf="!isEditable">
+
+                                        </td>
+                                        <td>
+                                            <input type="text" [(ngModel)]="item.Activity" *ngIf="isEditable">
+                                            <input type="text" [(ngModel)]="item.Activity" readonly="true" *ngIf="!isEditable">
+
+                                        </td>
+                                    </tr>
+                                    <tr class="blank_row" [formGroup]="formCattleBreeding">
+                                        <td>
+                                            <input type="text" placeholder="Enter type of cattle"
+                                                formControlName="CattleType" *ngIf="isEditable">
+                                                <input type="text" placeholder="Enter type of cattle"
+                                                formControlName="CattleType" readonly="true" *ngIf="!isEditable">
+                                            </td>
+                                        <td><input type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                                formControlName="NumberOfProcedures" min='0' *ngIf="isEditable">
+                                                <input type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                                formControlName="NumberOfProcedures" min='0' readonly="true" *ngIf="!isEditable">
+                                            
+                                            </td>
+                                        <td><input type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of animals"
+                                                formControlName="NumberOfAnimals" min='0' *ngIf="isEditable">
+                                                <input type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of animals"
+                                                formControlName="NumberOfAnimals" min='0'  readonly="true" *ngIf="!isEditable">
+                                            </td>
+
+
+                                        <td>
+                                            <input type="text" placeholder="Enter activity" formControlName="Activity" *ngIf="isEditable">
+                                            <input type="text" placeholder="Enter activity" formControlName="Activity" readonly="true" *ngIf="!isEditable">
+
+                                        </td>
+                                        <td class="plusClass" >
+                                            <span> <i  *ngIf="isEditable" (click)="addCattleBreeding()" class="fa fa-plus"></i></span>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div> -->
+
+                    <!----------------------------------------------------------------------------------->
+                    <!-- <div class="ibox-content" style="border-width: 0px;">
+                        <div class="table-responsive" id="secondTable">
+                            <table class="table table-striped" id="table2">
+                                <thead>
+
+                                    <tr class="header_row">
+                                        <th colspan="2">
+                                            <h2>Poultry</h2>
+                                        </th>
+                                    </tr>
+                                    <tr class="header_row">
+                                        <th width="22%">No of house</th>
+                                        <th>Activity</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="blank_row" *ngFor="let item of model.Poultries; let i=index">
+                                        <td><input type="text" [(ngModel)]="item.NumberOfHouse" *ngIf="isEditable" >
+                                            <input type="text" [(ngModel)]="item.NumberOfHouse" *ngIf="!isEditable" readonly="true" >
+                                        </td>
+                                        <td>
+                                            <input type="text" [(ngModel)]="item.Activity" *ngIf="isEditable">
+                                            <input type="text" [(ngModel)]="item.Activity" *ngIf="!isEditable" readonly="true" >
+
+                                        </td>
+                                    </tr>
+                                    <tr class="blank_row" [formGroup]="formPoultry">
+                                        <td><input type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter No of house"
+                                                formControlName="NumberOfHouse" min='0' *ngIf="isEditable">
+                                                <input type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter No of house"
+                                                formControlName="NumberOfHouse" min='0' *ngIf="!isEditable" readonly="true">
+                                            </td>
+                                        <td>
+                                            <input type="text" placeholder="Enter activity" formControlName="Activity" *ngIf="isEditable">
+                                            <input type="text" placeholder="Enter activity" formControlName="Activity" *ngIf="!isEditable" readonly="true">
+
+                                        </td>
+                                        <td class="plusClass">
+                                            <span> <i *ngIf="isEditable" (click)="addPoultry()" class="fa fa-plus"></i></span>
+                                        </td>
+
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div> -->
+
+                    <!----------------------------------------------------------------------------------->
+
+                    <!-- <div class="ibox-content" style="border-width: 0px;">
+                        <div class="table-responsive" id="threeTable">
+                            <table class="table table-striped" id="table3">
+                                <thead>
+
+                                    <tr class="header_row">
+                                        <th colspan="4">
+                                            <h2>Vegetables Producer</h2>
+                                        </th>
+                                    </tr>
+                                    <tr class="header_row">
+                                        <th>Type of Vegetables</th>
+                                        <th>N of producers</th>
+                                        <th>Surface</th>
+                                        <th>Activity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="blank_row" *ngFor="let item of model.VegetablesProducers; let i=index">
+                                        <td><input *ngIf="isEditable" type="text" [(ngModel)]="item.VegetableType"> 
+                                            <input *ngIf="!isEditable" readonly="true" type="text" [(ngModel)]="item.VegetableType"></td>
+                                        <td>
+                                            <input *ngIf="isEditable" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0'>
+                                            <input  *ngIf="!isEditable" readonly="true" type="number"  (keypress)="checkIfNumber($event)"  [(ngModel)]="item.NumberOfProcedures" min='0'>
+                                        </td>
+
+                                        <td>
+                                            <input *ngIf="isEditable" type="text" [(ngModel)]="item.Surface">
+                                            <input  *ngIf="!isEditable" readonly="true" type="text" [(ngModel)]="item.Surface">
+
+                                        </td>
+                                        <td>
+                                            <input *ngIf="isEditable" type="text" [(ngModel)]="item.Activity">
+                                            <input  *ngIf="!isEditable" readonly="true" type="text" [(ngModel)]="item.Activity">
+
+                                        </td>
+                                    </tr>
+                                    <tr class="blank_row" [formGroup]="formVegetables">
+                                        <td><input *ngIf="isEditable" type="text" placeholder="Enter type of vegetable type "
+                                                formControlName="VegetableType">
+                                                <input readonly="true" *ngIf="!isEditable" type="text" placeholder="Enter type of vegetable type "
+                                                formControlName="VegetableType">
+                                            </td>
+                                        <td><input *ngIf="isEditable" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                                formControlName="NumberOfProcedures" min='0'>
+                                                <input *ngIf="!isEditable" readonly="true" type="number"  (keypress)="checkIfNumber($event)"  placeholder="Enter N of producers"
+                                                formControlName="NumberOfProcedures" min='0'>
+                                            </td>
+                                        <td><input *ngIf="isEditable" type="text" placeholder="Enter surface" formControlName="Surface">
+                                            <input *ngIf="!isEditable" readonly="true" type="text" placeholder="Enter surface" formControlName="Surface">
+                                        </td>
+                                        <td><input *ngIf="isEditable" type="text" placeholder="Enter activity" formControlName="Activity">
+                                            <input *ngIf="!isEditable" readonly="true" type="text" placeholder="Enter activity" formControlName="Activity">
+                                        
+                                        </td>
+                                        <td class="plusClass" >
+                                            <span> <i  *ngIf="isEditable" 
+                                                (click)="addVegetable()" class="fa fa-plus"></i></span>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div> -->
+
+
+                        <!-- <div class="row">
+                            <div class="col-lg-12" id="noteText">
+                                <h2>Notes</h2>
+                                <div class="ibox-content" id="box2Content">
+
+                                    <p>
+                                        <i class="fa fa-circle"></i><span>Following the complation of your
+                                            application,SFDA will prepare a proposal,which include details of the scope
+                                            and duration of audit<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;certification process and costs.</span><br>
+                                        <i class="fa fa-circle"></i><span>Please provide all required documents in 10
+                                            days.</span><br>
+                                        <i class="fa fa-circle"></i><span>Complete the application form in English
+                                            language.</span> <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="hr-line-dashed"></div>
+                        <div class="row margin-top-15">
+                            <div class="col-sm-11"> -->
+                                <!-- <img  class="pull-right" src="/assets/images/ajax-loader.gif"> -->
+                                <!-- <button [disabled]="!isEditable" (click)="post()" type="submit" -->
+                                    <!-- class="btn btn-primary1 float-right">{{'shared.submit'|translate}} -->
+                                <!-- </button> -->
+                                <!-- <button type="button" (click)="resetForm()" -->
+                                    <!-- class="btn btn-light float-right margin-h-10 ">{{'request.prev'|translate}}</button> -->
+                            <!-- </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div> -->
+
+            <!-- </div>
+
+
+
+
+
+        </div>
+
+    </div>
+ -->
+
+
+
+
+
+<!-- 
+
+</div> -->

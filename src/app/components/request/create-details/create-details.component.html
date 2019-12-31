@@ -1,0 +1,369 @@
+<div class="wrapper wrapper-content ">
+    <div class="row">
+            <div class="col-sm-12">
+                    <sections-steps [requestID]="model.ID" [step]="1" ></sections-steps></div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="">
+                            <div class="forms-wrap col-xs-12">
+                                    <h4 class="wrap-head"> {{'request.company-details.title'|translate}}
+                                        </h4>
+                                        <h1 *ngIf="!isPageLoaded" align="center">
+                                                <i class="blue fa fa-refresh fa-spin"></i>
+                                            </h1>
+                                <form *ngIf="isPageLoaded" role="form" [formGroup]="form" (ngSubmit)="save()">
+                                       
+                                    <div  *ngIf="!canEdit"  class="form-group col-md-6 col-xs-12">
+                                        <h5> {{'request.company-details.company-name'|translate}}    <i>*</i></h5>
+                                        <input formControlName="Name" class="form-control col-sm-12"
+                                        placeholder="eg.Halal center"[readonly]="true" name="Company name"
+                                        type="text">
+                                                                 
+                                  </div>
+
+                                    <div *ngIf="canEdit" class="form-group col-md-6 col-xs-12"
+                                    [class.has-error]="!form.controls['Name'].valid && form.controls['Name'].touched">
+                                        <h5> {{'request.company-details.company-name'|translate}}    <i>*</i></h5>
+                                        <input formControlName="Name" class="form-control col-sm-12"
+                                        placeholder="eg.Halal center"  name="Company name"
+                                        type="text">
+                                    <div class="text-danger offset-sm-2 col-sm-10"
+                                        *ngIf="!form.controls['Name'].valid && form.controls['Name'].touched">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['Name'].hasError('required')">
+                                            {{'request.company-details.company-name-required'|translate}}</div>
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['Name'].hasError('maxLength')">
+                                            {{'shared.validation.max-50-char'|translate}}</div>
+                             
+                                    </div>                                  
+                                  </div>
+
+                                    <div  *ngIf="!canEdit" class="form-group col-md-6 col-xs-12"
+                                    [class.has-error]="!form.controls['Address'].valid && form.controls['Address'].touched">
+                                        <h5> {{'request.company-details.company-address'|translate}} <i>*</i></h5>
+                                        <input [readonly]="true" formControlName="Address"
+                                        class="form-control col-sm-12" placeholder="Street address , City"
+                                        name="address" type="text">
+                                    <div class="text-danger offset-sm-2 col-sm-10"
+                                        *ngIf="!form.controls['Address'].valid && form.controls['Address'].touched">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['Address'].hasError('required')">
+                                            {{'shared.validation.required'|translate}}</div>
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['Address'].hasError('maxLength')">
+                                            {{'shared.validation.max-50-char'|translate}}</div>
+                                    </div>                                   
+                                </div>
+                               
+
+                                <div  *ngIf="canEdit" class="form-group col-md-6 col-xs-12"
+                                [class.has-error]="!form.controls['Address'].valid && form.controls['Address'].touched">
+                                    <h5> {{'request.company-details.company-address'|translate}} <i>*</i></h5>
+                                    <input  formControlName="Address"
+                                    class="form-control col-sm-12" placeholder="Street address , City"
+                                    name="address" type="text">
+                                <div class="text-danger offset-sm-2 col-sm-10"
+                                    *ngIf="!form.controls['Address'].valid && form.controls['Address'].touched">
+                                    <div class="valid-label text-danger"
+                                        *ngIf="form.controls['Address'].hasError('required')">
+                                        {{'shared.validation.required'|translate}}</div>
+                                    <div class="valid-label text-danger"
+                                        *ngIf="form.controls['Address'].hasError('maxLength')">
+                                        {{'shared.validation.max-50-char'|translate}}</div>
+                                </div>                                   
+                            </div>
+
+                                
+                            <div *ngIf="canEdit" class=" form-group  padding-h-m-15 col-md-12 col-xs-12"
+                            [class.has-error]="!form.controls['InvoiceAddress'].valid && form.controls['InvoiceAddress'].touched">
+                          
+                                <h5> {{'request.company-details.address-for-invoice'|translate}} <i>*</i></h5>
+
+                            <input [readonly]="isSameAddressChecked" formControlName="InvoiceAddress"
+                                class="form-control col-sm-12" placeholder="Street address, City" name=""
+                                type="text">
+                            <div class="col-sm-12">
+                                <label >
+                                    <input type="checkbox" id="customCheck1"
+                                        formControlName="SameAddress" [checked]="isSameAddressChecked"
+                                        (change)="onSameAsAddressChecked()"
+                                        class="custom-control-input">
+                                    <label class="label-text" for="customCheck1">
+                                        
+                                        {{'request.company-details.same-as-address'|translate}}
+                                    </label>
+                                    
+                                </label>
+                            </div>
+                            <div class="text-danger offset-sm-2 col-sm-10"
+                                *ngIf="!form.controls['InvoiceAddress'].valid && form.controls['InvoiceAddress'].touched">
+                                <div class="valid-label text-danger"
+                                    *ngIf="form.controls['InvoiceAddress'].hasError('required')">
+                                    {{'shared.validation.required'|translate}}</div>
+                                <div class="valid-label text-danger"
+                                    *ngIf="form.controls['InvoiceAddress'].hasError('maxLength')">
+                                    {{'shared.validation.max-50-char'|translate}}</div>
+                                
+                            </div>
+                        </div>
+                                    
+                        <div class="form-group  padding-h-m-15 col-sm-6  ml-2 pl-2" *ngIf="!canEdit">
+                                <h5
+                                    class="control-label col-sm-12">{{'request.company-details.trade-number'|translate}}
+                                   <i> *</i></h5>
+                                <input formControlName="TradeLicenseNumber" class="form-control col-sm-12"
+                                    placeholder="134hgdwqe" name="trad license number" type="text" readonly="true">
+
+                            </div>
+
+
+
+
+                                <div *ngIf="canEdit" class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                    [class.has-error]="!form.controls['TradeLicenseNumber'].valid && form.controls['TradeLicenseNumber'].touched">
+                                    <h5
+                                        class="control-label col-sm-12">{{'request.company-details.trade-number'|translate}}
+                                        <i> *</i></h5>
+                                    <input formControlName="TradeLicenseNumber" class="form-control col-sm-12 "
+                                        placeholder="134hgdwqe" name="trad license number" type="text">
+
+                                    <div class="text-danger offset-sm-2 col-sm-10"
+                                        *ngIf="!form.controls['TradeLicenseNumber'].valid && form.controls['TradeLicenseNumber'].touched">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TradeLicenseNumber'].hasError('required')">
+                                            {{'shared.validation.required'|translate}}</div>
+                                        
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TradeLicenseNumber'].hasError('maxlength')">
+                                            {{'shared.validation.max-15-char'|translate}}
+                                        </div>
+                                    
+                                    </div>
+
+                                </div>
+                                <div *ngIf="!canEdit" class="form-group  padding-h-m-15 col-sm-6 pl-2 ">
+                                        <h5
+                                            class="control-label col-sm-11">{{'request.company-details.postal-code'|translate}}
+                                </h5>
+                                        <input formControlName="PostalCode" class="form-control col-sm-12"
+                                            placeholder="123456789362158" name="" type="text"
+                                            readOnly="true">
+                                        </div>
+
+                                        <div *ngIf="canEdit" class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2 "
+                                            [class.has-error]="!form.controls['PostalCode'].valid && form.controls['PostalCode'].touched">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.postal-code'|translate}}
+                                    </h5>
+                                            <input formControlName="PostalCode" class="form-control "
+                                                placeholder="1232158" name="" type="text"
+                                                >
+                                            <div class="text-danger offset-sm-2 col-sm-10"
+                                                *ngIf="!form.controls['PostalCode'].valid && form.controls['PostalCode'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['PostalCode'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['PostalCode'].hasError('maxLength')">
+                                                    {{'shared.validation.max-50-char'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['PostalCode'].hasError('minlength')">Minimum
+                                                    length is
+                                                    4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!canEdit" class="form-group  padding-h-m-15 col-sm-12 ml-2 pl-2">
+                                        <h5
+                                            class="control-label ">{{'request.company-details.part-group'|translate}}
+                                        </h5>
+                                        <input [readonly]="true" formControlName="GroupName"
+                                            class="form-control " placeholder="eg.Halal Center" name=""
+                                            type="text">
+                                    </div>
+
+                                        <div *ngIf="canEdit" class="form-group  padding-h-m-15 col-sm-12 ml-2 pl-2"
+                                            [class.has-error]="!form.controls['GroupName'].valid && form.controls['GroupName'].touched">
+                                            <div class="col-sm-12" >
+                                                <label >
+                                                    <input type="checkbox" id="customCheck2"
+                                                        formControlName="IsPartGroup" [checked]="isPartGroup"
+                                                        (change)="onPartOfGroupChecked()" class="custom-control-input">
+                                                    <label class="label-text"
+                                                        for="customCheck2">{{'request.company-details.part-of-group'|translate}}</label>
+                                                </label>
+                                            </div>
+                                            <h5
+                                                class="control-label ">{{'request.company-details.part-group'|translate}}
+                                               </h5>
+                                          
+                                           
+                                            <input [readonly]="!isPartGroup" formControlName="GroupName"
+                                            class="form-control " placeholder="eg.Halal Center" name=""
+                                            type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10"
+                                                *ngIf="!form.controls['GroupName'].valid && form.controls['GroupName'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['GroupName'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['GroupName'].hasError('maxLength')">
+                                                    {{'shared.validation.max-50-char'|translate}}</div>
+                                            </div>
+                                        </div>
+
+                                         
+                                        <div class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2" *ngIf="!canEdit">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.management-representation'|translate}}
+                                                <i> *</i></h5>
+                                            <input formControlName="ManagmentRepresentative"
+                                                class="form-control " placeholder="eg.Ahmed Abdullah"
+                                                name="post code" type="text" readonly="true">
+
+                                        </div>
+                                        <div *ngIf="canEdit" class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                            [class.has-error]="!form.controls['ManagmentRepresentative'].valid && form.controls['ManagmentRepresentative'].touched">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.management-representation'|translate}}
+                                                <i> *</i></h5>
+                                            <input formControlName="ManagmentRepresentative"
+                                                class="form-control " placeholder="eg.Ahmed Abdullah"
+                                                name="post code" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10"
+                                                *ngIf="!form.controls['ManagmentRepresentative'].valid && form.controls['ManagmentRepresentative'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['ManagmentRepresentative'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['ManagmentRepresentative'].hasError('maxLength')">
+                                                    {{'shared.validation.max-50-char'|translate}}</div>
+                                     
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2 " *ngIf="!canEdit">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.position'|translate}}
+                                                <i> *</i></h5>
+                                            <input formControlName="Position" class="form-control  col-sm-12"
+                                                placeholder="Job title" name="position" type="text" readonly="true">
+
+                                        </div>
+                                        <div *ngIf="canEdit" class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                            [class.has-error]="!form.controls['Position'].valid && form.controls['Position'].touched">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.position'|translate}}
+                                                <i> *</i></h5>
+                                            <input formControlName="Position" class="form-control  "
+                                                placeholder="Job title" name="position" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10"
+                                                *ngIf="!form.controls['Position'].valid && form.controls['Position'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Position'].hasError('required')">
+                                                    {{'shared.validation.required'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Position'].hasError('maxLength')">
+                                                    {{'shared.validation.max-50-char'|translate}}</div>
+                                        
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!canEdit"  class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                        [ngClass]="{'has-error':(!form.controls['Phone'].valid&& form.controls['Phone'].touched)}">
+                                        <h5
+                                            class="control-label ">{{'request.company-details.phone'|translate}}
+                                            <i> *</i></h5>
+                                        <input type="text" class="form-control col-sm-12" formControlName="Phone"
+                                           placeholder="201111112365"  [readonly]="true"/>
+                                      
+                                    </div>
+
+                                        <div *ngIf="canEdit"  class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                            [ngClass]="{'has-error':(!form.controls['Phone'].valid&& form.controls['Phone'].touched)}">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.phone'|translate}}
+                                                <i> *</i></h5>
+                                            <input type="text" class="form-control col-sm-12" formControlName="Phone"
+                                                placeholder="201111112365" />
+                                            <div class="text-left  text-danger offset-sm-2 col-sm-10"
+                                                *ngIf="!form.controls['Phone'].valid && form.controls['Phone'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Phone'].hasError('pattern')">
+                                                    {{'shared.validation.invalid-phone'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Phone'].hasError('required')">
+                                                    {{'shared.validation.phone'|translate}}</div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!canEdit" class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                            [class.has-error]="!form.controls['Email'].valid && form.controls['Email'].touched">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.email'|translate}}
+                                                <i> *</i></h5>
+                                            <input formControlName="Email"
+                                                class="form-control col-sm-12" placeholder="Enter your email"
+                                                name="email" type="text"  [readonly]="true">
+                                         
+                                        </div>
+                                        <div *ngIf="canEdit" class="form-group  padding-h-m-15 col-sm-6 ml-2 pl-2"
+                                            [class.has-error]="!form.controls['Email'].valid && form.controls['Email'].touched">
+                                            <h5
+                                                class="control-label ">{{'request.company-details.email'|translate}}
+                                                <i> *</i></h5>
+                                            <input formControlName="Email"
+                                                class="form-control col-sm-12" placeholder="Enter your email"
+                                                name="email" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10"
+                                                *ngIf="!form.controls['Email'].valid && form.controls['Email'].touched">
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Email'].hasError('required')">
+                                                    {{'shared.validation.email-required'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Email'].hasError('maxLength')">
+                                                    {{'shared.validation.max-50-char'|translate}}</div>
+                                                <div class="valid-label text-danger"
+                                                    *ngIf="form.controls['Email'].hasError('pattern')">
+                                                    {{'shared.validation.valid-email'|translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                   
+                                    
+                                  
+                                    <div class="form-group row f-btns col-md-12 col-xs-12">
+                                        <button [disabled]="!canEdit||isSaving" type="submit"  class="btn next-step"> {{'request.save'|translate}}</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="tab-content" id="pills-tabContent">
+                              
+                                <div class="tab-pane fade" id="pills-sec2" role="tabpanel"
+                                    aria-labelledby="pills-sec2-tab">.2.</div>
+                                <div class="tab-pane fade" id="pills-sec3" role="tabpanel"
+                                    aria-labelledby="pills-sec3-tab">
+                                    <!-- <app-scope-processes></app-scope-processes> -->
+                                </div>
+                                <div class="tab-pane fade" id="pills-sec4" role="tabpanel"
+                                    aria-labelledby="pills-sec4-tab">.4.</div>
+                                <div class="tab-pane fade" id="pills-sec5" role="tabpanel"
+                                    aria-labelledby="pills-sec5-tab">.5.</div>
+                                <div class="tab-pane fade" id="pills-sec6" role="tabpanel"
+                                    aria-labelledby="pills-sec6-tab">.6.</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

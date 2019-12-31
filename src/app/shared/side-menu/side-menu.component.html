@@ -1,0 +1,63 @@
+<div class="prof-img" *ngIf="profileImage">
+  <div class="inner"  [ngStyle]="{'background-image': 'url(' + profileImage + ')'}"></div>
+</div>
+<ul class="nav-tabs">
+ 
+  <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+
+    <a routerLink="/request">
+      <i class="fa fa-database"></i>
+      {{'layout.all-request'|translate}}</a>
+  </li>
+  <li routerLinkActive="active">
+    <a routerLink="/request/create"> <i class="fa fa-plus"></i>
+      {{'layout.new-request'|translate}}</a>
+  </li>
+  <li routerLinkActive="active">
+
+    <a [routerLink]="['/payment/index']">
+      <i class="fa fa-money"></i>
+      {{'payment.title'|translate}}</a>
+  </li>
+  <li routerLinkActive="active">
+
+    <a [routerLink]="['/agreement/index']">
+      <i class="fa fa-file-text-o"></i>
+      {{'shared.agreement'|translate}}</a>
+  </li>
+  <li routerLinkActive="active">
+
+    <a [routerLink]="['/audit-plan/index']">
+      <i class="fa fa-envelope-o"></i>
+      {{'shared.audit'|translate}}</a>
+  </li>
+  <!-- <li routerLinkActive="active">
+    <a [routerLink]="['/notification']" class="dropdown-item">
+      <i class="fa fa-bell-o"></i>
+      {{'shared.notify'|translate}}
+      <span class="eng-font badge badge-light">{{NotificationLength}}</span>
+    </a>
+    
+  </li> -->
+  <li routerLinkActive="active">
+    <!-- [routerLink]="['/user/edit']" -->
+    <a [routerLink]="['/profile/edit']">
+      <i class="fa fa-user"></i>
+      
+      {{'shared.account'|translate}}</a>
+
+  </li>
+
+  <li routerLinkActive="active">
+    <!-- [routerLink]="['/user/edit']" -->
+    <a [routerLink]="['/complaint/index']">
+      <i class="fa fa-comments "></i>
+      
+      {{'shared.complaint'|translate}}</a>
+
+  </li>
+
+
+
+  
+</ul>

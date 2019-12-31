@@ -1,0 +1,85 @@
+<div class="wrapper single-wrap wrapper-content profile-wrap " id="appendix-content">
+    <div class="row prof-content">
+        <div  class="col-xs-push-2 col-sm-push-0 col-xs-10  col-sm-12 my_payments ">
+                    <div class="table-responsive">
+                        <div class="tab-pane " id="t3">
+                            <div class="orders-wrap my_payments">
+                                <div class="order-table col-xs-12">
+                                    <div class="table-item-inner">
+                                        <table class="table table-stripped responsive nowrap" id="data-table-basic2">
+                                        <thead>
+                                            <tr>
+                                                <th>{{'payment.request-id'|translate}}</th>
+                                                <th>{{'payment.Submission-date'|translate}}</th>
+                                                <th>{{'payment.Application-fees'|translate}}</th>
+                                                <th>{{'payment.Audit-fees'|translate}}</th>
+                                                <th>{{'payment.Certification-fees'|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr *ngIf="items.length==0">
+                                                        <td colspan="10">
+                                                            <h2>{{'shared.sorry-no-payment-found'|translate}}</h2>
+                                                        </td>
+                                                    </tr>
+                                            <tr *ngFor="let item of items;">
+                                                <td >
+                                                    <a href="#">{{item.RequestID}}</a>
+                                                </td>
+                                                <td>{{item.Date|date:'dd-MM-yyyy'}}</td>
+                                                <td>
+                                                    <label *ngIf="item.ConsumerRequiredAction==6&&item.Payment1FilePath==null">
+                                                        <input type="file" [accept]="'application/pdf'" [multiple]="false" (change)="onFileChangedPay1($event,item.RequestID)">
+                                                        <i class="fa fa-cloud-upload"></i>
+                                                        {{'shared.upload-payment'|translate}}
+                                                        
+                                                    </label>
+                                                    <span  *ngIf="item.Payment1FilePath!=null">
+                                                    <a class="upload-f mb-2 mr-2"    [href]="item.Payment1FilePath"  data-fancybox >
+                                                    <i class="fa fa-eye"></i>
+                                                    {{'shared.view-payment'|translate}}
+                                                </a>
+                                                    </span>
+ 
+                                                   
+                                                </td>
+                                                <td>
+                                                    <label *ngIf="item.ConsumerRequiredAction==8">
+                                                        <input type="file" [accept]="'application/pdf'" [multiple]="false" (change)="onFileChangedPay2($event,item.RequestID)">
+                                                        <i class="fa fa-cloud-upload"></i>
+                                                        {{'shared.upload-payment'|translate}}
+                                                    </label>
+                                                    <span *ngIf="item.Payment2FilePath!=null">
+                                                        <a class="upload-f mb-2 mr-2"   [href]="item.Payment2FilePath"  data-fancybox >
+                                                            <i class="fa fa-eye"></i>
+                                                            {{'shared.view-payment'|translate}}
+                                                        </a>
+                                                            </span>
+                                                </td>
+                                                <td>
+                                                    <label *ngIf="item.ConsumerRequiredAction==15&&item.Payment3FilePath==null">
+                                                        <input type="file" [accept]="'application/pdf'" [multiple]="false" (change)="onFileChangedPay3($event,item.RequestID)">
+                                                        <i class="fa fa-cloud-upload"></i>
+                                                        {{'shared.upload-payment'|translate}}
+                                                    </label>
+                                                    
+                                                    <span  *ngIf="item.Payment3FilePath!=null">
+                                                    <a class="upload-f mb-2 mr-2" [href]="item.Payment3FilePath"  data-fancybox >
+                                                            <i class="fa fa-eye"></i>
+                                                            {{'shared.view-payment'|translate}}
+                                                        </a>
+                                                            </span>
+                                                           
+                                                </td>
+                                            </tr>
+                                          
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

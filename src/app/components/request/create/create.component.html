@@ -1,0 +1,236 @@
+<div class="row  border-bottom white-bg dashboard-header">
+
+    <div class="col-md-3">
+        <h3>New Request</h3>
+        <small>Requests / New</small>
+    </div>
+
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>New request form</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <ul class="row nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-sec1-tab" data-toggle="pill" href="#pills-sec1"
+                                        role="tab" aria-controls="pills-sec1" aria-selected="true">Section 1</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-sec2-tab" data-toggle="pill" href="#pills-sec2" role="tab"
+                                        aria-controls="pills-sec2" aria-selected="false">Section 2</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-sec3-tab" data-toggle="pill" href="#pills-sec3" role="tab"
+                                        aria-controls="pills-sec3" aria-selected="false">Section 3</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-sec4-tab" data-toggle="pill" href="#pills-sec4" role="tab"
+                                        aria-controls="pills-sec4" aria-selected="false">Section 4</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-sec5-tab" data-toggle="pill" href="#pills-sec5" role="tab"
+                                        aria-controls="pills-sec5" aria-selected="false">Section 5</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-sec6-tab" data-toggle="pill" href="#pills-sec6" role="tab"
+                                        aria-controls="pills-sec6" aria-selected="false">Section 6</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-sec1" role="tabpanel" aria-labelledby="pills-sec1-tab">
+                                    <div class="col-lg-12">
+                                        <h3>
+                                            Company/Organization Details
+                                        </h3>
+                                    </div>
+
+                                    <form role="form" class="col-lg-12" [formGroup]="form" (ngSubmit)="save()">
+                                        <!-- CompanyName -->
+                                        <div class="form-group row" [class.has-error]="!form.controls['CompanyName'].valid && form.controls['CompanyName'].dirty">
+                                            <label class="control-label col-sm-2">Company name *</label>
+                                            <input formControlName="CompanyName" class="form-control col-sm-8"
+                                                placeholder="eg.Halal center" name="Company name" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['CompanyName'].valid && form.controls['CompanyName'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['CompanyName'].hasError('required')">Required</div>
+                                                <div class="valid-label" *ngIf="form.controls['CompanyName'].hasError('maxLength')">Maximum
+                                                    length
+                                                    is 50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['CompanyName'].hasError('minlength')">Minimum
+                                                    length
+                                                    is 4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <!-- Address -->
+                                        <div class="form-group row" [class.has-error]="!form.controls['Address'].valid && form.controls['Address'].dirty">
+                                            <label class="control-label col-sm-2">Company address</label>
+                                            <input formControlName="Address" class="form-control col-sm-8" placeholder="Aswan Egypt"
+                                                name="address" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['Address'].valid && form.controls['Address'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['Address'].hasError('maxLength')">Maximum
+                                                    length is
+                                                    50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['Address'].hasError('minlength')">Minimum
+                                                    length is 4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <!-- Address for invoice -->
+                                        <div class="form-group row" [class.has-error]="!form.controls['AddressInvoic'].valid && form.controls['AddressInvoic'].dirty">
+                                            <label class="control-label col-sm-2">Address for invoice</label>
+                                            <input formControlName="AddressInvoic" class="form-control col-sm-8"
+                                                placeholder="Aswan Egypt" name="post code" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['AddressInvoic'].valid && form.controls['AddressInvoic'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['AddressInvoic'].hasError('maxLength')">Maximum
+                                                    length is 50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['AddressInvoic'].hasError('minlength')">Minimum
+                                                    length is 4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <!-- Trade license number -->
+                                        <div class="form-group row " [class.has-error]="!form.controls['TradeLicenseNumber'].valid && form.controls['TradeLicenseNumber'].dirty">
+                                            <label class="control-label col-sm-2">Trade license number</label>
+                                            <input formControlName="TradeLicenseNumber" class="form-control col-sm-8"
+                                                placeholder="123456" name="trad license number" type="text">
+                                            <div class="col-sm-2">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1">Same as
+                                                        address</label>
+                                                </div>
+                                            </div>
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['TradeLicenseNumber'].valid && form.controls['TradeLicenseNumber'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['TradeLicenseNumber'].hasError('maxLength')">Maximum
+                                                    length is
+                                                    50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['TradeLicenseNumber'].hasError('minlength')">Minimum
+                                                    length is
+                                                    4
+                                                    characters.</div>
+                                            </div>
+
+                                        </div>
+                                        <!-- Post Code -->
+                                        <div class="form-group row " [class.has-error]="!form.controls['Postcode'].valid && form.controls['Postcode'].dirty">
+                                            <label class="control-label col-sm-2">Postal Code </label>
+                                            <input formControlName="Postcode" class="form-control col-sm-8" placeholder="123456"
+                                                name="post code" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['Postcode'].valid && form.controls['Postcode'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['Postcode'].hasError('maxLength')">Maximum
+                                                    length is
+                                                    50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['Postcode'].hasError('minlength')">Minimum
+                                                    length is
+                                                    4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <!-- Management representative -->
+                                        <div class="form-group row " [class.has-error]="!form.controls['Postcode'].valid && form.controls['Postcode'].dirty">
+                                            <label class="control-label col-sm-2">Management representative </label>
+                                            <input formControlName="Postcode" class="form-control col-sm-8" placeholder="123456"
+                                                name="post code" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['Postcode'].valid && form.controls['Postcode'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['Postcode'].hasError('maxLength')">Maximum
+                                                    length is
+                                                    50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['Postcode'].hasError('minlength')">Minimum
+                                                    length is
+                                                    4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <!-- Position -->
+                                        <div class="form-group row  " [class.has-error]="!form.controls['Position'].valid && form.controls['Position'].dirty">
+                                            <label class="control-label col-sm-2">Position</label>
+                                            <input formControlName="Position" class="form-control col-sm-8" placeholder="123456"
+                                                name="position" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['Position'].valid && form.controls['Position'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['Position'].hasError('maxLength')">Maximum
+                                                    length is
+                                                    50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['Position'].hasError('minlength')">Minimum
+                                                    length is
+                                                    4
+                                                    characters.</div>
+                                            </div>
+                                        </div>
+                                        <!-- FoodSafetyManager -->
+                                        <!-- <div class="form-group row " [class.has-error]="!form.controls['FoodSafetyManager'].valid && form.controls['FoodSafetyManager'].dirty">
+                                            <label class="control-label col-sm-2">Food safety manager</label>
+                                            <input formControlName="FoodSafetyManager" class="form-control col-sm-8"
+                                                placeholder="eg.Jhon Doe" name="safety manager" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['FoodSafetyManager'].valid && form.controls['FoodSafetyManager'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['FoodSafetyManager'].hasError('maxLength')">Maximum
+                                                    length is 50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['FoodSafetyManager'].hasError('minlength')">Minimum
+                                                    length is 4
+                                                    characters.</div>
+                                            </div>
+                                        </div> -->
+                                        <!-- Phone number -->
+                                        <div class="form-group row " [ngClass]="{'has-error':(!form.controls['Phone'].valid&& form.controls['Phone'].touched)}">
+                                            <label class="control-label col-sm-2">Phone number *</label>
+                                            <input type="text" class="form-control col-sm-8" formControlName="Phone"
+                                                placeholder="+201111112365" />
+                                            <div class="text-left  text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['Phone'].valid && form.controls['Phone'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['Phone'].hasError('pattern')">Invalid phone
+                                                    number</div>
+                                                <div class="valid-label" *ngIf="form.controls['Phone'].hasError('required')">Required</div>
+                                            </div>
+                                        </div>
+                                        <!-- E-mail -->
+                                        <div class="form-group row " [class.has-error]="!form.controls['Email'].valid && form.controls['Email'].dirty">
+                                            <label class="control-label col-sm-2">E-mail *</label>
+                                            <input formControlName="Email" class="form-control col-sm-8" placeholder="Enter your email"
+                                                name="email" type="text">
+                                            <div class="text-danger offset-sm-2 col-sm-10" *ngIf="!form.controls['Email'].valid && form.controls['Email'].touched">
+                                                <div class="valid-label" *ngIf="form.controls['Email'].hasError('required')">Required</div>
+                                                <div class="valid-label" *ngIf="form.controls['Email'].hasError('maxLength')">Maximum
+                                                    length is 50
+                                                    characters.</div>
+                                                <div class="valid-label" *ngIf="form.controls['Email'].hasError('pattern')">Invalid Email</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row margin-top-15">
+                                            <div class="col-sm-10">
+                                                <!-- <img  class="pull-right" src="/assets/images/ajax-loader.gif"> -->
+                                                <button type="submit" class="btn btn-primary1 float-right">Save
+                                                    <!-- <i class="fa fa-check-square-o"></i>  -->
+                                                </button>
+                                                <button type="reset" class="btn btn-light float-right margin-h-10 ">cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="pills-sec2" role="tabpanel" aria-labelledby="pills-sec2-tab">.2.</div>
+                                <div class="tab-pane fade" id="pills-sec3" role="tabpanel" aria-labelledby="pills-sec3-tab">.3.</div>
+                                <div class="tab-pane fade" id="pills-sec4" role="tabpanel" aria-labelledby="pills-sec4-tab">.4.</div>
+                                <div class="tab-pane fade" id="pills-sec5" role="tabpanel" aria-labelledby="pills-sec5-tab">.5.</div>
+                                <div class="tab-pane fade" id="pills-sec6" role="tabpanel" aria-labelledby="pills-sec6-tab">.6.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

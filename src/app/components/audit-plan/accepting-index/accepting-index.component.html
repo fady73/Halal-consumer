@@ -1,0 +1,268 @@
+
+<div class="wrapper wrapper-content  single-wrap ncr-form " id="appendix-content">
+
+    <div class="row reg-form " *ngIf="isPageLoaded">
+        <div class=" widget col-lg-12">
+            <div class=" inner ibox ">
+                <div class="  ibox-title">
+                    <h4>{{ 'Submit-NCR'|translate }}</h4>
+
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12" id="audit-content">
+                                <div class=" form-group row">
+
+                                            <div class="col-sm-12 col-md-6 ">
+                                                    <h5 class="control-label col-sm-12 ">  {{ 'shared.main-title'|translate }} <i>*</i>
+                                                    </h5>
+                                                <div class="col-sm-12">
+                                                <input class="form-control" value="On-site Assement informations" 
+                                                    type="text" readOnly="true">
+                                                </div>  
+                                            </div>
+                    
+                                            <div class="   col-sm-12 col-md-6 ">
+                                                    <h5 class="control-label col-sm-12"> {{ 'shared.another-title'|translate }} <i>*</i>
+                                                    </h5>
+                                                            <div class="col-sm-12">
+                                                <input class="form-control " value="Initial assement GSO.2055.1"
+                                                    type="text" readOnly="true">
+                                                   </div>
+                                            </div>
+                                </div>
+                                <div class=" form-group row">
+
+                                            <div class="col-sm-12 col-md-6 ">
+                                                    <h5 class="control-label col-sm-12"> {{ 'shared.file-number'|translate }} <i>*</i>
+                                                    </h5>
+                                                <div class="col-sm-12">
+                                                <input class="form-control"  [value]="model.Number"
+                                                    type="text" readOnly="true">
+                                                </div> 
+                                            </div>
+                                            <div class=" col-sm-12 col-md-6 ">
+                                                    <h5 class="control-label col-sm-12"> {{ 'shared.company-name'|translate }} <i>*</i>
+                                                    </h5>
+                                                    <div class="col-sm-12">
+                                                    <input class="form-control" [value]="model.CompanyName" 
+                                                        type="text" readOnly="true">
+                                                       </div> 
+                                                </div>
+                                </div>
+                                                
+                                                <div class="form-group row col-sm-12 col-md-12  m-b-3">
+                                                        <h5 class="control-label col-sm-12"> {{ 'shared.address-company'|translate }} <i>*</i>
+                                                        </h5>
+                                                        <div class="col-sm-12">
+                                                        <input class="form-control"  [value]="model.CompanyAddress" 
+                                                            type="text" readOnly="true">
+                                                            </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="form-group row  ">
+                                                            <h5 class="control-label col-sm-12"> {{ 'shared.dates'|translate }} <i>*</i>
+                                                            </h5>
+                                                           
+                                                           <div class="col-sm-12">
+                                                           <span class="label-b" *ngFor="let item of model.AssessmentDates; let i=index"> &nbsp;&nbsp; {{item | date:'dd/MM/yyyy'}} &nbsp;&nbsp;</span> 
+                                                           
+                                                           
+                                                       
+                                                       </div>
+                                                       </div>
+                                                
+                    
+                    
+                                                <div class="form-group row  ">
+                                                        <h5 class="control-label col-sm-12">  {{ 'Lead'|translate }}  <i>*</i>
+                                                        </h5>
+
+                                               <div class="col-sm-12">
+                                                    <div class="btn-group" *ngFor="let item of model.LeadAuditors; let i=index">
+                                                           <span class="label-b"> &nbsp; {{item.EmployeeName}} &nbsp;</span>
+                                                    </div>
+
+                                                    
+                                                   </div>
+                    
+                                                </div>
+                                                
+                                                <div class="form-group row   ">
+                                                        <h5 class="control-label col-sm-12">  {{ 'shared.audits'|translate }} <i>*</i>
+                                                        </h5>
+                                                
+                                                    <div class="col-sm-12">
+                                                    <div class="btn-group" *ngFor="let item of model.TechnicalAuditors; let i=index">
+                                                           <span class="label-b"> &nbsp;{{item.EmployeeName}} &nbsp;</span>
+                                                    </div>
+
+                                                    
+
+                                                    </div>
+                    
+                                                </div>
+                        
+                                                
+                                                <div class="form-group row   ">
+                                                        <h5 class="control-label col-sm-12"> {{ 'shared.islamic'|translate }}   </h5>
+                                                        <div class="col-sm-12">
+                                                    <div class="btn-group" *ngFor="let item of model.AffairsExperts; let i=index">
+                                                           <span class="label-b"> &nbsp; {{item.EmployeeName}} &nbsp;</span>
+                                                    </div>
+
+                                                    
+                                           </div>
+                                                </div>
+                    
+                                                <!-- <div class="form-group row   ">
+                                                        <h5 class="control-label col-sm-12"> {{ 'shared.technical'|translate }}  </h5>
+                                                
+                                                    <div class="col-sm-12">
+                                                    <div class="btn-group" *ngFor="let item of model.TechnicalExperts; let i=index">
+                                                           <span class="label-b"> &nbsp; {{item.EmployeeName}} &nbsp;</span>
+                                                    </div>
+
+                                                    
+                                                   </div>
+                    
+                                                </div> -->
+                         
+                                                    
+                                                <div class="profile-wrap audit-layout">
+                                                        <div class="prof-content">
+                                                            <div class="orders-wrap my_payments">
+                                                                        <div class="order-table">
+                                                                            <div class="table-item-inner">
+                                                    <div class="form-group row">
+                                                        <div class="table-responsive" id="corectiveTable">
+                                                            <table class="table nowrap  audittabel">
+                                                                <thead >
+                                                                    <tr class="text-center">
+                                                                        <!-- <th >Date
+                                                                        </th>
+                                                                       
+                                                                        <th >standard Clause(s)
+                                                                            </th>
+                                                                        <th >Description
+                                                                        </th>
+                                                                        <th >Analysis 
+                                                                            </th>
+                                                                            <th style="width: 283px;">
+                                                                                CAB
+                                                                                
+                                                                            </th> -->
+                                                                     
+                                                                            
+ <!-- <th >Date </th>
+ <th >standard Clause(s) </th>
+ <th >Description </th>
+  <th >Analysis </th>
+  <th style="width: 283px;">CAB </th>
+ 127/5000 -->
+ <th> {{ 'shared.period'|translate }}  </th>
+ <th>{{ 'shared.descripe'|translate }}  </th>
+ <th>{{ 'shared.descripe'|translate }}   </th>
+ <th> {{ 'shared.analyis'|translate }} </th>
+ <th style="width: 283px;">
+        {{ 'shared.cab'|translate }}
+            
+        </th>
+                                                                           
+                                                                         
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                  
+                                                                    <tr *ngFor="let item of model.NCSs; let i=index">
+                                                                            <td>
+                                                                                  {{item.Date | date:'dd/MM/yyyy'}} 
+                                                                                        
+                                                                                </td>
+                                                                        <td>
+                                                                          {{item.StandardClause}}
+                                                                        </td>
+                                                                       
+                                                                        <td>
+                                                                          {{item.Description}}
+                                                                        </td>
+                    
+                                                                        <td>
+                                                                         {{item.Analysis}}
+                                                                        </td>
+                    
+                                                                        <td >
+                                                                                 <label style="background-color: white!important" >
+                                                                                    <input [(ngModel)]="item.CABAcceptance" [value]="true" type="radio"
+                                                                                        name="yes-no-section-{{item.ID}}" />
+                                                                                    <span class="label-text"> {{'shared.yes'|translate}} </span>
+                                                                                </label>
+                                                                                <label style="background-color: white!important" >
+                                                                                    <input [(ngModel)]="item.CABAcceptance" [value]="false"  type="radio"
+                                                                                        name="yes-no-section-{{item.ID}}" />
+                                                                                    <span class="label-text"> {{'shared.no'|translate}} </span>
+                                                                                </label>
+                                                                        </td>
+                                                                       
+                    
+                                                                    </tr>
+                                                                      
+                                                           
+                                                          
+                                                    
+                                               
+                                           
+                                        
+                                                                   
+                                                                </tbody>
+                                                            </table>
+                                                      
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                                     
+                                                 
+                                                
+                                                
+                         
+                         
+                                              
+                                            
+                               
+                           
+                           
+                         
+                             
+                             
+                             
+                             </div>
+                            </div>
+           
+
+                                        <div class="row ">
+                                                <div class="col-sm-12 form-group">
+                                                    <button type="submit" (click)="save()" 
+                                                        class="btn btn-prime " >      
+                                                           {{'shared.submit'|translate}} 
+ 
+                                                        </button>
+                                                </div>
+                                            </div>
+            </div>
+
+
+             
+
+ 
+
+
+            </div>
+        </div>
+    </div>
+</div>

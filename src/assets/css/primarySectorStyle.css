@@ -1,0 +1,293 @@
+.btn-white {
+  color: inherit;
+  background: white;
+  border: 1px solid #1ab394;
+}
+/* .btn-primary {
+  color: #fff;
+  background-color: #1ab394 !important;
+  border-color: #1ab394 !important;
+} */
+
+#tableTitle{
+  margin-left: 45%;
+margin-top: 5%;
+margin-bottom: 3%;
+font-size: 20px;
+}
+.btn-white:not(:disabled):not(.disabled) {
+  margin-right: 11px;
+  height: 39px;
+  width: 143px;
+  border:1px solid #1ab394;
+}
+
+/* .btn-primary:not(:disabled):not(.disabled) {
+  margin-right: 11px;
+  height: 39px;
+  width: 143px;
+} */
+
+#secondTable {
+  position: relative;
+  bottom: 51px; 
+}
+#threeTable{
+position: relative;
+bottom: 102px;
+}
+.blank_row > td > input{
+height: 45px;
+border: none;
+width: 100%;
+background-color: transparent;
+text-align: center;
+}
+
+.wizard > .steps a, .wizard > .steps a:hover, .wizard > .steps a:active {
+  display: block;
+  width: auto;
+  margin: 0 0.3em 0.5em;
+  padding: 8px;
+  text-decoration: none;
+}
+.wizard > .steps > ul > li {
+  width: 12.5%;
+}
+.wizard > .steps .current a {
+  background: #1AB394;
+  color: #fff;
+  cursor: default;
+  border: none;
+  text-align: center;
+}
+.wizard > .steps a{
+  border-radius: 0 !important;
+}
+.wizard > .steps a:hover{
+  border-radius: 0 !important;
+}
+
+.wizard > .steps .current2 a {
+
+  background: #c3bfbf;
+  color: #fff;
+  cursor: default;
+  border: none;
+  text-align: center;
+
+}
+#noteText{
+  
+  max-width: 96%;
+}
+#box2Content{
+background-color: #e7eaec !important;
+}
+.navbar-static-top {
+    background: white;
+    border-bottom: 0px solid white;
+  }
+  .border-bottom .dashboard-header{
+    border:none;
+    padding: 15px 16px 15px 20px;
+    background-color:#f3f3f4;
+  }
+  .border-bottom .white-bg{
+    border:none;
+    padding: 15px 16px 15px 20px;
+  }
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+   
+}
+.ibox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    -o-border-image: none;
+    border-image: none;
+    border-style: none;
+    border-width: 0px;
+}
+/* .table-striped tbody tr:nth-of-type(odd) { 
+  height: 65px !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  height: 65px !important;
+}
+
+.table-striped thead tr:nth-of-type(odd) {
+  height: 65px !important;
+}
+.table-striped thead tr{
+height: 65px;
+  text-align: center;
+  font-size: 17px;
+  color: #5a5959;
+  font-weight: normal;
+} */
+
+/* /////////////////////////////////// */
+#table1 thead tr:nth-of-type(odd){
+  background-color: rgba(0,0,0,.05);
+}
+#table1 thead tr:nth-of-type(even){
+  background-color: white;
+}
+
+#table1 tbody tr:nth-of-type(odd){
+  background-color: white;
+}
+
+#table1 tbody tr:nth-of-type(even){
+  background-color: rgba(0,0,0,.05);
+}
+/* /////////////////////////////////////////////// */
+
+#table2 thead tr:nth-of-type(odd){
+  background-color: rgba(0,0,0,.05);
+}
+#table2 thead tr:nth-of-type(even){
+  background-color: white;
+}
+#table2 body tr:nth-of-type(odd){
+  background-color: rgba(0,0,0,.05);
+}
+#table2 tbody tr:nth-of-type(even){
+  background-color: white;
+}
+
+/* ////////////////////////////////////////////////// */
+#table3 thead tr:nth-of-type(odd){
+  background-color: white !important;
+}
+#table3 thead tr:nth-of-type(even){
+  background-color: rgba(0,0,0,.05) !important;
+}
+#table3 tbody tr:nth-of-type(odd){
+  background-color: white !important;
+}
+#table3 tbody tr:nth-of-type(even){
+  background-color: rgba(0,0,0,.05) !important;
+}
+
+
+#table1 > thead > tr > th {
+  border: 1px solid #acaeaf;
+  line-height: 1.42857;
+  padding: 8px;
+  vertical-align: top;
+  padding-top: 23px;
+  width:25%
+
+}
+
+  /* /////////////////////////////// */
+  /* .table-striped thead tr{
+  height: 65px;
+    text-align: center;
+    font-size: 17px;
+    color: #5a5959;
+    font-weight: normal;
+  } */
+  #table1 > thead > tr > th {
+    border: 1px solid #acaeaf;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+    padding-top: 23px;
+    width: 25%;
+  
+  }
+  
+  .plusClass{
+    width: 10px;
+    border:none;
+    background-color: white;
+  }
+  .plusClass > span > i{
+    margin-top: 21px;
+    font-size: 16px;
+    color: #23c6c8;
+    border: 2px solid;
+    padding: 2px;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 20px;
+  }
+
+  .plusClass{
+    border:none !important;
+    background-color: white !important;
+  }
+  #table3 > thead > tr > th {
+    border: 1px solid #acaeaf;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+    padding-top: 23px;
+    width: 25%;
+   
+  }
+  #table2 > thead > tr > th {
+    border: 1px solid #acaeaf;
+    line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+    padding-top: 23px;
+   
+  }
+  #table1 > tbody > tr > td {
+     border: 1px solid #acaeaf; 
+    }
+    #table2 > tbody > tr > td {
+      border: 1px solid #acaeaf; 
+     }
+     #table3 > tbody > tr > td {
+      border: 1px solid #acaeaf; 
+     }
+    .table-responsive {
+    display: block;
+    width: auto;
+    }
+  
+    .table {
+    width: 97%;
+    max-width: 97%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  .ibox-content > p > i {
+    font-size: 7px;
+  }
+  
+  .ibox-content > p > span {
+    margin-left: 10px;
+    line-height: 2.5;
+  }
+  
+  .clear-fix{
+    margin-bottom: 80px;
+    margin-right: 32px;
+    margin-top: 40px;
+  }
+  .ibox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: none;
+    border-width:0;
+  }
+  
+  ::placeholder {
+  
+    opacity: 0.5;
+  }

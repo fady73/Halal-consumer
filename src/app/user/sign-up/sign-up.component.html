@@ -1,0 +1,287 @@
+
+    <div class="wrapper col-xs-12" id="home">
+      
+        <div class="jumbo col-xs-12" style="background-image: url(assets/images/hero.png)">
+            <div class="container">
+                <h3>سجل معنا</h3>
+                <ul>
+                    <li>
+                        <a href="">الرئيسية</a>
+                    </li>
+                    <li>
+                        <a href="/user/sign-up">{{'sign-up.title'|translate}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <main class="main-content col-xs-12">
+            <div class="single-wrap col-xs-12">
+                <div class="container">
+                    <form *ngIf="isPageLoaded" class="m-t" role="form" [formGroup]="form" (ngSubmit)="save()" >
+                    <div class="reg-form col-xs-12">
+                        <h3 class="reg-head col-xs-8">{{'sign-up.title'|translate}}</h3>
+                        <div class="widget col-md-8 col-xs-12">
+                            <div class="inner">
+                                <h4>{{'shared.information'|translate}}</h4>
+                                <div class="form-group"  
+                                [ngClass]="{'has-error':(!form.controls['FirstName'].valid && form.controls['FirstName'].touched)}">
+
+                                    <h5>{{'sign-up.first-name'|translate}}  <i>*</i></h5>
+                                    <input placeholder="مثال. أحمد" formControlName="FirstName" class="form-control" name="first name"
+                                    type="text">
+                                    <div class="text-danger" *ngIf="!form.controls['FirstName'].valid && form.controls['FirstName'].touched">
+                                        <div class="valid-label text-danger" *ngIf="form.controls['FirstName'].hasError('required')">
+                                          {{'shared.validation.first-name-required'|translate}}
+                                        </div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['FirstName'].hasError('maxLength')">
+                                          {{'shared.validation.max-50-char'|translate}}</div>
+                                        <!-- <div class="valid-label text-danger" *ngIf="form.controls['FirstName'].hasError('minlength')">Minimum length is 4 characters.</div> -->
+                                      </div>
+                                </div>
+
+                                <div class="form-group"
+                                [class.has-error]="!form.controls['LastName'].valid && form.controls['LastName'].touched">
+                                    <h5>{{'sign-up.last-name'|translate}}<i>*</i></h5>
+                                    <input formControlName="LastName" class="form-control"  name="last name"
+                                    type="text" placeholder="مثال. عبدالله" >
+                                    <div class="text-danger" *ngIf="!form.controls['LastName'].valid && form.controls['LastName'].touched">
+                                        <div class="valid-label text-danger" *ngIf="form.controls['LastName'].hasError('required')">
+                                          {{'shared.validation.last-name-required'|translate}}
+                                        </div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['LastName'].hasError('maxlength')">
+                                          {{'shared.validation.max-50-char'|translate}}</div>
+                                        <!-- <div class="valid-label text-danger" *ngIf="form.controls['LastName'].hasError('minlength')">Minimum length is 4 characters.</div> -->
+                                      </div>
+                                </div>
+
+                                <div class="form-group ph-number"
+                                [ngClass]="{'has-error':(!form.controls['Phone'].valid&& form.controls['Phone'].touched)}" >
+                                    <h5> {{'sign-up.phone-number'|translate}} <i>*</i></h5>
+                                    <!-- <select class="form-control" style="display: none">
+                                        <option>+966</option>
+                                        <option>+020</option>
+                                    </select> -->
+                                    <!-- <div class="nice-select form-control" tabindex="0">
+                                        <span class="current">+966</span>
+                                        <ul class="list">
+                                           <li data-value="+966" class="option selected">+966</li>
+                                           <li data-value="+020" class="option ">+020</li>
+                                        </ul>
+                                    </div> -->
+                                    <ngx-intl-tel-input 
+                                    [cssClass]="'custom'" 
+                                    [enableAutoCountrySelect]="false" 
+                                    [enablePlaceholder]="true" 
+                                    [searchCountryFlag]="true"
+                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                    [selectFirstCountry]="false" 
+                                    [selectedCountryISO]="CountryISO.SaudiArabia"
+                                    [maxLength]="15" 
+                                    [tooltipField]="TooltipLabel.Name" 
+                                    [phoneValidation]="true" 
+                                    [separateDialCode]="separateDialCode"
+                                    name="phone" >
+                                  </ngx-intl-tel-input>
+                                    <!-- <intl-input-phone  [ConfigurationOption]="configOption1" [CountryList]="customCountryList1" (OnIsRequiredChange)="requiredFlagChange($event)" (OnNumberChange)="onNumberChage($event)"></intl-input-phone> -->
+
+                                    <input type="text"  dir="ltr" class="form-control col-xs-pull-2 col-xs-8" formControlName="Phone" placeholder="123456789">
+                                   
+                                      <div class="text-danger row col-xs-12" *ngIf="!form.controls['Phone'].valid && form.controls['Phone'].touched">
+                                          <div class="valid-label text-danger" *ngIf="form.controls['Phone'].hasError('required')">
+                                            {{'shared.validation.required'|translate}}</div>
+                                          <div class="valid-label text-danger" *ngIf="form.controls['Phone'].hasError('minlength')">
+                                            {{'shared.validation.invalid-phone'|translate}}</div>
+                                          <div class="valid-label text-danger" *ngIf="form.controls['Phone'].hasError('pattern')">
+                                            {{'shared.validation.number-only'|translate}}</div>
+                                        </div>
+                                </div>
+                             
+                        
+                                <div class="form-group" [class.has-error]="!form.controls['Email'].valid && form.controls['Email'].touched">
+                                    <h5>{{'shared.email'|translate}} <i>*</i></h5>
+                                    <input dir="ltr" formControlName="Email" class="form-control" placeholder="mail@example.com" name="email" type="text">
+                                    <div class="text-danger" *ngIf="!form.controls['Email'].valid && form.controls['Email'].touched">
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Email'].hasError('required')">
+                                          {{'shared.validation.email-required'|translate}}</div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Email'].hasError('maxLength')">
+                                          {{'shared.validation.max-50-char'|translate}}</div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Email'].hasError('pattern')">
+                                          {{'shared.validation.valid-email'|translate}}</div>
+                                      </div>
+                                  </div>
+                                  <div class="form-group"  [class.has-error]="!form.controls['Password'].valid && form.controls['Password'].dirty">
+
+                                    <h5> {{'shared.password'|translate}} <i>*</i></h5>
+                                    <input formControlName="Password" class="form-control"
+                                    placeholder="{{'shared.password-placeholder'|translate}}" name="password" type="password" value="">
+                                    <div class="text-danger" *ngIf="!form.controls['Password'].valid && form.controls['Password'].touched">
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Password'].hasError('required')">
+                                          {{'shared.validation.password-required'|translate}}</div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Password'].hasError('minlength')">
+                                          {{'shared.validation.min-8-char' |translate}}</div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Password'].hasError('maxLength')">
+                                          {{'shared.validation.max-50-char' |translate}}</div>
+                                      </div>
+                                </div>
+                                <div class="form-group"
+                                [ngClass]="{'has-error':(!form.controls['ConfirmPassword'].valid && form.controls['ConfirmPassword'].touched)}">
+                                    <h5>  {{'sign-up.confirm-password'|translate}} <i>*</i></h5>
+                                    <input type="password" class="form-control" formControlName="ConfirmPassword" validateEqual="Password"  placeholder="***********">
+                                    <div class="text-left  text-danger valid-label"
+                                    *ngIf="!form.controls['ConfirmPassword'].valid && (form.controls['ConfirmPassword'].touched|| form.controls['ConfirmPassword'].dirty )  ">
+                                    {{'shared.validation.confirm-password-valid'|translate}}
+                                  </div>
+                                </div>
+                                  
+                                <div class="form-group"  [class.has-error]="(!form.controls['Type'].valid)"
+                                [class.has-success]="form.controls['Type'].valid && (form.controls['Type'].dirty||form.controls['Type'].touched)">
+                                    <h5> {{'sign-up.account-type'|translate}} <i>*</i></h5>
+                                    <select  formControlName="Type" class="form-control " (change)="RemoveCountry()">
+                                        <option [selected]="true" disabled>نوع الحساب</option>
+                                        <option *ngFor="let item of types;let i=index;" [value]="item.ID">{{item.Name}}</option>
+                                    </select>
+                                    <div *ngIf="!form.controls['CountryID'].valid && form.controls['CountryID'].dirty" class="text text-danger">
+                                        <p class="valid-label" *ngIf="form.controls['CountryID'].hasError('required')">
+                                          {{'shared.validation.account-type-required'|translate}}
+                                        </p>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+            
+
+                        <div class="widget col-md-4 col-xs-12">
+                          
+                        </div>
+                        
+                        <div class="widget col-md-8 col-xs-12">
+                            <div class="inner">
+                                <h4>بيانات الشركة</h4>
+                                <div class="form-group" [class.has-error]="!form.controls['Name'].valid && form.controls['Name'].touched">
+                                    <h5>{{'sign-up.company-name'|translate}}  <i>*</i></h5>
+                                    <input type="text" formControlName="Name" class="form-control" placeholder="اسم الشركة Company Name" name="Company name">
+                                    <div class="text-danger" *ngIf="!form.controls['Name'].valid && form.controls['Name'].touched">
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Name'].hasError('required')">
+                                          {{'shared.validation.company-name-required'|translate}}</div>
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Name'].hasError('maxLength')">
+                                          {{'shared.validation.max-50-char'|translate}}</div>
+                                        <!-- <div class="valid-label" *ngIf="form.controls['Name'].hasError('minlength')">Minimum length is 4 characters.</div> -->
+                                      </div>
+                                </div>
+                                
+            
+          
+                                <div class="form-group"   [class.has-error]="!form.controls['Address'].valid && form.controls['Address'].touched">
+
+                                    <h5> {{'sign-up.company-address'|translate}}  <i>*</i></h5>
+                                    <input  placeholder="العنوان Address" formControlName="Address" class="form-control"  name="address"
+                                    type="text">
+                                    <div class="text-danger" *ngIf="!form.controls['Address'].valid && form.controls['Address'].touched">
+                                        <div class="valid-label text-danger" *ngIf="form.controls['Address'].hasError('required')">
+                                          {{'shared.validation.company-address-required'|translate}}
+                                        </div>
+                                      </div>
+                                </div>
+                               
+                                <div class="form-group"
+                                  [class.has-error]="!form.controls['PostCode'].valid && form.controls['PostCode'].touched">
+                                  <h5>{{'sign-up.PostalCode'|translate}} <i>*</i></h5>
+
+                                  <input formControlName="PostCode" class="form-control" placeholder="123456" name="PostCode" 
+                                    type="text">
+                                  <div class="text-danger" *ngIf="!form.controls['PostCode'].valid && form.controls['PostCode'].touched">
+                                    <div class="valid-label text-danger" *ngIf="form.controls['PostCode'].hasError('required')">
+                                      {{'shared.validation.PostalCode-required'|translate}}
+                                    </div>
+                                    <div class="valid-label text-danger" *ngIf="form.controls['PostCode'].hasError('pattern')">
+                                      {{'shared.validation.number-only'|translate}}</div>
+                                  </div>
+                              </div>
+                             
+                                <div *ngIf="Type==0" class="form-group" [class.has-error]="(!form.controls['CountryID'].valid)"
+                                [class.has-success]="form.controls['CountryID'].valid && (form.controls['CountryID'].dirty||form.controls['CountryID'].touched)">  
+                                    <h5  for="companyCountry">{{'sign-up.company-country'|translate}} <i>*</i></h5>
+                                    <select formControlName="CountryID" class="form-control" (keydown.enter)="save();false" >
+                                        <option (keydown.enter)="$event.preventDefault()" *ngFor="let item of countries;let i=index;" [selected]="item.ID==0" [disabled]="item.ID==0"
+                                        [value]="item.ID"> {{item.Name}}</option>
+                                        <!-- [hidden]="(item.ID==CountryID)&&hiden"> [ngClass]="{'hideCountry':((item.ID==CountryID)&&hiden)}" -->        
+
+                                    </select>
+                                    <div *ngIf="!form.controls['CountryID'].valid && form.controls['CountryID'].dirty" class="text text-danger">
+                                        <p class="valid-label text-danger" *ngIf="form.controls['CountryID'].hasError('required')">
+                                          {{'shared.validation.company-country-required'|translate}}
+                                        </p>
+                                      </div>
+                                </div>
+                                <div *ngIf="Type==1" class="form-group" [class.has-error]="(!form.controls['CountryID'].valid)"
+                                [class.has-success]="form.controls['CountryID'].valid && (form.controls['CountryID'].dirty||form.controls['CountryID'].touched)">  
+                                    <h5  for="companyCountry">{{'sign-up.company-country'|translate}} <i>*</i></h5>
+                                    <select formControlName="CountryID" class="form-control" (keydown.enter)="save();false" >
+                                        <option (keydown.enter)="$event.preventDefault()" *ngFor="let item of countriesWithout;let i=index;" [selected]="item.ID==0" [disabled]="item.ID==0"
+                                        [value]="item.ID"> {{item.Name}}</option>
+                                        <!-- [hidden]="(item.ID==CountryID)&&hiden"> [ngClass]="{'hideCountry':((item.ID==CountryID)&&hiden)}" -->        
+
+                                    </select>
+                                    <div *ngIf="!form.controls['CountryID'].valid && form.controls['CountryID'].dirty" class="text text-danger">
+                                        <p class="valid-label text-danger" *ngIf="form.controls['CountryID'].hasError('required')">
+                                          {{'shared.validation.company-country-required'|translate}}
+                                        </p>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget col-md-8 col-xs-12">
+                            <div class="reg-extra col-xs-12">
+                                <div class="r-right col-md-6 col-xs-12">
+                                    <p>عند الضغط على "إنشاء حساب" فهذا يعني أنك موافق على <a href="#">الأحكام والشروط</a> و <a href="#">سياسة الخصوصية</a></p>
+                                </div>
+                                <div class="r-left col-md-6 col-xs-12">
+                                    <form>
+                                    <button type="submit" class="btn btn-prime "  (click)="save()" [disabled]="(form.invalid&&!IsRequired) || isSaving">  {{'sign-up.register'|translate}}</button>
+                                    </form>
+                                 </div>
+                            </div>
+                            <div class="reg-out col-xs-12">
+                                <p>هل تمتلك حساب؟</p>
+                                <a routerLink="/user/sign-in" class="btn">دخول</a>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                  
+                </div>
+            </div>
+        </main>
+</div>
+
+
+
+
+
+
+          <!-- <div class="form-group"
+            [ngClass]="{'has-error':(!form.controls['ConfirmPassword'].valid && form.controls['ConfirmPassword'].touched)}">
+            <input type="password" class="form-control" formControlName="ConfirmPassword" validateEqual="Password" (keyup.enter)="save()" />
+           
+          </div> -->
+
+
+
+ <!--
+<div class="white-bg middle-box signupscreen animated fadeInDown">
+  <div>
+      <img src="assets/img/logo.png" class="img-fluid" alt="hallal Logo">
+    </div> 
+
+  <div>
+
+         <form>
+          <button (click)="save()" [disabled]="form.invalid || isSaving"
+            class="btn btn-primary btn-full-width">{{'sign-up.register'|translate}}</button>
+          <br>
+        </form> 
+       <a [routerLink]="['/user/sign-in']" routerLinkActive="router-link-active" >
+        <p class="text-muted text-center">{{'sign-up.already-have'|translate}}</p>
+      </a> 
+  </div>
+</div> -->

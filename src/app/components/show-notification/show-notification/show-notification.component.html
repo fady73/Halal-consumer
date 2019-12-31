@@ -1,0 +1,52 @@
+
+<div class="wrapper wrapper-content " id="appendix-content">
+        <div class="forms-wrap my_payments">
+
+                <h1 class="wrap-head">
+                        {{'shared.notify'|translate}}
+                    </h1>
+                    <!-- [href]="item.Link" -->
+                    <span *ngFor="let item of Notifications|  paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                    
+                        <div class="alert alert-info" *ngIf="item.Seen==false" role="alert">
+                             <span *ngIf="item.Link">
+                                <a  href="javascript:void(0)" (click)="gotoWith(item.ID,item.Link)" >     {{item.Description}}</a>
+                            </span>
+                            <span *ngIf="!item.Link">
+                                <a href="javascript:void(0)" (click)="goto(item.ID)" >     {{item.Description}}</a>
+                            </span>
+                        </div>
+                        <div class="alert seen" *ngIf="item.Seen==true" role="alert">
+                            <span *ngIf="item.Link">
+                               <a  href="javascript:void(0)" (click)="gotoWith(item.ID,item.Link)" >     {{item.Description}}</a>
+                           </span>
+                           <span *ngIf="!item.Link">
+                               <a href="javascript:void(0)" (click)="goto(item.ID)" >     {{item.Description}}</a>
+                           </span>
+                       </div>
+                    </span>
+                   
+                        <div class="col col-xs-8"  class="right-pagination">
+                                <div class="text-center " >
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    
+                                </div>
+                              </div>
+
+            </div>
+            <!-- <td colspan="2" >
+                        {{'shared.page'|translate}} {{page.options.currentPage}}
+                        {{'shared.of'|translate}}
+                        {{page.options.totalPages}}
+                        - {{'shared.total-items'|translate}} : {{page.options.totalItems}}
+                    </td>
+                    <td colspan="8" class="right-pagination" >
+                        <pagination-controls (pageChange)="p = $event" id='Pagination'
+                            maxSize="10" directionLinks="true" autohide="true" previousLabel=""
+                            nextLabel="">
+                        </pagination-controls>
+
+                    </td> -->
+
+ 
+    

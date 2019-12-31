@@ -1,0 +1,47 @@
+<footer class="main-footer col-xs-12" id="call">
+  <div class="container">
+    <div class="m-item col-md-3 col-xs-12">
+      <img src="assets/images/vis2.png" alt="" class="vis1">
+      <img src="assets/images/vision2030.png" alt="" class="vis2">
+    </div>
+    <div class="m-item col-md-3 col-xs-12">
+      <ul class="links">
+        <li>
+          <a href="">الرئيسية</a>
+        </li>
+        <li *ngIf="logged">
+          <a [routerLink]="['/request/create']">تقديم طلب</a>
+        </li>
+        <li *ngIf="!logged">
+          <a [routerLink]="['/user/sign-up']">تقديم طلب</a>
+        </li>
+      </ul>
+    </div>
+    <div class="m-item col-md-3 col-xs-12">
+      <h4>يسعد مركز حلال تلقي استفساراتكم وطلباتكم علي العنوان التالي:</h4>
+      <ul class="address">
+        <li>مركز حلال - مبني الدواء - الهيئة العامة للغذاء والدواء</li>
+        <li>صندوق البريد: 84983 الرياض 11681</li>
+        <li>مركز الاتصال الموحد : 19999</li>
+        <li>البريد الإلكتروني: halal@sfda.gov.sa</li>
+        <li>الموقع الإلكتروني: ww.sfda.gov.sa</li>
+      </ul>
+    </div>
+    <div class="m-item col-md-3 col-xs-12">
+      <div class="social">
+        <a href="#">
+          <i class="fa fa-globe"></i>
+        </a>
+        <a href="#">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="#">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

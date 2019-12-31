@@ -1,0 +1,108 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-6">
+        <h3>All requests</h3>
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item ">
+                <a>All requests</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a><strong>Upload corrective plan</strong></a>
+            </li>
+
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content ">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="padding-top-5">Here you can upload your corrective plan</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row padding-top-30">
+                        <div class="col-sm-12">
+                            <ngx-dropzone label="{{'agreement.upload-msg'|translate}}"
+                                class="offset-1 col-sm-10 agreement-dropzone" [accept]="'application/pdf'"
+                                [multiple]="false" (filesAdded)="onFileChanged($event)" #dropzone>
+                            </ngx-dropzone>
+                        </div>
+
+                        <br><br>
+
+                        <div class="offset-1 col-sm-11 padding-top-20" *ngIf="isUploaded && model.FileName!=''">
+                            <span>
+                                <a>{{model.FileName}}</a>
+                            </span>
+                            &nbsp; &nbsp;
+                            <span>
+                                <i (click)="removeAttachment()" class="fa fa-trash  custom-trash fa-lg"></i>
+                            </span>
+                        </div>
+
+                        <br>
+                        <div class="col-sm-12 padding-top-30">
+                            <div class="offset-sm-6 col-sm-6">
+
+                                <!-- <button type="reset" (click)="reset()"
+                                    class="btn btn-primary-outline margin-h-10 ">{{'shared.cancel'|translate}}</button> -->
+                                <button *ngIf="model.FileName!='' && isUploaded" type="button" (click)="save()"
+                                    [disabled]="isSaving"
+                                    class="btn btn-primary margin-h-10 ">{{'shared.submit'|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="ibox-content">
+                    <div class="row padding-top-30">
+                        <div class="col-sm-12">
+
+
+                                 
+                                <form id="file-upload-form" action="">
+                                        <input id="file-upload" type="file" name="fileUpload" />
+                                        <label for="file-upload" id="file-drag">
+                                           <div style="text-align: center"><i class="icon-cloud-upload" style="font-size: 40px;"></i></div>
+                                            <h2 style="font-weight: bold">Drop files here or click to upload</h2>
+                                            <p id="file-upload-btn">(This is just a demo dropzone .Selected files are not actually uploaded)</p>
+                                            <p>Maximum file size is 5 MB</p>
+                                            
+                                           
+                                        </label>
+                                      
+                                    </form>
+                                    
+                           
+                        </div>
+
+                        <br><br>
+                        
+                        <div class="offset-1 col-sm-11 padding-top-20" >
+                            <span>
+                                <a>FileName.pdf</a>
+                            </span>
+                            &nbsp; &nbsp;
+                            <span>
+                                <i  class="fa fa-trash  custom-trash fa-lg"></i>
+                            </span>
+                        </div>
+
+                        <br>
+                        <div class="col-sm-12 padding-top-30">
+                            <div class="offset-sm-6 col-sm-6">
+
+                                <!-- <button type="reset" (click)="reset()"
+                                    class="btn btn-primary-outline margin-h-10 ">{{'shared.cancel'|translate}}</button> -->
+                <!-- <button type="button" [routerLink]="['/audit-plan/index']"
+                    class="btn btn-primary margin-h-10 ">Submit</button> -->
+            </div>
+        </div>
+    </div>
+</div>

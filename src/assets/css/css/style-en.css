@@ -1,0 +1,437 @@
+* {
+    direction: ltr;
+}
+.pull-left {
+    float: left!important;
+}
+.pull-right{
+    float: right!important;
+}
+.second-btn{
+    font-size: 16px !important;
+}
+.first-btn{
+    font-size: 16px !important;
+}
+.account-form .inner .form-group.ph-number .form-control {
+
+    float: right !important;
+}
+.account-form .inner .form-group .btn {
+
+    float: right;
+}
+.request-document td tr{
+    text-align: left !important;
+}
+.profile-wrap .prof-content .order-table .table  .request-document  td{
+    text-align: left !important;
+
+}
+.col-xs-pull-2 {
+    left: 0;
+    right: auto;
+}
+.textwhite
+{
+    color: white !important;
+    font-size: 158% !important;
+    font-weight: bold !important;
+}
+.modalbtn
+{
+   /* width:40px !important; */
+    height: 40px  !important;
+    /* padding: 0 40px !important;  */
+    font-size: 10px  !important;
+    padding-left: 15px !important;
+    padding-right: 55px !important;
+         line-height: 0px !important;
+}
+.modalbtn1
+{
+   /* width:40px !important; */
+    height: 40px  !important;
+    /* padding: 5 40px !important;  */
+    font-size: 10px  !important;
+    padding-left: 15px !important;
+    padding-right: 60px !important;
+    line-height: 0px !important;
+}
+.nav-tabs{
+    margin-left: 40px;
+}
+.main-head .top-head .top-extra {
+    float: right;
+}
+
+.main-head .top-head .top-extra .vis1 {
+    float: right;
+    margin: 0 0 0 30px;
+}
+
+.main-head .top-head .top-extra .top-contact {
+    float: left;
+    margin: 0 100px 0 0;
+}
+
+.main-head .bottom-nav .h-seach {
+    margin: 0 0 0 50px;
+}
+
+.main-head .bottom-nav .bottom-extra {
+    float: right;
+}
+
+.main-head .bottom-nav .bottom-extra .open-sidebar {
+    float: right;
+    margin: 0 0 0 10px;
+}
+
+.main-head .bottom-nav .bottom-extra .lang {
+    float: left;
+}
+
+.jumbo ul {
+    float: right;
+}
+
+.jumbo ul li:after {
+    content: "\f105";
+}
+
+.reg-form .widget {
+    padding: 0 15px;
+}
+
+.reg-form .widget .inner .form-group.ph-number .form-control.nice-select {
+    float: left;
+}
+
+.reg-form .widget .inner .form-group.ph-number .form-control {
+    float: right;
+}
+
+.reg-form .widget .inner .form-group .form-control.nice-select span {
+    text-align: left;
+}
+
+.reg-form .widget .inner .form-group .form-control:after {
+    left: auto;
+    right: 12px;
+}
+
+.reg-form .widget .reg-extra .r-right {
+    float: right;
+    padding: 0 0 0 15px;
+}
+
+.reg-form .widget .reg-extra .r-left {
+    padding: 0 15px 0 0;
+}
+
+.reg-form .widget .inner .form-group label .label-text:before {
+    margin: 0 10px 0 0;
+}
+
+.about-s .ab-img {
+    float: right;
+}
+
+.about-s .ab-img:after {
+    left: -5px;
+    right: auto;
+}
+
+.about-s .ab-data {
+    padding: 7% 50px 0 0;
+}
+
+.about-s .ab-data .g-head span:before {
+    left: 0;
+    right: auto;
+}
+
+.about-s .ab-data .g-head span {
+    padding: 0 10px 0 0;
+}
+
+.ab-bottom .block .inner h3:after {
+    margin: 0 0 0 15px;
+}
+
+.faqs .panel-title a {
+    padding: 20px 50px 20px 20px;
+}
+
+.faqs .panel-title > a:before {
+    left: auto;
+    right: 20px;
+}
+
+.main-head .bottom-nav .h-seach .form-group i {
+    left: 15px;
+    right: auto;
+}
+
+.main-head .bottom-nav .h-seach .form-group .form-control {
+    padding: 0 10px 0 45px;
+}
+
+.hero-s .item .container .cop {
+    direction: ltr;
+}
+
+.hero-extra .h-left,
+.about-s .ab-vid {
+    float: right;
+}
+
+.hero-extra .h-data {
+    padding: 0 15px;
+}
+
+.service-s .block .inner span {
+    left: 0;
+    right: auto;
+}
+
+.faqs-s:before,
+.main-content:before,
+.main-content:after {
+    right: -20%;
+    left: auto;
+}
+
+.main-content:after {
+    left: -20%;
+    right: auto;
+}
+
+.order-s:before {
+    left: 0;
+    right: auto;
+    border-radius: 0;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.order-s .order-steps .st-block:after {
+    left: auto;
+    right: -14px;
+}
+
+.order-s .order-steps .st-block:nth-of-type(1):after {
+    content: 'A';
+    line-height: 21px;
+}
+
+.order-s .order-steps .st-block:nth-of-type(even):after {
+    left: -10px;
+    right: auto;
+}
+
+.order-s .order-steps .st-block:nth-of-type(2):after {
+    content: 'B';
+    line-height: 22px;
+}
+
+.order-s .order-steps .st-block:nth-of-type(3):after {
+    content: 'C';
+    line-height: 22px;
+}
+
+.order-s .order-steps .st-block:nth-of-type(5):after {
+    content: 'D';
+    line-height: 22px;
+}
+
+.order-s .order-steps .st-block:nth-of-type(6):after {
+    left: -13px;
+}
+
+.order-s .order-steps .order-now a {
+    margin: 0 0 0 20px;
+}
+
+.order-s .order-steps .order-now {
+    left: auto;
+    right: 130px;
+}
+
+.faqs-s .panel-group .panel .panel-heading a:after,
+.faqs-s .panel-group .panel .panel-heading a:not(.collapsed):after {
+    float: right;
+}
+
+.main-footer .vis1 {
+    margin: 0 30px 0 0;
+}
+
+.main-footer .social a {
+    margin: 0 0 0 25px;
+}
+
+.main-footer .social a:last-child {
+    margin-left: 25px;
+}
+
+.reg-form .widget .c-ito {
+    padding: 0 15px;
+}
+
+.con-bottom .co-map-data {
+    padding: 0 0 0 50px;
+}
+
+.con-bottom .co-map-data li i {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.profile-wrap .prof-content {
+    padding: 0 0 0 50px;
+}
+
+.profile-wrap .prof-content .orders-filter .form-group.col-md-12 {
+    text-align: right;
+}
+
+.profile-wrap .prof-content .orders-filter .form-group .form-control span,
+.account-form .inner .form-group .form-control.nice-select span {
+    text-align: left;
+}
+
+.profile-wrap .prof-content .orders-filter .form-group .form-control:after,
+.account-form .inner .form-group .form-control:after {
+    right: 12px;
+    left: auto;
+}
+
+.profile-wrap .prof-content .orders-filter .form-group .form-control .list li,
+.account-form .inner .form-group .form-control .list li {
+    text-align: left;
+}
+
+.profile-wrap .prof-panel .nav-tabs li a i {
+    margin: 0 5px 0 0;
+}
+
+.profile-wrap .prof-content .order-table .table th:first-of-type {
+    border-radius: 0;
+    border-top-left-radius: 10px;
+}
+
+.profile-wrap .prof-content .order-table .table th:last-of-type {
+    border-radius: 0;
+    border-top-right-radius: 10px;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background-position: center right;
+}
+
+.profile-wrap .prof-content .order-table .table td a + a {
+    margin: 0 0 0 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: left;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    float: left;
+}
+
+.main-head .user-logged li .dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
+.forms-wrap .form-group label .label-text:before {
+    margin: 0 10px 0 0;
+}
+
+.forms-wrap .form-group .btn.prev-step,
+.prods-family h5 button {
+    float: right;
+}
+
+.prods-family h5 .rem-more-types {
+    margin: 0 6px 0 0;
+}
+
+.prods-family .prod-item button {
+    right: 10px;
+    left: auto;
+}
+
+.prods-family .prod-item button + button {
+    right: 35px;
+    left: auto;
+}
+
+.forms-wrap .form-group .select2-container .select2-selection--multiple .select2-selection__rendered li {
+    float: left;
+}
+
+.forms-wrap .form-group .select2-container .select2-selection--multiple .select2-selection__rendered li span {
+    float: right;
+    margin: 0 0 0 7px;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child {
+    padding: 15px 15px 15px 40px;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
+    left: 10px;
+    right: auto;
+}
+
+.main-head .bottom-nav .bottom-extra .open-search {
+    margin: 0 0 0 10px;
+}
+
+.user-logged .dropdown-toggle img {
+    margin: 0 5px 0 0;
+}
+
+.table-item-inner .btn {
+    float: right;
+}
+
+.table-item-inner .btn i {
+    margin: 0 3px 0 0;
+}
+
+.forms-wrap .form-group .btn.prev-step {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.f-submit .btn {
+    float: right;
+}
+
+@media(max-width:768px) {
+    .user-logged {
+        float: left !important;
+        margin: 0 !important;
+    }
+
+    .main-head.inner-head .bottom-nav .bottom-extra .bo-btns {
+        float: right !important;
+    }
+
+    .main-head.inner-head .user-logged li.open .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+    }
+}

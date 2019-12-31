@@ -1,0 +1,133 @@
+<div class="wrapper  wrapper-content ">
+
+    <div class="row">
+      <!-- <div class="col-sm-12">          
+              <sections-steps [requestID]="id" [step]="7" ></sections-steps>
+          </div> -->
+      <div class="col-lg-12">
+        <div class="ibox">
+  
+          <div class="ibox-content forms-wrap ">
+            <div class="text-right " id="text1">
+              <h4 class="wrap-head">{{'recognition-request-modification'|translate}}</h4>
+            </div>
+            <div class="text-right form-group" id="text2">
+              <h5>{{'request.appendix-one.tick-products'|translate}}</h5>
+            </div>
+            <!-- {{items|json}} -->
+            <h1 *ngIf="!isPageLoaded" align="center"><i class="blue fa fa-refresh fa-spin"></i>
+            </h1>
+            <div *ngIf="isPageLoaded" class="table-responsive align-items-center" id="appendtabel">
+  
+  
+              <div class="halal-table">
+                <div class="table-responsive">
+                  <table class=" table table-striped form-group" id="subtable" data-page-size="15">
+                    <thead>
+                      <tr class="appendix-th" style="border-bottom: 2px solid #eae4e4;">
+                        <th>{{'request.appendix-one.code'|translate}}</th>
+                        <th> {{'request.appendix-one.categories'|translate}}</th>
+                        <th>{{'request.appendix-one.sector'|translate}}</th>
+                        <th>{{'request.appendix-one.tick'|translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+  
+                      <tr class="fixheight" *ngFor="let item of items"
+                        style="border-bottom: 2px solid #eae4e4;background-color:white!important">
+                        <td class="A" style="padding: 20px !important;">{{item.CategoryCode}}</td>
+                        <td class="text-center">{{item.CategoryName}}</td>
+                        <td class="text-center">
+                          {{item.Scope}}
+                        </td>
+  
+                        <td>
+                          <label>
+                            <!-- {{item.IsSelected}} -->
+                            <input type="checkbox" [checked]="item.IsSelected" (change)="changeStatus(item)"
+                              *ngIf="isEditable" />
+                            <input type="checkbox" [checked]="item.IsSelected" *ngIf="!isEditable" disabled="true" />
+                            <span class="label-text"></span>
+                          </label>
+                        </td>
+  
+                      </tr>
+  
+  
+  
+  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row margin-top-15">
+              <div class="col-sm-12 text-danger padding-h-15" *ngIf="error">
+  
+                <div class="valid-label text-danger">
+  
+                  {{'shared.validation.checkboxrequired'|translate}}
+                </div>
+                <br>
+  
+              </div>
+  
+<!--               
+              <div class="col-sm-2 file-upload up-files  padding-top-15 form-group">
+             
+                <label class="uploadBtn btn">
+                  <i class="fa fa-plus"></i>
+                  {{'shared.upload-files'|translate}}
+                  <input [disabled]="!isEditable||isUploading" type="file" #myInput multiple class="bg-primary"
+                    accept=".doc, .docx,.pdf" (change)="onFileChanged($event)" />
+                </label>
+              </div>
+  
+              <div class="col-12 margin-top-15 bottom-t5 m-b-20" *ngIf="model.Attachments
+                      && model.Attachments.length>0">
+                <div class="col-sm-12">
+                  <br /><b class="text-navy">{{'shared.uploaded-files'|translate}}</b>
+                  <br />
+                  <div class="col-sm-12" *ngFor="let item of model.Attachments;let i=index">
+                    <span class="col-sm-1">
+                      <i class="fa fa-file"></i>
+                    </span>
+                    <span class="col-sm-6">
+                      <a href="{{item.FilePath}}" target="_blank">{{item.FileName}}</a>
+                    </span>
+                    <span class="col-sm-2">
+                      <i *ngIf="isEditable" (click)="removeAttachment(i)" class="fa fa-trash"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+   -->
+  
+  
+  
+              <div class="col-sm-11 form-group f-btns ">
+                <!-- <img  class="pull-right" src="/assets/images/ajax-loader.gif"> -->
+                <button [disabled]="disableSubmit||error" (click)="post()" type="submit"
+                  class="btn next-step">{{'submit'|translate}}
+                </button>
+                <!-- <button type="button" (click)="resetForm()"
+                                  class="btn prev-step ">{{'request.prev'|translate}}</button> -->
+              </div>
+            </div>
+  
+  
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <style>
+    .custom-check-box input:checked~.checkmark {
+      background-color: #31cbce !important;
+    }
+  
+  </style>
+  

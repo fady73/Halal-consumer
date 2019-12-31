@@ -1,0 +1,337 @@
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+            <div class="container">
+                           
+            <ul class="  nav nav-pills mb-3 " id="pills-tab"  role="tablist">
+                <li class="nav-item ">
+                    <a class="nav-link active"  data-toggle="pill" href="#pills-sec1" aria-selected="true"
+                    role="tab" aria-controls="pills-sec1"    >Section 1</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link"  data-toggle="pill" href="#pills-sec2"  aria-selected="false"
+                    role="tab" aria-controls="pills-sec2"   >Section 2</a>
+                </li>
+        
+
+            </ul>
+            <div class="tab-content" >
+                <div class=" container tab-pane active"  id="pills-sec1" role="tabpanel" aria-labelledby="pills-sec1-tab">
+                    <div class="ibox">
+
+                        <div class="ibox-content forms-wrap ">
+                            <div class="text-right " id="text1">
+                                <h4 class="wrap-head">{{'request.appendix-one.classification'|translate}}</h4>
+                            </div>
+                            <div class="text-right form-group" id="text2">
+                                <h5>{{'request.appendix-one.tick-products'|translate}}</h5>
+                            </div>
+                            <!-- {{items|json}} -->
+                            <h1 *ngIf="!isPageLoaded" align="center"><i class="blue fa fa-refresh fa-spin"></i>
+                            </h1>
+                            <div *ngIf="isPageLoaded" class="table-responsive align-items-center" id="appendtabel">
+        
+        
+                                    <div class="halal-table">
+                                            <div class="table-responsive">
+                                <table class=" table table-striped form-group" id="subtable"
+                                    data-page-size="15">
+                                    <thead>
+                                        <tr class="appendix-th" style="border-bottom: 2px solid #eae4e4;">
+                                            <th>{{'request.appendix-one.code'|translate}}</th>
+                                            <th> {{'request.appendix-one.categories'|translate}}</th>
+                                            <th>{{'request.appendix-one.sector'|translate}}</th>
+                                            <th>{{'request.appendix-one.tick'|translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+        
+                                        <tr class="fixheight" *ngFor="let item of items" style="border-bottom: 2px solid #eae4e4;background-color:white!important">
+                                            <td class="A" style="padding: 20px !important;">{{item.CategoryCode}}</td>
+                                            <td class="text-center">{{item.CategoryName}}</td>
+                                            <td class="text-center">
+                                                {{item.Scope}}
+                                            </td>
+        
+                                            <td>
+                                                <label >
+                                                    <!-- {{item.IsSelected}} -->
+                                                    <input type="checkbox" [checked]="item.IsSelected"
+                                                        (change)="changeStatus(item)"    />
+                                                
+                                                                <span class="label-text"></span>
+                                                </label>
+                                            </td>
+        
+                                        </tr>
+        
+        
+        
+        
+                                    </tbody>
+                                </table>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top-15">
+                            <div class="col-sm-12 text-danger padding-h-15" *ngIf="error">
+                                    
+                                    <div class="valid-label text-danger">
+                                        
+                                        {{'shared.validation.checkboxrequired'|translate}}
+                                    </div>
+                                    <br>
+                                    
+                                </div>
+                                <!-- <div class="col-sm-11 form-group f-btns ">
+                                   
+                                    <button [disabled]="!isEditable" (click)="post()" type="submit"
+                                        class="btn next-step">{{'request.save'|translate}}
+                                    </button>
+                               
+                                </div> -->
+                            </div>
+        
+        
+                        </div>
+        
+        
+                    </div>
+                </div>
+                <div class=" container tab-pane fade" id="pills-sec2" role="tabpanel" aria-labelledby="pills-sec2-tab">
+                    <div class="ibox">
+
+                        <div class="ibox-content forms-wrap ">
+                            <div class="text-right " id="text1">
+                                <h4 class="wrap-head">   {{'request.scope-processes.title'|translate}}</h4>
+                            </div>
+                            <form role="form" *ngIf="isPageLoaded1" [formGroup]="form" >
+
+                                <div class="form-group row"
+                                    [class.has-error]="(!form.controls['RegistrationScope'].valid && form.controls['RegistrationScope'].touched )">
+                                    <h5
+                                        class="col-sm-12 col-form-label">
+                                        {{'request.scope-processes.scope-of-registration'|translate}}
+                                        <i>*</i></h5>
+                                    <div class="col-sm-12" >
+                                        <textarea type="text" rows="3" class="form-control"
+                                            formControlName="RegistrationScope"></textarea>
+<!-- 
+                                            <textarea readonly="true"  *ngIf="!isEditable" type="text" rows="3" class="form-control"
+                                            formControlName="RegistrationScope"></textarea> -->
+                                         </div>
+                                    <!-- <div class="col-sm-12 padding-top-10 m-b-20" >
+                                            <div class="certs-radios">
+                                                    <div class="r-item">
+                                        <label >
+                                            <input *ngIf="isEditable" type="checkbox" id="have-local-activities-no" [value]="true"
+                                                (click)="fileOr()"  [checked]="markedInput" />
+
+                                                <input *ngIf="!isEditable" type="checkbox" id="have-local-activities-no" [value]="true"
+                                                [checked]="model.ScopeAttachments"
+                                                disabled="true"
+                                                />
+                                                <span class="label-text"> {{'request.scope-processes.attach-file'|translate}} </span>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        </div>
+                                        </div>
+                                    </div>
+                            <div class="col-sm-2 file-upload up-files  padding-top-15 form-group"  *ngIf="markedInput">
+                              
+                                        <label class="uploadBtn btn">
+                                            <i class="fa fa-plus"></i>
+                                            {{'shared.upload-files'|translate}}
+                                            <input [disabled]="!isEditable" type="file" #myInput multiple
+                                                class="bg-primary" accept=".doc, .docx,.pdf"
+                                                (change)="onFileChanged($event)" />
+                                        </label>
+                                    </div>
+
+                                   
+                                    <div class="col-sm-12 text-danger padding-h-15"
+                                        *ngIf="(!form.controls['RegistrationScope'].valid && form.controls['RegistrationScope'].touched) ||error">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['RegistrationScope'].hasError('required')||error">
+                                            {{'shared.validation.required'|translate}}
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                                <!-- <div class="row mtop-60 m-b-20"
+                                    *ngIf="model.ScopeAttachments
+                                    && model.ScopeAttachments.length>0">
+                                    <div class="offset-sm-3 col-sm-6" *ngIf="markedInput">
+                                        <br /><b class="text-navy">{{'shared.uploaded-files'|translate}}</b>
+                                        <br />
+                                        <div class="col-sm-12"
+                                            *ngFor="let item of model.ScopeAttachments;let i=index">
+                                            <span class="col-sm-1">
+                                                <i class="fa fa-file"></i>
+                                            </span>
+                                            <span class="col-sm-6">
+                                                <a href="{{item.FilePath}}"
+                                                    target="_blank">{{item.FileName}}</a>
+                                            </span>
+                                            <span class="col-sm-2">
+                                                <i *ngIf="isEditable" (click)="removeAttachment(i)"
+                                                    class="fa fa-trash"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                 -->
+                             
+                                <div class="hr-line-dashed"></div>
+                          
+                     
+
+                                <div class="prods-family form-group col-xs-12">
+                                    <h5
+                                        class="col-sm-12">{{'request.scope-processes.product-families'|translate}}
+                                        <i>*</i>
+                                    </h5>
+                                   <h5>
+                                        <button type="button" class="add-more-types col-sm-3 m-b-3" (click)="addProductFamily()">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="rem-more-types col-sm-3" (click)="removeLastProductFamily()">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        </h5>
+                  
+                                                    <div class="prod-item col-xs-12">
+                                                       
+                                                        <div *ngFor="let family of model.ProductFamilies;let familyIndex=index;">
+                                                        <div class="form-group col-md-12 col-xs-12">
+                                                            <h5>أدخل عائلة المنتج <i>*</i></h5>
+                                                            <input type="text"
+                                                            class="form-control"
+                                                                    placeholder="{{'request.scope-processes.product-family'|translate}}"
+                                                                    [(ngModel)]="family.NameEnglish"
+                                                                    [ngModelOptions]="{standalone: true}">
+                                                                    
+                                                                    <!-- <input type="text"
+                                                                    placeholder="{{'request.scope-processes.product-family'|translate}}"
+                                                                    [(ngModel)]="family.NameEnglish"
+                                                                    class="form-control"
+                                                                    [ngModelOptions]="{standalone: true}" *ngIf="!isEditable" readonly="true" > -->
+                                                        </div>
+                                                        <div class="form-group col-md-12 col-xs-12 product-type">
+                                                            <h5>أدخل نوع المنتج <i>*</i></h5>
+                                                            <div class="row">
+                                                            <div  class="col-sm-6"
+                                                            *ngFor="let type of family.ProductTypes;let isOdd=odd;let typeIndex=index">
+                                                            <input type="text"
+                                                            class="form-control"
+                                                            placeholder="{{'request.scope-processes.product-type'|translate}}"
+                                                            [(ngModel)]="type.NameEnglish"
+                                                            [ngModelOptions]="{standalone: true}" >
+                                                            <!-- <input type="text"
+                                                            class="form-control"
+                                                                placeholder="{{'request.scope-processes.product-type'|translate}}"
+                                                                [(ngModel)]="type.NameEnglish"
+                                                                [ngModelOptions]="{standalone: true}" *ngIf="!isEditable" readonly="true"> -->
+                                                            </div> 
+                                                            </div>
+                                                         </div>
+                                                         <button type="button" class="t-add" (click)="addProductType(familyIndex)">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button type="button" class="t-rem" (click)="removeLastProductType(familyIndex)">
+                                                                <i class="fa fa-minus" ></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="form-group row"
+                                    [class.has-error]="!form.controls['TotalProductionLinesNumber'].valid && form.controls['TotalProductionLinesNumber'].touched">
+                                    <h5 class="p-t-10">{{'request.scope-processes.production-lines'|translate}}
+                                        <i>*</i></h5>
+                                    <div class="col-sm-12 padding-top-10">
+                                            <input type="number"  (keypress)="checkIfNumber($event)"  
+                                            class="form-control" formControlName="TotalProductionLinesNumber"  >
+                                        <!-- <input type="number"  (keypress)="checkIfNumber($event)"  
+                                            class="form-control" formControlName="TotalProductionLinesNumber" *ngIf="!isEditable" readonly="true"> -->
+                                    </div>
+
+                                    <div class="col-sm-12 text-danger padding-h-15"
+                                        *ngIf="!form.controls['TotalProductionLinesNumber'].valid && form.controls['TotalProductionLinesNumber'].touched">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TotalProductionLinesNumber'].hasError('required')">
+                                            {{'shared.validation.required'|translate}}
+                                        </div>
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TotalProductionLinesNumber'].hasError('min')">
+                                            {{'shared.validation.minus'|translate}}
+                                        </div>
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['TotalProductionLinesNumber'].hasError('Pattern.OnlyNumbers')">
+                                            {{'shared.validation.number-only'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group  col-sm-12"
+                                    [class.has-error]="!form.controls['HACCPStudyTypeAndNumber'].valid && form.controls['HACCPStudyTypeAndNumber'].touched">
+                                    <h5
+                                        class="col-sm-12">{{'request.scope-processes.HACCP'|translate}}
+                                        <i>*</i></h5>
+                                    <div class="col-sm-12">
+                                        <textarea type="text" rows="3" class="form-control"
+                                            formControlName="HACCPStudyTypeAndNumber"></textarea>
+                                            <!-- <textarea type="text" rows="3" class="form-control"
+                                            formControlName="HACCPStudyTypeAndNumber" *ngIf="!isEditable" readonly="true"></textarea> -->
+                                    </div>
+                                    <div class=" col-sm-12 text-danger padding-h-15"
+                                        *ngIf="!form.controls['HACCPStudyTypeAndNumber'].valid && form.controls['HACCPStudyTypeAndNumber'].touched">
+                                        <div class="valid-label text-danger"
+                                            *ngIf="form.controls['HACCPStudyTypeAndNumber'].hasError('required')">
+                                            {{'shared.validation.required'|translate}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                           
+                               
+                                <div class=" form-group row margin-top-15 col-sm-12">
+                                    <div class="col-sm-12">
+                                        <!-- [disabled]="!isEditable || form.invalid || !isValidTypes()" -->
+                                        <button (click)="save()"
+                                           class="btn next-step">
+                                            {{'request.save'|translate}}
+                                        </button>
+                                        <!-- <button type="button" (click)="resetForm()"
+                                            class="btn prev-step">
+                                            {{'request.prev'|translate}}
+                                        </button> -->
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </form>
+
+                            </div>
+                            </div>
+                    </div>
+            
+        </div>
+                   
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

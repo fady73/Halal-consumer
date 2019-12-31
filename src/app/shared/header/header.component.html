@@ -1,0 +1,212 @@
+<header class="main-head col-xs-12">
+  <div class="top-head col-xs-12">
+    <div class="container">
+      <div class="logo">
+        <a href="#">
+          <img src="assets/images/logo.png" alt="">
+        </a>
+      </div>
+      <div class="top-extra">
+        <div class="vis1">
+          <img src="assets/images/vision2030.png" alt="">
+        </div>
+        <div class="vis2">
+          <img src="assets/images/vis2.png" alt="">
+        </div>
+        <div class="top-contact">
+          <div class="social">
+            <a href="#">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="tel:+0123456789">
+              <i class="fa fa-phone"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-whatsapp"></i>
+            </a>
+          </div>
+          <p class="n-date">{{ date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav col-xs-12">
+    <div class="container">
+      <ul>
+        <li  *ngIf="!logged">
+          <a  [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}"  routerLinkActive="current-menu-item">
+            <i class="fa fa-home"></i>
+          </a>
+        </li>
+        <li *ngIf="logged">
+          <a href="#">{{'shared.home'|translate}}</a>
+        </li>
+        <li *ngIf="!logged">
+          <a [routerLink]="['/user/sign-up']" routerLinkActive="current-menu-item">{{'shared.sign-page'|translate}}</a>
+        </li>
+        <li>
+          <a href="#call">{{'shared.callus'|translate}} </a>
+        </li>
+        <li> 
+          <a href="#about"> {{ 'shared.about'|translate }}</a>
+        </li>
+        <li>
+          <a href="#faq">{{'shared.question'|translate}}</a>
+        </li>
+      </ul>
+ 
+      <div class="bottom-extra">
+        <div class="user-logged" *ngIf="logged">
+          <ul>
+            <li>
+              <a *ngIf="profileImage" href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <img [src]="profileImage" alt="">
+                <span class="profilenamespan"> {{name}}</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a [routerLink]="['/profile/edit']">{{'account'|translate}}</a>
+                </li>
+                <li>
+                  <a (click)="signOut()">{{'signout'|translate}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="user-logged" *ngIf="logged">
+          <ul>
+            <li>
+              <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <i class="fa fa-bell"></i> 
+                <span class="label label-primary">{{NotificationLength}}</span>
+              </a>
+              <ul class="dropdown-menu" style="background: white;">
+                <li *ngFor="let item of Notification;let i=index">
+
+                  <a *ngIf="i<=9" href="javascript:void(0)" (click)="gotoWith(item.ID,item.Link)" [ngClass]="{'alert-info':item.Seen==false,'seen':item.Seen==true}">
+                      <div>
+                          {{item.Description}}
+                      </div>
+              <li class="dropdown-divider"></li>
+
+              </a>
+
+
+      </li>
+      <li>
+          <div class="text-center link-block">
+              <a [routerLink]="['/notification']" class="dropdown-item">
+                  <strong>See All Alerts</strong>
+                  <i class="fa fa-angle-right"></i>
+              </a>
+          </div>
+      </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      
+        <!-- <li class="dropdown">
+          <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+              <i class="fa fa-bell"></i> 
+              <span class="label label-primary">{{Notification.length}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-alerts">
+              <li *ngFor="let item of Notification;let i=index">
+
+                  <a *ngIf="i<=8" href="grid_options.html" class="dropdown-item">
+                      <div>
+                          {{item.Description}}
+                      </div>
+              <li class="dropdown-divider"></li>
+
+              </a>
+
+
+      </li>
+      <li>
+          <div class="text-center link-block">
+              <a [routerLink]="['/admin/notification']" class="dropdown-item">
+                  <strong>See All Alerts</strong>
+                  <i class="fa fa-angle-right"></i>
+              </a>
+          </div>
+      </li>
+
+  </ul>
+  </li> -->
+        <div class="bo-btns">
+          <a class="lang" (click)="changeLanguage()">            
+            {{'shared.lang'|translate}}
+          </a>
+          <button type="button" class="open-search">
+            <i class="fa fa-search"></i>
+          </button>
+          <button type="button" class="open-sidebar">
+            <i class="fa fa-th-large"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay_gen"></div>
+  <div class="sidebar">
+    <div class="side-logo">
+      <a href="#">
+        <img src="assets/images/logo.png" alt="">
+      </a>
+    </div>
+    <div class="side-social">
+      <ul>
+        <li>
+          <a href="#" class="fb">
+            <i class="fa fa-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tw">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="yt">
+            <i class="fa fa-whatsapp"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="yt">
+            <i class="fa fa-instagram"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-nav">
+      <ul>
+        <li>
+          <a href="#">الرئيسية</a>
+        </li>
+        <li>
+          <a href="#">حول البوابة</a>
+        </li>
+        <li>
+          <a href="#">الأسئلة الشائعة</a>
+        </li>
+        <li>
+          <a href="#">اتصل بنا</a>
+        </li>
+        <li>
+          <a href="#">التسجيل</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

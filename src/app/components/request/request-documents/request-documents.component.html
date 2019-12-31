@@ -1,0 +1,164 @@
+
+<div class="wrapper wrapper-content  profile-wrap " id="appendix-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox  orders-wrap my_payments">
+                <div class="ibox-title">
+                    <div class="row">
+                        
+                    </div>
+                </div>
+                <div class="ibox-content prof-content" style="    border-radius: 10px;">
+                    <div class="row" *ngIf="isPageLoaded">
+                        
+                    </div>
+                    <div class="row order-table">
+                        <div class=" table-responsive col-xs-12">
+                            <table class=" myTable table table-stripped responsive  dataTable no-footer dtr-inline" id="document-table">
+                                <thead>
+                                    <tr>
+                                        <th>{{'request-document.doc-name'|translate}}</th>
+                                        <th>{{'shared.upload-files'|translate}}</th>
+                                        <th>{{'request-document.files'|translate}}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="request-document">
+                                    <tr *ngIf="isPageLoaded && model.Documents.length==0">
+                                        <td colspan="3">
+                                            <h4 class="text-center ">{{'shared.sorry-no-requests-found'|translate}}</h4>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="!isPageLoaded">
+                                        <td colspan="3">
+                                            <h1 class="text-center "><i class="blue fa fa-refresh fa-spin"></i></h1>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let item of model.Documents">
+                                        <td style="width:60%;" class="padding-top-15">
+                                            {{item.RequiredDocumentName}}
+                                        </td>
+                                        <td class="col-sm-12" *ngIf="type=='1'">
+                                            <div class="file-upload">
+                                                <label class="fileContainer uplaod">
+                                                    <i class="fa fa-upload"></i>
+                                                    {{'shared.upload-files'|translate}}
+                                                    <input [disabled]="!(canEdit || (!item.Valid && item.Notes))"
+                                                        type="file" class="bg-primary" multiple #myInput
+                                                        accept=".doc, .docx,.pdf"
+                                                        (change)="onFileChanged($event , item.RequiredDocumentID-16)" />
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="nowrap" *ngIf="type=='1'">
+                                            <div *ngIf="model.Documents[item.RequiredDocumentID-16].Attachments.length > 0 ">
+                                                <div class="row " *ngFor="let file of model.Documents[item.RequiredDocumentID-16].Attachments;let i=index;">
+                                                
+                                               
+                                            <div class="col-sm-6">
+                                                    <a class="upload-f nowrap "     [href]="file.FilePath"  data-fancybox >
+                                                            <i class="fa fa-eye"></i>
+                                                            عرض</a>
+                                                    </div>
+                                                            <div class="  col-sm-6" *ngIf="canEdit || (!item.Valid && item.Notes)"
+                                                            (click)="removeAttachment(item.RequiredDocumentID-16,i)"><i
+                                                                class="remove fa fa-trash text-navy">
+                                                            </i>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                        </td>
+
+
+
+                                        <td class="col-sm-12" *ngIf="type=='0'">
+                                            <div class="file-upload">
+                                                <label class="fileContainer uplaod">
+                                                    <i class="fa fa-upload"></i>
+                                                    {{'shared.upload-files'|translate}}
+                                                    <input [disabled]="!(canEdit || (!item.Valid && item.Notes))"
+                                                        type="file" class="bg-primary" multiple #myInput
+                                                        accept=".doc, .docx,.pdf"
+                                                        (change)="onFileChanged($event , item.RequiredDocumentID-1)" />
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="type=='0'">
+                                            <div *ngIf="model.Documents[item.RequiredDocumentID-1].Attachments.length > 0 ">
+                                                <div class="row" *ngFor="let file of model.Documents[item.RequiredDocumentID-1].Attachments;let i=index;">
+                                                    
+                                               
+                                            <div class="col-sm-6">
+                                                    <a class="upload-f nowrap"     [href]="file.FilePath"  data-fancybox >
+                                                            <i class="fa fa-eye"></i>
+                                                            عرض</a>
+                                                    </div>
+                                                            <div class="col-sm-6" *ngIf="canEdit || (!item.Valid && item.Notes)"
+                                                            (click)="removeAttachment(item.RequiredDocumentID-1,i)"><i
+                                                                class="remove fa fa-trash text-navy">
+                                                            </i>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                        </td>
+                                        <td class="padding-top-15">
+                                            <span *ngIf="!item.Valid && item.Notes.length > 0" [tooltip]="item.Notes"
+                                                class="badge badge-danger" placement="bottom"
+                                                containerClass="customToolTipClass" container="body">!</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-sm-7">
+                            <span>Final notes</span>
+                        </div>
+                    </div> -->
+                    <!-- <div class="row">
+                        <div class="col-sm-7">
+                            <textarea [value]="model.Notes" rows="3" class="form-control" [readOnly]="true"></textarea>
+                        </div>
+                    </div> -->
+                    <div class="profile-wrap reqs-layout" style="padding: 0px !important;">
+                        <div class="row">
+                            
+                        <div class="col-lg-9 reqs-notes col-md-9 col-sm-9 col-9" >
+                            <div class="inner">
+                                    <h4>{{'shared.note'|translate }} : </h4>
+                                    <div *ngIf="model.Notes" class="col-lg-11 col-md-11 col-sm-11 col-11 draft">
+                                            <p>{{model.Notes}} </p>
+                                        </div>
+                              <span *ngIf="!model.Notes">          
+                            <ul>
+                            <li>{{'request-document.attach'|translate}}</li>
+                            <li>{{'request-document.file-ext'|translate}}</li>
+
+                            <!-- <p>{{'request-document.zip-file'|translate}}</p> -->
+                        </ul>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+
+                    <div class="row f-submit">
+                        <div class="col-sm-12">
+                            <button type="button" (click)="save()" [disabled]="disabledSubmit()"
+                                class="btn btn-prime ">
+                                {{'shared.submit-document'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,201 @@
+<div class="nowrap stepwizard">
+        <ul class="nav-tabs stepwizard-row setup-panel">
+            <li [ngClass]="{'stepwizard-step active':step==1,'stepwizard-step':(requestStepNumber>1||step>1)}">
+                <a [ngClass]="{'active': requestStepNumber>=1|| step==1,'disabled ':requestStepNumber<1,'editing':!stepHasComments(1) &&request.ConsumerRequiredAction>=3}"
+                        [routerLink]="['/request/edit',requestID]" class="btn btn-circle">
+                        <span class=" Comment" *ngIf="!stepHasComments(1)||first" >1</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(1)">1</span>
+
+                            <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(1)">!</span>
+                        </span>
+                        <!-- <span *ngIf="!first">
+                            *ngIf="!stepHasComments(1)"
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=3&&stepHasComments(1),'hide':requestStepNumber<1}"  *ngIf="stepHasComments(1)"><i class=" icon fa fa-check" aria-hidden="true"></i></span>
+                            </span> -->
+                    </a>
+                <p> {{'request.details'|translate}}</p>
+                <!-- <h1>{{requestStepNumber}}</h1>
+                <h1>{{step}}</h1> -->
+
+            </li>
+            <li  [ngClass]="{'stepwizard-step active':step==2,'stepwizard-step':(requestStepNumber>2||step>2)}">
+                <a  [ngClass]="{'active': requestStepNumber>=2|| step==2,'disabled ':requestStepNumber<2,'editing':!stepHasComments(2) &&request.ConsumerRequiredAction>=3 }"
+                    [routerLink]="['/request/certification-required',requestID]" class="btn btn-circle">
+                    <span class=" Comment" *ngIf="!stepHasComments(2)||first" >2</span>
+                    <span *ngIf="first==false">
+                            <span class="hasComment"  *ngIf="stepHasComments(2)">2</span>
+
+                    <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(2)">!</span>
+                    </span>
+                        <!-- <span *ngIf="!first">
+
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(2)">!</span>
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=3&&stepHasComments(2),'hide':requestStepNumber<2}"  *ngIf="stepHasComments(2)"><i class="icon fa fa-check" aria-hidden="true"></i></span>
+                        </span> -->
+                    </a>
+                <p>{{'request.certification' |translate}}</p>
+                 <!-- <h1>{{requestStepNumber}}</h1>
+                <h1>{{step}}</h1> -->
+                
+            </li>
+
+            <li class="stepwizard-step " *ngIf="type=='0'" [ngClass]="{'stepwizard-step active':step==3,'stepwizard-step':(requestStepNumber>3||step>3)}">
+                <a  [ngClass]="{'active': requestStepNumber>=3|| step==3,'disabled disable-link':requestStepNumber<3,'editing':!stepHasComments(3) &&request.ConsumerRequiredAction>=3 }"
+                        [routerLink]="['/request/regular-request',requestID]" class="btn btn-circle">
+                        <span class=" Comment" *ngIf="!stepHasComments(3)||first" >3</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(3)">3</span>
+
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(3)">!</span>
+                        </span>
+                        <!-- <span *ngIf="!first">
+
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(3)">!</span>
+                                <span class="badge badge-info notification-badge"  [ngClass]="{'show': requestStepNumber>=3&&stepHasComments(3),'hide':requestStepNumber<3}"  *ngIf="stepHasComments(3)"><i class="icon fa fa-check" aria-hidden="true"></i></span>
+                           </span> -->
+                    </a>
+                <p>  {{'request.scope-processes.title'|translate}} </p>
+                
+            </li>
+
+
+            <li class="stepwizard-step "  *ngIf="type=='1'" [ngClass]="{'stepwizard-step active':step==3,'stepwizard-step':(requestStepNumber>3||step>3)}">
+                <a  [ngClass]="{'active': requestStepNumber>=3|| step==3,'disabled disable-link':requestStepNumber<3,'editing':!stepHasComments(3) &&request.ConsumerRequiredAction>=3 }"
+                        [routerLink]="['/request/recognition-request',requestID]" class="btn btn-circle">
+                        <span class=" Comment" *ngIf="!stepHasComments(3)||first" >3</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(3)">3</span>
+
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(3)">!</span>
+                        </span>
+                
+                    </a>
+                <p>  {{'request.scope-processes.title'|translate}} </p>
+                
+            </li>
+
+            <li class="stepwizard-step " [ngClass]="{'stepwizard-step active':step==4,'stepwizard-step':(requestStepNumber>4||step>4)}">
+                <a [ngClass]="{'active': requestStepNumber>=4|| step==4,'disabled disable-link':requestStepNumber<4,'editing':!stepHasComments(4) &&request.ConsumerRequiredAction>=3}"
+                        [routerLink]="['/request/operation',requestID]" class="btn btn-circle" >
+                        <span class=" Comment" *ngIf="!stepHasComments(4)||first" >4</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(4)">4</span>
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(4)">!</span>
+                        </span>
+                        <!-- <span *ngIf="!first">
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(4)">!</span>
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=4&&stepHasComments(4),'hide':requestStepNumber<4}"  *ngIf="stepHasComments(4)"><i class="icon fa fa-check" aria-hidden="true"></i>
+                                </span>
+                                </span> -->
+                    </a>
+                       
+                <p>{{'request.operations.title'|translate}}</p>
+            </li>
+
+            <li class="stepwizard-step " *ngIf="type=='0'" [ngClass]="{'stepwizard-step active':step==5,'stepwizard-step':(requestStepNumber>5||step>5)}">
+                <a [ngClass]="{'active': requestStepNumber>=5|| step==5,'disabled disable-link':requestStepNumber<5,'editing':!stepHasComments(5) &&request.ConsumerRequiredAction>=3}"
+                        [routerLink]="['/request/sales',requestID]" class="btn btn-circle">
+                        <span class=" Comment" *ngIf="!stepHasComments(5)||first" >5</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(5)">5</span>
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(5)">!</span>
+                        </span>
+                        <!-- <span *ngIf="!first">
+            
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(5)&&!first">!</span>
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=5&&stepHasComments(5),'hide':requestStepNumber<5}"  *ngIf="stepHasComments(5)"><i class="icon fa fa-check" aria-hidden="true"></i>
+                                </span>
+                            </span> -->
+                    </a>
+                <p>            {{'request.sales.title'|translate}}                    </p>
+                
+            </li>
+         
+            <!-- <li class="stepwizard-step " [ngClass]="{'stepwizard-step active':step==6,'stepwizard-step':(requestStepNumber>6||step>6)}">
+                <a [ngClass]="{'active': requestStepNumber>=6|| step==6,'disabled disable-link':requestStepNumber<6,'editing':!stepHasComments(6) &&request.ConsumerRequiredAction>=3}"
+                        [routerLink]="['/request/visit-cost',requestID]" class="btn btn-circle">
+                        <span class=" Comment" *ngIf="!stepHasComments(6)||first" >6</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(6)">6</span>
+
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(6)">!</span>
+                        </span>
+                         <span *ngIf="!first">
+            
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(6)&&!first">!</span>
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=6&&stepHasComments(6),'hide':requestStepNumber<6}"  *ngIf="stepHasComments(6)"><i class="icon fa fa-check" aria-hidden="true"></i>
+                                </span>
+                    </span> 
+                    </a>
+                <p>             {{'request.visit-cost.title'|translate}}                    </p>
+                
+            </li> -->
+    
+            <li class="stepwizard-step " *ngIf="type=='0'" [ngClass]="{'stepwizard-step active':step==7,'stepwizard-step':(requestStepNumber>7||step>7)}">
+                <a [ngClass]="{'active': requestStepNumber>=7|| step==7,'disabled disable-link':requestStepNumber<7,'editing':!stepHasComments(7) &&request.ConsumerRequiredAction>=3}"
+                        [routerLink]="['/request/appendix-classification',requestID]" class="btn btn-circle">
+                        
+                        <span class=" Comment" *ngIf="!stepHasComments(7)||first" >6</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(7)">6</span>
+
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(7)">!</span>
+                        </span>
+                        <!-- <span *ngIf="!first">
+            
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(7)&&!first">!</span>
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=7&&stepHasComments(7),'hide':requestStepNumber<7}"  *ngIf="stepHasComments(7)"><i class="icon fa fa-check" aria-hidden="true"></i>
+                                </span>
+                                </span> -->
+                    </a>
+                <p>             {{'request.appendix1'|translate}}                    </p>
+               
+            </li>
+    
+                <li class="stepwizard-step " *ngIf="type=='1'" [ngClass]="{'stepwizard-step active':step==7,'stepwizard-step':(requestStepNumber>=7||step>7)}">
+                    <a [ngClass]="{'active': requestStepNumber>=7|| step==7,'disabled disable-link':requestStepNumber<7,'editing':!stepHasComments(7) &&request.ConsumerRequiredAction>=3}"
+                            [routerLink]="['/request/appendix-classification',requestID]" class="btn btn-circle">
+                            
+                            <span class=" Comment" *ngIf="!stepHasComments(7)||first" >5</span>
+                            <span *ngIf="first==false">
+                                    <span class="hasComment"  *ngIf="stepHasComments(7)">5</span>
+    
+                            <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(7)">!</span>
+                            </span>
+                     
+                        </a>
+                    <p>             {{'request.appendix1'|translate}}                    </p>
+                   
+                </li>
+
+            <li class="stepwizard-step " *ngIf="type=='0'" [ngClass]="{'stepwizard-step active':step==8,'stepwizard-step':(requestStepNumber>=8||step>8)}">
+                <a [ngClass]="{'active': requestStepNumber>=8|| step==8,' disabled  disable-link':requestStepNumber<8,'editing':!stepHasComments(8) &&request.ConsumerRequiredAction>=3}"
+                        [routerLink]="['/request/appendix-primary-sector',requestID]" class="btn btn-circle">
+                        
+                        <span class=" Comment" *ngIf="!stepHasComments(8)||first" >7</span>
+                        <span *ngIf="first==false">
+                                <span class="hasComment"  *ngIf="stepHasComments(8)">7</span>
+
+                        <span class="badge badge-danger notification-badge" *ngIf="stepHasComments(8)">!</span>
+                        </span>
+                        <!-- <span *ngIf="!first">
+            
+                                <span class="badge badge-danger notification-badge" *ngIf="!stepHasComments(8)&&!first">!</span>
+                                <span class="badge badge-info notification-badge" [ngClass]="{'show': requestStepNumber>=8&&stepHasComments(8),'hide':requestStepNumber<8}"  *ngIf="stepHasComments(8)"><i class="icon fa fa-check" aria-hidden="true"></i>
+                                </span>
+                    
+                                </span> -->
+                    </a>
+                <p> {{'request.appendix2'|translate}}</p>
+            </li>
+        </ul>
+    </div>
+
+<!-- style="pointer-events: none; cursor: default;" -->
+
+<div class="row" *ngIf="stepComments.length>0">
+    <div class=" alert alert-danger col-lg-12 col-md-12 col-sm-12 draft">
+        <p *ngFor="let item of stepComments">{{item.Comment}} </p>
+    </div>
+</div>

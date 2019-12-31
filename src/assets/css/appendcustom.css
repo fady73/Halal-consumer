@@ -1,0 +1,136 @@
+ .wizard > .steps a, .wizard > .steps a:hover, .wizard > .steps a:active {
+    display: block;
+    width: auto;
+    margin: 0 0.3em 0.5em;
+    padding: 8px;
+    text-decoration: none;
+  }
+  .wizard > .steps > ul > li {
+    width: 12.5% !important;
+  }
+  .wizard > .steps .current a {
+    background: #1AB394;
+    color: #fff;
+    cursor: default;
+    border: none;
+    text-align: center;
+  }
+  .wizard > .steps a{
+    border-radius: 0px !important;
+  }
+  .wizard > .steps a:hover{
+    border-radius: 0px !important;
+  }
+  
+  .wizard > .steps .current2 a {
+  
+    background: #c3bfbf;
+    color: #fff;
+    cursor: default;
+    border: none;
+    text-align: center;
+  
+  }
+  #submitBtn{
+    margin-right: 51px;
+  }
+  .clear-fix{
+    margin-bottom: 80px;
+    margin-top: 40px;
+  }
+  .btn-white {
+    color: inherit;
+    background: white;
+    border: 1px solid #1ab394;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #1ab394 !important;
+    border-color: #1ab394 !important;
+  }
+  
+  .btn-w-m:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  margin-right: 93px;
+  height: 34px;
+  width: 143px;
+  }
+  
+
+#bread1 > ol{
+    padding-top: 2%;
+}
+
+#text1 > h2
+{
+    padding-top: 5%;
+    padding-bottom: 2%;
+}
+
+#text2 > h3 >small{
+
+
+    font-size: 120%;
+}
+
+#appendtabel > table {
+  margin-top: 3%;
+  width: 90%;
+  margin-left: 4%;
+  table-layout: fixed;
+}
+
+#appendtabel > table > thead > tr > .B {
+
+    padding-left: 3%;
+
+}
+
+#subtable > tbody > tr > td{
+  border: 1px solid white;
+}
+
+#subtable tbody tr:nth-of-type(2n+1){
+border: 1px solid #eae4e4;
+}
+#appendtabel > table > tbody > tr > .A {
+    padding-left: 3%;
+
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td {
+    background-color:white;
+ }
+
+ .table-striped > tbody > tr:nth-child(2n) > td {
+    background-color: rgba(0, 0, 0, 0.05)
+
+ }
+
+
+ .table-striped > thead > tr:nth-child(2n+1) > th {
+    background-color: rgba(0, 0, 0, 0.05)
+ }
+
+
+ .table-striped > tbody > tr > td > label > .appendcheck {
+
+    left: 40%;
+   margin-top: 5%;
+    
+ }
+
+ 
+ .table-striped  > tbody > .fixheight  {
+    
+    position: relative;
+    overflow: hidden;
+    height: 70px !important ;
+    text-align: center;
+
+}
+
+::placeholder {
+  
+  opacity: 0.5;
+}
