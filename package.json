@@ -38,7 +38,7 @@
     "hijri-date": "^0.2.2",
     "intl-input-phone": "0.0.6",
     "intl-tel-input": "^16.0.4",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "ng2-pdf-viewer": "5.3.3",
     "ng2-pdfjs-viewer": "^5.0.1",
     "ngx-bootstrap": "^4.3.0",
